@@ -6,15 +6,12 @@ Dashboard 139 报告生成器
 """
 
 import argparse
-import json
 import sys
 import os
 from datetime import datetime, timedelta
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError
 
-API_HOST = "https://kmb.qunhequnhe.com"
-API_KEY = "mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+from core.http import post_json
+from core.errors import KMBError, format_error
 
 # Dashboard 139 核心 Cards
 CARD_IDS = {
@@ -28,24 +25,13 @@ CARD_IDS = {
 
 def query_card(card_id: int, limit: int = 10000):
     """查询 Card 数据"""
-    url = f"{API_HOST}/api/card/{card_id}/query"
-    headers = {
-        "x-api-key": API_KEY,
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "parameters": [],
-        "constraints": {"max-results": limit}
-    }).encode('utf-8')
-
-    req = Request(url, data=data, headers=headers, method='POST')
-
-    try:
-        with urlopen(req) as response:
-            return json.loads(response.read().decode('utf-8'))
-    except HTTPError as e:
-        print(f"Error querying card {card_id}: HTTP {e.code}", file=sys.stderr)
-        return None
+    return post_json(
+        f"/api/card/{card_id}/query",
+        {
+            "parameters": [],
+            "constraints": {"max-results": limit},
+        },
+    )
 
 
 def generate_report(date_str: str = None):
@@ -64,7 +50,11 @@ def generate_report(date_str: str = None):
 
     # 查询各 Card 数据
     for name, card_id in CARD_IDS.items():
-        result = query_card(card_id)
+        try:
+            result = query_card(card_id)
+        except KMBError as e:
+            print(f"Error querying card {card_id}: {format_error(e)}", file=sys.stderr)
+            result = None
         if result:
             row_count = result.get('row_count', 0)
             report_lines.append(f"- **{name}** (Card {card_id}): {row_count} 条数据")

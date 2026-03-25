@@ -18,6 +18,12 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(os.path.dirname(SCRIPT_DIR), 'space-data')
 
+
+def _exit_error(message):
+    print(f"Error: {message}", file=sys.stderr)
+    sys.exit(1)
+
+
 def load_data():
     """加载所有映射数据"""
     with open(f'{DATA_DIR}/page_map.json', 'r') as f:
@@ -72,8 +78,7 @@ def show_page_detail(page_id, page_map, page_to_graphs, graph_map):
     """显示页面详情"""
     page_id_str = str(page_id)
     if page_id_str not in page_map:
-        print(f"❌ 页面 {page_id} 不存在")
-        return
+        _exit_error(f"页面 {page_id} 不存在")
     
     page = page_map[page_id_str]
     print("=" * 80)
@@ -104,8 +109,7 @@ def show_graph_detail(graph_id, graph_map):
     """显示图表/SQL详情"""
     graph_id_str = str(graph_id)
     if graph_id_str not in graph_map:
-        print(f"❌ 图表 {graph_id} 不存在")
-        return
+        _exit_error(f"图表 {graph_id} 不存在")
     
     g = graph_map[graph_id_str]
     print("=" * 80)
@@ -128,13 +132,11 @@ def show_sql_only(graph_id, graph_map):
     if graph_id_str in graph_map:
         print(graph_map[graph_id_str]['sql'])
     else:
-        print(f"-- 图表 {graph_id} 不存在", file=sys.stderr)
-        sys.exit(1)
+        _exit_error(f"图表 {graph_id} 不存在")
 
 def main():
     if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+        _exit_error("缺少命令参数，请使用 search/page/graph/sql/tree")
     
     cmd = sys.argv[1]
     
@@ -142,9 +144,7 @@ def main():
     try:
         page_map, graph_map, page_to_graphs = load_data()
     except FileNotFoundError as e:
-        print(f"❌ 数据文件不存在: {e}")
-        print("请确保已运行数据初始化脚本")
-        sys.exit(1)
+        _exit_error(f"数据文件不存在: {e}")
     
     if cmd == 'search' and len(sys.argv) >= 3:
         keyword = sys.argv[2]
@@ -171,8 +171,7 @@ def main():
         show_tree(page_map)
     
     else:
-        print(__doc__)
-        sys.exit(1)
+        _exit_error(f"不支持的命令: {cmd}，请使用 search/page/graph/sql/tree")
 
 if __name__ == '__main__':
     main()

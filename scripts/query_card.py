@@ -15,40 +15,20 @@ import argparse
 import json
 import csv
 import sys
-import os
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError
 
-# 配置
-API_HOST = "https://kmb.qunhequnhe.com"
-API_KEY = "mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+from core.http import post_json
+from core.errors import KMBError, format_error
 
 
 def query_card(card_id: int, limit: int = 10000):
     """查询 Card 数据"""
-    url = f"{API_HOST}/api/card/{card_id}/query"
-    headers = {
-        "x-api-key": API_KEY,
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "parameters": [],
-        "constraints": {"max-results": limit}
-    }).encode('utf-8')
-
-    req = Request(url, data=data, headers=headers, method='POST')
-
-    try:
-        with urlopen(req) as response:
-            return json.loads(response.read().decode('utf-8'))
-    except HTTPError as e:
-        print(f"Error: HTTP {e.code} - {e.reason}", file=sys.stderr)
-        try:
-            error_body = json.loads(e.read().decode('utf-8'))
-            print(f"Details: {error_body}", file=sys.stderr)
-        except:
-            pass
-        sys.exit(1)
+    return post_json(
+        f"/api/card/{card_id}/query",
+        {
+            "parameters": [],
+            "constraints": {"max-results": limit},
+        },
+    )
 
 
 def format_as_table(data: dict):
@@ -107,8 +87,12 @@ def main():
 
     args = parser.parse_args()
 
-    # 查询数据
-    result = query_card(args.card_id, args.limit)
+    try:
+        # 查询数据
+        result = query_card(args.card_id, args.limit)
+    except KMBError as e:
+        print(f"Error: {format_error(e)}", file=sys.stderr)
+        sys.exit(1)
 
     # 格式化输出
     if args.output == 'json':

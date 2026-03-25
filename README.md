@@ -51,11 +51,16 @@ kmb-metabase/
 │   ├── dashboard-configs.md          # Dashboard 配置详情
 │   └── card-catalog.md               # 常用 Card 目录
 ├── scripts/
+│   ├── core/                         # 统一配置/HTTP/错误处理内核
+│   │   ├── config.py
+│   │   ├── http.py
+│   │   └── errors.py
 │   ├── query_card.py                 # Card 数据查询
 │   ├── search_kmb.py                 # KMB 搜索
 │   ├── get_collection_cards.py       # Collection 查询
 │   ├── generate_dashboard139_report.py # 报告生成
 │   └── kmb.sh                        # 快捷命令
+├── tests/                            # 最小自动化测试
 └── reports/                          # 报告输出目录
 ```
 
@@ -80,7 +85,7 @@ kmb-metabase/
 ## 常见问题
 
 ### Q: API Key 在哪里配置？
-A: 在 `scripts/` 目录下的 Python 脚本中，变量 `API_KEY` 处。
+A: 在 `scripts/core/config.py` 中统一配置 `API_KEY`。
 
 ### Q: 如何添加只读 API？
 A: 编辑 `references/api-reference.md`，添加新的端点说明。
@@ -90,4 +95,4 @@ A: 当前 Skill 以只读为主，但可以通过扩展脚本支持创建/更新
 
 ---
 
-*最后更新: 2026-03-18*
+*最后更新: 2026-03-26*

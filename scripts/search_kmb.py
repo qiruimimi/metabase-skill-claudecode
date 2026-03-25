@@ -13,30 +13,14 @@ Examples:
 import argparse
 import json
 import sys
-from urllib.request import Request, urlopen
-from urllib.parse import quote
-from urllib.error import HTTPError
 
-API_HOST = "https://kmb.qunhequnhe.com"
-API_KEY = "mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+from core.http import get_json
+from core.errors import KMBError, format_error
 
 
 def search_kmb(keyword: str):
     """搜索 KMB 内容"""
-    encoded_keyword = quote(keyword)
-    url = f"{API_HOST}/api/search?q={encoded_keyword}"
-    headers = {
-        "x-api-key": API_KEY
-    }
-
-    req = Request(url, headers=headers, method='GET')
-
-    try:
-        with urlopen(req) as response:
-            return json.loads(response.read().decode('utf-8'))
-    except HTTPError as e:
-        print(f"Error: HTTP {e.code} - {e.reason}", file=sys.stderr)
-        sys.exit(1)
+    return get_json("/api/search", {"q": keyword})
 
 
 def format_results(data: dict):
@@ -77,7 +61,11 @@ def main():
 
     args = parser.parse_args()
 
-    result = search_kmb(args.keyword)
+    try:
+        result = search_kmb(args.keyword)
+    except KMBError as e:
+        print(f"Error: {format_error(e)}", file=sys.stderr)
+        sys.exit(1)
 
     if args.raw:
         print(json.dumps(result, indent=2, ensure_ascii=False))

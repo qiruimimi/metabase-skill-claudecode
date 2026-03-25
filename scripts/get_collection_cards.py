@@ -12,43 +12,21 @@ Examples:
 import argparse
 import json
 import sys
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError
 
-API_HOST = "https://kmb.qunhequnhe.com"
-API_KEY = "mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+from core.http import get_json
+from core.errors import KMBError, format_error
 
 
 def get_collection_items(collection_id: int):
     """获取 Collection Items"""
-    url = f"{API_HOST}/api/collection/{collection_id}/items"
-    headers = {
-        "x-api-key": API_KEY
-    }
-
-    req = Request(url, headers=headers, method='GET')
-
-    try:
-        with urlopen(req) as response:
-            return json.loads(response.read().decode('utf-8'))
-    except HTTPError as e:
-        print(f"Error: HTTP {e.code} - {e.reason}", file=sys.stderr)
-        sys.exit(1)
+    return get_json(f"/api/collection/{collection_id}/items")
 
 
 def get_collection_info(collection_id: int):
     """获取 Collection 详情"""
-    url = f"{API_HOST}/api/collection/{collection_id}"
-    headers = {
-        "x-api-key": API_KEY
-    }
-
-    req = Request(url, headers=headers, method='GET')
-
     try:
-        with urlopen(req) as response:
-            return json.loads(response.read().decode('utf-8'))
-    except HTTPError as e:
+        return get_json(f"/api/collection/{collection_id}")
+    except KMBError:
         return None
 
 
@@ -66,7 +44,11 @@ def main():
         print(f"Location: {info.get('location', 'N/A')}\n")
 
     # 获取 Items
-    result = get_collection_items(args.collection_id)
+    try:
+        result = get_collection_items(args.collection_id)
+    except KMBError as e:
+        print(f"Error: {format_error(e)}", file=sys.stderr)
+        sys.exit(1)
 
     if args.raw:
         print(json.dumps(result, indent=2, ensure_ascii=False))

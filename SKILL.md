@@ -88,44 +88,49 @@ curl -X POST "https://kmb.qunhequnhe.com/api/dashboard" \
   }'
 ```
 
-#### 向 Dashboard 添加卡片
+#### 通过 PUT 更新 Dashboard（添加卡片）
 ```bash
-curl -X POST "https://kmb.qunhequnhe.com/api/dashboard/${dashboard_id}/cards" \
+curl -X PUT "https://kmb.qunhequnhe.com/api/dashboard/${dashboard_id}" \
   -H "X-API-Key: mb_xxx..." \
   -H "Content-Type: application/json" \
   -d '{
-    "cardId": 45,
-    "row": 0,
-    "col": 0,
-    "sizeX": 6,
-    "sizeY": 4,
-    "parameter_mappings": [],
-    "visualization_settings": {}
-  }'
-```
-
-#### 批量更新 Dashboard 卡片（推荐）
-```bash
-curl -X PUT "https://kmb.qunhequnhe.com/api/dashboard/${dashboard_id}/cards" \
-  -H "X-API-Key: mb_xxx..." \
-  -H "Content-Type: application/json" \
-  -d '{
-    "cards": [
+    "dashcards": [
       {
         "id": -1,
         "card_id": 45,
         "row": 0,
         "col": 0,
-        "sizeX": 6,
-        "sizeY": 4
+        "size_x": 6,
+        "size_y": 4,
+        "parameter_mappings": [],
+        "visualization_settings": {}
+      }
+    ]
+  }'
+```
+
+#### 批量更新 Dashboard 卡片（推荐）
+```bash
+curl -X PUT "https://kmb.qunhequnhe.com/api/dashboard/${dashboard_id}" \
+  -H "X-API-Key: mb_xxx..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dashcards": [
+      {
+        "id": -1,
+        "card_id": 45,
+        "row": 0,
+        "col": 0,
+        "size_x": 6,
+        "size_y": 4
       },
       {
         "id": -2,
         "card_id": 46,
         "row": 0,
         "col": 6,
-        "sizeX": 12,
-        "sizeY": 6
+        "size_x": 12,
+        "size_y": 6
       }
     ]
   }'
@@ -447,8 +452,7 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 | 更新 Dashboard | `/api/dashboard/{id}` | PUT |
 | 删除 Dashboard | `/api/dashboard/{id}` | DELETE |
 | 复制 Dashboard | `/api/dashboard/{id}/copy` | POST |
-| **添加卡片到 Dashboard** | `/api/dashboard/{id}/cards` | POST |
-| **批量更新 Dashboard 卡片** | `/api/dashboard/{id}/cards` | PUT |
+| **添加/更新 Dashboard 卡片** | `PUT /api/dashboard/{id}`（通过 `dashcards` 字段） | PUT |
 | 从 Dashboard 删除卡片 | `/api/dashboard/{dashboardId}/cards/{dashcardId}` | DELETE |
 | 获取 Dashboard 修订历史 | `/api/dashboard/{id}/revisions` | GET |
 | 恢复 Dashboard 版本 | `/api/dashboard/{id}/revert` | POST |

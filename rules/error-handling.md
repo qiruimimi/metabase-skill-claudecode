@@ -161,3 +161,20 @@ curl -sL "${HOST}/api/collection" \
   -H "X-API-Key: ${API_KEY}" | \
   jq -r '.[] | select(.location == "/父ID/") | "\(.id)|\(.name)"'
 ```
+
+---
+
+## 脚本运行时错误输出（重构后）
+
+当前脚本统一使用以下错误输出风格：
+
+- 标准格式：`Error: <具体错误信息>`
+- 输出位置：`stderr`
+- 退出码：失败时返回非 0
+
+示例：
+```text
+Error: HTTP 404 - Not Found
+Error: Connection failed: timed out
+Error: 图表 999 不存在
+```
