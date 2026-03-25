@@ -2,8 +2,8 @@
 # KMB Skill 自动更新脚本
 # 用于将实战经验沉淀到 skill 中
 
-SKILL_DIR="$HOME/.openclaw/extensions/kmb-skill"
-MEMORY_DIR="$HOME/.openclaw/workspace/memory"
+SKILL_DIR="$HOME/.claude/skills/kmb-metabase"
+MEMORY_DIR="$HOME/.claude/projects"
 
 echo "=== KMB Skill 自动更新 ==="
 echo "Skill 目录: $SKILL_DIR"

@@ -24,6 +24,23 @@
 | 3228 | 有意向用户->支付成功 转化数据 | 254 | 转化漏斗 |
 | 3267 | 有意向用户->支付成功 转化数据 - 分场景 | 254 | 分场景转化 |
 
+### Revenue 收入分析 (Collection 521)
+
+| Card ID | 名称 | 类型 | 说明 |
+|---------|------|------|------|
+| 6080 | Revenue发票数据基础 | Model | SQL 源表，发票数据（字符串时间字段） |
+| 6081 | Revenue订阅用户数据基础 | Model | SQL 源表，订阅用户数据 |
+| 6092 | Revenue账单分层指标-v5 | MBQL | 分层单数（新签、连续续约、升级、降级、召回、试用、其他、代理） |
+| 6105 | Revenue每日收入分布 | MBQL | 分层收入（对应单数的收入金额） |
+| 6112 | Revenue账单分层&总在约人数（去除试用代理） | SQL | UNION查询，含在约用户数 |
+| 6113 | Daily Paid Revenue Amount | SQL | 总收入、新签收入、续约收入 |
+| 6114 | Daily Paid Revenue Users | SQL | 总付费用户数、新签用户数、续约用户数 |
+| 6116 | Daily Paid Revenue Full | SQL | 金额+用户数+客单价完整版 |
+| **6122** | **[Model] Revenue发票数据基础(Date类型)** | Model | **带 date 类型时间字段（pay_success_time）** |
+| **6123** | **[MBQL] Revenue账单分层指标(筛选器版)** | MBQL | **使用 date 类型 breakout，可关联 Dashboard 筛选器** |
+
+**关联 Dashboard**: 494 - Revenue用户分层（新）- 迁移
+
 ---
 
 ## 按 Collection 分类
@@ -34,6 +51,21 @@
 |---------|------|
 | 3228 | 有意向用户->支付成功 转化数据 |
 | 3267 | 有意向用户->支付成功 转化数据 - 分场景 |
+
+### Collection 521: Revenue
+
+| Card ID | 名称 |
+|---------|------|
+| 6080 | Revenue发票数据基础 (Model) |
+| 6081 | Revenue订阅用户数据基础 (Model) |
+| 6092 | Revenue账单分层指标-v5 |
+| 6105 | Revenue每日收入分布 |
+| 6112 | Revenue账单分层&总在约人数（去除试用代理） |
+| 6113 | Daily Paid Revenue Amount |
+| 6114 | Daily Paid Revenue Users |
+| 6116 | Daily Paid Revenue Full |
+| 6122 | Revenue发票数据基础(Date类型) (Model) |
+| 6123 | Revenue账单分层指标(筛选器版) |
 
 ---
 
@@ -54,9 +86,43 @@
 
 **查询方式:**
 ```bash
-python3 ~/.openclaw/extensions/kmb-skill/scripts/query_card.py 4953 --output table
+python3 ~/.claude/skills/kmb-metabase/scripts/query_card.py 4953 --output table
 ```
+
+### Collection 521 迁移案例 - Revenue 用户分层
+
+**迁移自**: Tesseract page/55074
+
+**关键发现**: Dashboard 筛选器关联需要 **date 类型**时间字段！
+
+| 问题 | 原因 | 解决 |
+|------|------|------|
+| Dashboard 筛选器无法关联 | Question breakout 使用字符串类型字段 `pay_success_day` | 创建 Model 6122 提供 `pay_success_time` (date 类型) |
+
+**迁移策略**:
+- **MBQL 适用**: 6092, 6105 - 字段都在 Model 6080 中，直接用 `case` 聚合
+- **原生 SQL 适用**: 6112, 6113, 6114, 6116 - 包含 Model 没有的字段（order_type_user、UNION子查询）
+- **筛选器版 MBQL**: 6123 - 使用 Model 6122 的 date 类型字段
+
+**Model 6122 提供的时间字段**:
+```sql
+STR_TO_DATE(pay_success_day, '%Y%m%d') AS pay_success_time  -- date 类型
+```
+
+**MBQL case 表达式要点**:
+```python
+# 正确格式
+def make_agg_with_and(name, filter_proxy, filter_level):
+    cond1 = ["=", ["field", "is_proxy", {"base-type": "type/Integer"}], filter_proxy]
+    cond2 = ["=", ["field", "member_level", {"base-type": "type/Text"}], filter_level]
+    and_cond = ["and", cond1, cond2]
+    inner_case = [and_cond, result]
+    case_expr = ["case", [inner_case]]  # 注意：不是 [[inner_case]]
+    return ["aggregation-options", ["sum", case_expr], {"name": name}]
+```
+
+**参考文档**: `references/mbql-best-practices.md` 第0节（数仓表类型）和第1节（MBQL case）
 
 ---
 
-*最后更新: 2026-03-18*
+*最后更新: 2026-03-25*

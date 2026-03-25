@@ -4,31 +4,163 @@
 
 ---
 
-## 1. MBQL 条件聚合
+## 0. 数仓表类型基础（重要前置知识）
+
+### I表 vs S表
+
+| 表类型 | 全称 | 特点 | Model 筛选策略 |
+|--------|------|------|---------------|
+| **I表** | 增量表 (Incremental) | 只记录变化数据 | **一般不筛选**，取全量 |
+| **S表** | 快照表 (Snapshot) | 每天一个全量快照 | **必须筛选**，选某一天的快照 |
+
+### S表筛选原则
+
+```sql
+-- ✅ 正确：选昨日快照（t+1）
+WHERE ds = DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY), '%Y%m%d')
+
+-- ❌ 错误：不筛选会导致数据膨胀/重复
+-- WHERE ds >= '20260101'  -- S表这样做会取到多天快照
+```
+
+### I表筛选原则
+
+```sql
+-- I表一般不筛选 ds（或根据需求筛选时间范围）
+-- 但要注意 GROUP BY 时 I 表的 created/create/ds 是一致的
+-- 可以用 Metabase API 先查一下：
+-- SELECT * FROM {table_name} LIMIT 10
+```
+
+### 验证表类型和字段
+
+```bash
+# 用 Metabase API 查询表结构
+curl -sL -X POST "${API_HOST}/api/dataset" \
+  -H "X-API-Key: ${API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "database": 4,
+    "native": {
+      "query": "SELECT * FROM hive_prod.kdw_dw.dws_coohom_trd_daily_toc_invoice_s_d LIMIT 10"
+    }
+  }' | jq '.data[0]'
+```
+
+**需要确认**:
+1. GROUP BY 字段（created_day）和 ds(ds_time) 是否一致
+2. 时间字段是字符串类型还是 date 类型
+3. 表是 I 表还是 S 表
+
+---
+
+## 1. MBQL 条件聚合（case 表达式）
+
+### 核心语法：case 表达式结构
+
+MBQL 的 `case` 表达式结构：
+
+```
+["case", [[condition, result]]]
+     │      └── inner_case: 包含 [condition, result] 的数组
+     └── case 关键字
+```
+
+### 单条件判断（无 AND）
+```json
+// ✅ 正确：is_proxy = 1 时求和 amt_usd
+["sum", ["case", [[["=", ["field", "is_proxy", {"base-type": "type/Integer"}], 1], ["field", "amt_usd", {"base-type": "type/Float"}]]]]
+```
+
+### 多条件判断（带 AND）
+```json
+// ✅ 正确：is_proxy = 0 AND member_level = '新签' 时求和
+["sum", ["case", [["and",
+  ["=", ["field", "is_proxy", {"base-type": "type/Integer"}], 0],
+  ["=", ["field", "member_level", {"base-type": "type/Text"}], "新签"]
+], ["field", "amt_usd", {"base-type": "type/Float"}]]]]
+```
+
+**关键**: `[[condition, result]]` 中 condition 和 result 在同一个子数组里
+
+### Python 生成器函数（推荐）
+
+手动写 MBQL 容易括号错乱，**推荐用 Python 函数生成**：
+
+```python
+import json
+
+def make_agg_with_and(name, filter_proxy, filter_level):
+    """用于 is_proxy = X AND member_level = 'YYY' 的条件聚合"""
+    cond1 = ["=", ["field", "is_proxy", {"base-type": "type/Integer"}], filter_proxy]
+    cond2 = ["=", ["field", "member_level", {"base-type": "type/Text"}], filter_level]
+    and_cond = ["and", cond1, cond2]
+    result = ["field", "amt_usd", {"base-type": "type/Float"}]
+    inner_case = [and_cond, result]  # 注意：不要额外括号！
+    case_expr = ["case", [inner_case]]
+    return ["aggregation-options", ["sum", case_expr], {"name": name, "display-name": name}]
+
+def make_agg_simple(name, filter_proxy):
+    """用于 is_proxy = X（无 AND）的简单条件聚合"""
+    cond = ["=", ["field", "is_proxy", {"base-type": "type/Integer"}], filter_proxy]
+    result = ["field", "amt_usd", {"base-type": "type/Float"}]
+    inner_case = [cond, result]
+    case_expr = ["case", [inner_case]]
+    return ["aggregation-options", ["sum", case_expr], {"name": name, "display-name": name}]
+
+# 使用示例
+aggregation = [
+    ["aggregation-options", ["sum", ["field", "amt_usd", {"base-type": "type/Float"}]], {"name": "周期总收入", "display-name": "周期总收入"}],
+    make_agg_with_and("新签收入", 0, "新签"),
+    make_agg_with_and("连续续约收入", 0, "连续续约"),
+    make_agg_simple("代理收入", 1),
+]
+```
+
+**关键点**: `case_expr = ["case", [inner_case]]` 而不是 `["case", [[inner_case]]]`
 
 ### ❌ 错误: 使用 `if` 表达式
 ```json
-{
-  "aggregation": [
-    ["sum", ["expression", "if(category = 'A', amount, 0)"]]
-  ]
-}
+// 错误 - MBQL 不支持 if
+["sum", ["expression", "if(category = 'A', amount, 0)"]]
 ```
 
-### ✅ 正确: 使用 `case` 表达式
+### ❌ 错误: 括号结构不对
 ```json
-{
-  "aggregation": [
-    ["sum", ["case", [[["=", ["field", 123], "A"], ["field", 456]]]]]
-  ]
-}
+// 错误 - 少了括号
+["sum", ["case", [["=", ...], ["field", ...]]]]
+
+// 错误 - 条件用了 AND 但结构不对
+["sum", ["case", [["and", [...], [...]], ["field", ...]]]]
 ```
 
 **原因**: MBQL 中条件判断使用 `case`，不是 `if`。`case` 语法更标准，支持多条件分支。
 
 ---
 
-## 2. 转化率计算
+## 2. 字段类型：Integer vs Boolean
+
+**重要发现**: 数据库 TINYINT 字段（如 `is_proxy`）在 Metabase 中映射为 `type/Integer`，**不是** `type/Boolean`。
+
+### 错误做法
+```json
+// ❌ 错误 - 使用 boolean 比较
+["=", ["field", "is_proxy", {"base-type": "type/Boolean"}], false]
+["=", ["field", "is_proxy", {"base-type": "type/Boolean"}], true]
+```
+
+### 正确做法
+```json
+// ✅ 正确 - 使用 Integer 0/1 比较
+["=", ["field", "is_proxy", {"base-type": "type/Integer"}], 0]
+["=", ["field", "is_proxy", {"base-type": "type/Integer"}], 1]
+```
+
+**验证方法**: 查看 Model 6080 的字段定义确认实际 base-type。
+
+---
+
+## 3. 转化率计算
 
 ### ❌ 错误: 在 expressions 中定义转化率
 ```json
@@ -49,17 +181,45 @@
 }
 ```
 
-**原因**: 
+**原因**:
 - 转化率应该在聚合层面计算，避免行级别计算带来的精度问题
 - 直接在 aggregation 中使用 `/` 运算，Metabase 会自动处理分母为0的情况
 
 ---
 
-## 3. Model 层预处理 vs Question 层 MBQL（核心原则）
+## 4. 何时用 MBQL vs 原生 SQL
+
+### 决策树
+
+```
+查询类型
+├── 简单条件聚合（count/distinct/sum + case）→ MBQL ✅
+├── Model 已有的字段组合 → MBQL ✅
+├── 复杂 SQL（UNION、窗口函数、CTE）→ 原生 SQL ✅
+├── Model 没有的字段（如 order_type_user）→ 原生 SQL ✅
+└── 动态时间表达式 → 原生 SQL ✅
+```
+
+### 迁移实战案例：page/55074 Revenue 用户分层
+
+| 原 Graph ID | 迁移后 Card | 策略 | 原因 |
+|------------|-------------|------|------|
+| 6086 | 6092 | MBQL | 简单聚合，字段都在 Model 6080 |
+| 6105 | 6105 | MBQL | 简单聚合，字段都在 Model 6080 |
+| 72849 | 6112 | 原生 SQL | UNION 子查询，在约用户数不在 Model |
+| 72156 | 6113 | 原生 SQL | 使用 order_type_user 字段，不在 Model |
+| 72164 | 6114 | 原生 SQL | 使用 order_type_user 字段，不在 Model |
+| 73163 | 6116 | 原生 SQL | 使用 order_type_user + CTE，不在 Model |
+
+**经验**: 当源 SQL 包含 Model 没有的字段时，直接用原生 SQL 重建，而非强行用 MBQL 模拟。
+
+---
+
+## 5. Model 层预处理 vs Question 层 MBQL（核心原则）
 
 > **铁律：能用 SQL 在 Model 层解决的，不要在 Question 层用 MBQL 折腾！**
 
-### 3.1 字段预处理 - 在 Model SQL 中完成
+### 5.1 字段预处理 - 在 Model SQL 中完成
 
 #### ✅ 正确做法（Model 层预处理）
 
@@ -103,7 +263,7 @@ FROM source_table
 ```
 **问题**：MBQL 的 `case` 语法复杂、容易出错，且每次查询都要重新计算。
 
-### 3.2 Group By 对应关系
+### 5.2 Group By 对应关系
 
 原 SQL 的 `GROUP BY` 必须和 Question 的 `breakout` **完全对应**：
 
@@ -121,7 +281,7 @@ FROM source_table
 }
 ```
 
-### 3.3 聚合指标口径
+### 5.3 聚合指标口径
 
 | 指标 | 原 SQL | Question MBQL |
 |------|--------|---------------|
@@ -141,7 +301,7 @@ FROM source_table
 }
 ```
 
-### 3.4 排序处理
+### 5.4 排序处理
 
 #### ✅ 正确做法
 在 **Model 层**用 `CASE WHEN` 计算排序字段（数字 1-8），Question 层直接按这个数字排序：
@@ -157,7 +317,7 @@ FROM source_table
 #### ❌ 错误做法
 在 Question 层用 MBQL 表达式做 `CASE WHEN` 排序 —— 太麻烦且容易出错。
 
-### 3.5 对照表：Model 层 vs Question 层
+### 5.5 对照表：Model 层 vs Question 层
 
 | 步骤 | Model 层（SQL） | Question 层（MBQL） |
 |------|----------------|-------------------|
@@ -168,26 +328,61 @@ FROM source_table
 | **Aggregation** | SQL 中聚合 | `max(分组字段)` + `distinct(指标)` |
 | **Order By** | 预计算排序字段 | 直接用数字字段排序 |
 
-### 3.6 时间字段处理（补充）
+### 5.6 时间字段处理（补充）
 
-除上述原则外，时间字段也应在 Model 层预处理：
+#### 时间字段类型转换
+
+**重要**: 数仓中时间字段通常是字符串格式（如 `%Y%m%d`），需要转换为 date 类型用于 Question 层。
 
 ```sql
--- Model SQL 中定义多种时间粒度
+-- Model SQL 中做时间类型转换
 SELECT
-  STR_TO_DATE(ds, '%Y%m%d') AS ds_time,
-  DATE_FORMAT(STR_TO_DATE(ds, '%Y%m%d'), '%Y-%u') AS week_start,
-  DATE_FORMAT(STR_TO_DATE(ds, '%Y%m%d'), '%Y-%m') AS month_start
+  ds,                                          -- 字符串，如 '20260324'
+  STR_TO_DATE(ds, '%Y%m%d') AS ds_time,        -- 转换为 date 类型
+  DATE_FORMAT(STR_TO_DATE(ds, '%Y%m%d'), '%Y-%u') AS week_start,  -- 周
+  DATE_FORMAT(STR_TO_DATE(ds, '%Y%m%d'), '%Y-%m') AS month_start  -- 月
 FROM table
 ```
 
-Question 中直接使用：
+#### Question 层使用原则
+
+| 场景 | 推荐字段 | 原因 |
+|------|---------|------|
+| **Breakout/横坐标** | `ds_time` (date 类型) | 按天/周/月聚合时，date 类型更准确 |
+| **Group By** | 与 ds 一致的字段 | 如果 created_day = ds，则用 ds_time |
+| **筛选器** | date 类型字段 | Dashboard 筛选器需要 date 类型 |
+
 ```json
+// ✅ 正确：使用 date 类型字段做 breakout
 {
   "breakout": [
-    ["field", "week_start", {"base-type": "type/Text"}]
+    ["field", "ds_time", {"base-type": "type/Date"}]
   ]
 }
+
+// ❌ 错误：使用字符串类型做 breakout（可能导致排序问题）
+{
+  "breakout": [
+    ["field", "pay_success_day", {"base-type": "type/Text"}]
+  ]
+}
+```
+
+#### I 表特殊处理
+
+对于 I 表（增量表），created/create/ds 一般一致，此时：
+- 直接用 `ds_time` 做 Group By
+- 不需要额外的时间转换逻辑
+
+```sql
+-- I 表示例
+SELECT
+  ds,
+  STR_TO_DATE(ds, '%Y%m%d') AS ds_time,
+  user_id,
+  amt_usd
+FROM hive_prod.kdw_dw.dws_coohom_trd_daily_toc_invoice_i_d
+-- 不筛选 ds，因为 I 表记录增量
 ```
 
 **原因**:
@@ -195,10 +390,39 @@ Question 中直接使用：
 - 避免每个 Question 重复定义时间转换逻辑
 - 查询性能更好
 - 减少 MBQL 复杂度和出错概率
+- **Dashboard 筛选器需要 date 类型字段才能正确关联**
+
+### ⚠️ Dashboard 筛选器关联失败的根本原因
+
+**问题**: 如果 Question 使用字符串类型时间字段（如 `pay_success_day`），Dashboard 筛选器无法关联。
+
+**解决**: Model 层必须提供 date 类型时间字段：
+
+```sql
+-- ✅ Model 中提供 date 类型字段
+SELECT
+  ds,
+  STR_TO_DATE(ds, '%Y%m%d') AS ds_time,  -- date 类型
+  pay_success_day,
+  STR_TO_DATE(pay_success_day, '%Y%m%d') AS pay_success_time,  -- date 类型
+  ...
+FROM table
+```
+
+**Question breakout 使用 ds_time 而非 pay_success_day**:
+```json
+// ✅ 正确：breakout 使用 date 类型
+"breakout": [["field", "pay_success_time", {"base-type": "type/Date"}]]
+
+// ❌ 错误：breakout 使用字符串类型
+"breakout": [["field", "pay_success_day", {"base-type": "type/Text"}]]
+```
+
+**后果**: 使用字符串类型字段会导致 Dashboard 参数筛选无法工作！
 
 ---
 
-## 4. 可视化设计
+## 6. 可视化设计
 
 ### 参考 Dashboard 700 的设计原则
 
@@ -248,7 +472,7 @@ Question 中直接使用：
 
 ---
 
-## 5. Question 设计模式
+## 7. Question 设计模式
 
 ### 标准结构
 ```json
@@ -282,7 +506,7 @@ Question 中直接使用：
 
 ---
 
-## 6. 性能优化建议
+## 8. 性能优化建议
 
 1. **使用 Model 作为数据源**
    - 避免直接从大表查询
@@ -301,7 +525,7 @@ Question 中直接使用：
 
 ---
 
-## 7. 调试技巧
+## 9. 调试技巧
 
 ### 查看生成的 SQL
 在 Metabase 界面:
@@ -324,4 +548,69 @@ curl -X POST \
 
 ---
 
-*最后更新: 2026-03-18*
+## 10. Dashboard 筛选器配置
+
+### 创建带筛选器的 Dashboard
+
+```bash
+curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
+  -H "X-API-Key: ${API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "parameters": [
+      {
+        "name": "日期范围",
+        "slug": "date_range",
+        "id": "param_date",
+        "type": "date/range"
+      }
+    ],
+    "dashcards": [
+      {
+        "id": -1,
+        "card_id": 6092,
+        "row": 0,
+        "col": 0,
+        "size_x": 18,
+        "size_y": 8
+      },
+      {
+        "id": -2,
+        "card_id": 6105,
+        "row": 8,
+        "col": 0,
+        "size_x": 18,
+        "size_y": 8
+      }
+    ]
+  }'
+```
+
+### 筛选器类型
+
+| 类型 | slug 示例 | 说明 |
+|------|----------|------|
+| `date/range` | `date_range` | 日期范围筛选 |
+| `date/relative` | `date_relative` | 相对日期（如最近30天） |
+| `location/city` | `city` | 城市筛选 |
+| `location/state` | `state` | 州/省筛选 |
+| `location/zip_code` | `zip` | 邮编筛选 |
+| `id` | `user_id` | ID 筛选 |
+| `category` | `category` | 分类筛选 |
+| `enum/...` | `enum_xxx` | 枚举筛选 |
+
+### 布局参数
+
+| 参数 | 说明 | 建议值 |
+|------|------|-------|
+| `size_x` | 宽度 | 全宽 18，半宽 9 |
+| `size_y` | 高度 | 数字卡片 4，图表 6-8，表格 8-12 |
+| `row` | 行位置 | 从 0 开始 |
+| `col` | 列位置 | 从 0 开始 |
+| `id` | 卡片 ID | 新卡片用负数 (-1, -2...) |
+
+**注意**: `PUT /api/dashboard/:id` 会**替换**整个 Dashboard 配置，包括已有的 Cards。
+
+---
+
+*最后更新: 2026-03-25*

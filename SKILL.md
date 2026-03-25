@@ -53,6 +53,7 @@ API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
 |-----------|-----|------|
 | 投放词数据总览 | 139 | GA投放词分析 |
 | COOHOM折扣体系 | 254 | 折扣转化分析 |
+| Revenue用户分层（新）迁移 | 494 | 收入账单分层分析 |
 
 ---
 
@@ -62,7 +63,7 @@ API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
 
 ```bash
 # 使用内置脚本查询 Card 数据
-python3 ~/.openclaw/extensions/kmb-skill/scripts/query_card.py 3267
+python3 ~/.claude/skills/kmb-metabase/scripts/query_card.py 3267
 
 # 或使用 curl
 curl -sL \
@@ -153,7 +154,7 @@ curl -X POST "https://kmb.qunhequnhe.com/api/dashboard/${dashboard_id}/copy" \
 使用 `space_sql_mapper.py` 分析小站导出的数据（目录树 → 页面 → SQL）：
 
 ```bash
-cd ~/.openclaw/extensions/kmb-skill/scripts
+cd ~/.claude/skills/kmb-metabase/scripts
 
 # 1. 按关键词搜索页面
 python3 space_sql_mapper.py search "Weekly Data"
@@ -178,11 +179,12 @@ python3 space_sql_mapper.py tree
 ### 场景4: 生成日报/周报
 
 ```bash
-# 执行 Dashboard 139 日报
-~/.openclaw/extensions/kmb-skill/scripts/generate_dashboard139_report.sh
+# 执行 Dashboard 139 日报并写入报告文件
+python3 ~/.claude/skills/kmb-metabase/scripts/generate_dashboard139_report.py \
+  --output ~/.claude/skills/kmb-metabase/reports/dashboard139_$(date +%Y%m%d).md
 
 # 查看生成的报告
-cat ~/.openclaw/extensions/kmb-skill/reports/dashboard139_$(date +%Y%m%d).md
+cat ~/.claude/skills/kmb-metabase/reports/dashboard139_$(date +%Y%m%d).md
 ```
 
 ### 场景5: 小站 → KMB 数据迁移

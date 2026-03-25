@@ -4,22 +4,22 @@
 
 ### 1. 激活 Skill
 
-在 OpenClaw 对话中提及 KMB、Metabase、Dashboard 等关键词即可激活此 Skill。
+在 Claude Code 会话中直接运行 `/kmb-metabase` 即可调用此 Skill。
 
 ### 2. 使用脚本工具
 
 ```bash
 # 查询 Card 数据
-python3 ~/.openclaw/extensions/kmb-skill/scripts/query_card.py 3267 --output table
+python3 ~/.claude/skills/kmb-metabase/scripts/query_card.py 3267 --output table
 
 # 搜索 KMB
-python3 ~/.openclaw/extensions/kmb-skill/scripts/search_kmb.py 转化
+python3 ~/.claude/skills/kmb-metabase/scripts/search_kmb.py 转化
 
 # 获取 Collection 下的 Cards
-python3 ~/.openclaw/extensions/kmb-skill/scripts/get_collection_cards.py 396
+python3 ~/.claude/skills/kmb-metabase/scripts/get_collection_cards.py 396
 
 # 生成 Dashboard 139 报告
-python3 ~/.openclaw/extensions/kmb-skill/scripts/generate_dashboard139_report.py
+python3 ~/.claude/skills/kmb-metabase/scripts/generate_dashboard139_report.py
 ```
 
 ### 3. 快捷命令 (可选)
@@ -27,7 +27,7 @@ python3 ~/.openclaw/extensions/kmb-skill/scripts/generate_dashboard139_report.py
 添加 alias 到 ~/.zshrc 或 ~/.bashrc:
 
 ```bash
-alias kmb="source ~/.openclaw/extensions/kmb-skill/scripts/kmb.sh"
+alias kmb="source ~/.claude/skills/kmb-metabase/scripts/kmb.sh"
 ```
 
 然后可以使用:
@@ -43,7 +43,7 @@ kmb report
 ## Skill 结构
 
 ```
-kmb-skill/
+kmb-metabase/
 ├── SKILL.md                          # 主文档（Skill 入口）
 ├── README.md                         # 本文件（使用指南）
 ├── references/
