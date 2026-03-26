@@ -3,65 +3,71 @@
 ## Iron Law（铁律）
 
 ```
-只使用 curl 调用 API
-禁止创建 SDK、库、Python/Node 客户端
-禁止创建多个辅助文件
+默认优先直接调用 Metabase API（curl）
+允许使用仓库内现有 scripts/ 与 scripts/core 进行自动化
+禁止新建重型 SDK、通用客户端框架或多层封装
 
-违反 = 删除所有代码，重新开始
+违反 = 回退到最小可运行实现，删除过度抽象
 ```
 
 ## 核心原则
 
-- **简洁**: 使用 curl 进行 API 调用
-- **验证**: 验证所有输入和输出
-- **交互**: 提供友好的交互式对话
+- **简洁**: 能直接调用 API 就不额外封装。
+- **验证**: 每次关键写操作前后都要验证（如 `/api/user/current`、`/api/card/:id/query`）。
+- **交互**: 输出面向执行，包含必要诊断信息。
 
-## 工具使用限制
+## 工具使用边界
 
 ### ✅ 允许的工具
 
-- `curl`: 用于所有 API 调用
-- `python3`: 用于脚本逻辑（迁移脚本、数据处理）
-- `jq`: 用于 JSON 解析和格式化
+- `curl`: 直接 API 调用与验证
+- `python3`: 现有脚本执行、批处理、格式化输出
+- `jq`: JSON 过滤和结构检查
 
 ### ❌ 禁止的操作
 
-- 创建 SDK 或库
-- 创建 Python/Node 复杂客户端
-- 创建多个辅助文件
-- 使用复杂的框架或工具
+- 新建独立 Metabase SDK（Python/Node/TS 等）
+- 引入复杂客户端框架或生成式 API client
+- 为一次性任务拆分大量“辅助库”文件
+- 在无必要时增加额外抽象层
 
-## 违反后果
+## 为什么这样约束
 
-如果违反 Iron Law，将导致：
-- 代码被删除
-- 重新开始实现
-- 浪费时间和资源
+- **降低维护成本**: 优先直连 API，可快速定位问题
+- **避免架构漂移**: 自动化脚本可复用，但不演化为平台级 SDK
+- **保持一致性**: 围绕 `scripts/core` 统一配置/HTTP/错误处理
 
-## 原因说明
+## 选择策略
 
-Iron Law 的存在是因为：
-- **简化维护**: 只使用基础工具，易于理解和维护
-- **避免复杂**: 不引入额外的依赖和复杂性
-- **统一风格**: 保持代码风格一致
-- **快速迭代**: 简单的实现更容易修改和扩展
+1. **一次性操作/调试**：优先 `curl`
+2. **重复操作/报表生成**：复用 `scripts/*.py`
+3. **跨脚本共用能力**：仅在 `scripts/core/*` 扩展最小公共能力
 
 ## 示例
 
-### ✅ 正确：使用 curl
+### ✅ 正确：直接调用 API
 ```bash
 curl -X GET "${HOST}/api/dashboard" \
   -H "X-API-Key: ${API_KEY}"
 ```
 
-### ❌ 错误：创建复杂 SDK
+### ✅ 正确：复用现有脚本内核
+```python
+from core.http import get_json
+
+def get_dashboard(dashboard_id: int):
+    return get_json(f"/api/dashboard/{dashboard_id}")
+```
+
+### ❌ 错误：新建重型 SDK
 ```python
 # 禁止这样做
 class MetabaseClient:
     def __init__(self, host, api_key):
         self.host = host
         self.api_key = api_key
-    
-    def get_dashboard(self, id):
-        # ... 复杂封装
+
+    def get_dashboard(self, dashboard_id):
+        # 过度封装 + 框架化扩张
+        ...
 ```

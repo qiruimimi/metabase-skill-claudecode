@@ -17,21 +17,21 @@ class MetabaseClient:
     def __init__(self, host, api_key):
         self.host = host
         self.api_key = api_key
-    
+
     def get_dashboard(self, id):
         return requests.get(...)
 ```
 
 **✅ 正确做法**:
 ```bash
-# 直接用 curl
+# 一次性操作优先直接调用 API
 curl -X GET "${HOST}/api/dashboard/${id}" \
   -H "X-API-Key: ${API_KEY}"
 ```
 
-**为什么**: 违反 Iron Law（铁律），引入不必要的复杂性
+或复用仓库内已有 `scripts/` 与 `scripts/core/`，不要新建重型 SDK。
 
----
+**为什么**: 防止过度封装和架构漂移，保持最小可维护实现
 
 ### 2. 绕过确认流程
 
@@ -64,7 +64,7 @@ curl -X PUT "${HOST}/api/dashboard/${id}" \
 
 ---
 
-### 4. 使用 Query Builder 而非原生 SQL
+### 4. 在不适用场景强行使用 MBQL
 
 **❌ 危险信号**:
 ```json
@@ -72,11 +72,13 @@ curl -X PUT "${HOST}/api/dashboard/${id}" \
   "dataset_query": {
     "type": "query",
     "query": {
-      "source-table": "card__2059"
+      "source-table": "card__2059",
+      "aggregation": [["count"]]
     }
   }
 }
 ```
+但实际需求是跨表 JOIN、CTE、窗口函数或动态时间表达式。
 
 **✅ 正确做法**:
 ```json
@@ -90,7 +92,9 @@ curl -X PUT "${HOST}/api/dashboard/${id}" \
 }
 ```
 
-**为什么**: Query Builder 不支持分区字段、动态时间表达式等
+**边界说明**:
+- 简单聚合、Model 已具备字段：MBQL 可用
+- 复杂 SQL 场景：必须回到原生 SQL
 
 ---
 
@@ -160,6 +164,6 @@ curl -X GET "${HOST}/api/user/current" \
 
 ## 记住
 
-> **Iron Law**: 只使用 curl 调用 API，保持简洁、验证、交互三大原则。
+> **Iron Law**: 默认优先直接调用 API（curl），必要时复用仓库现有脚本；禁止新建重型 SDK。
 
 违反 = 删除所有代码，重新开始

@@ -22,20 +22,29 @@ python3 ~/.claude/skills/kmb-metabase/scripts/get_collection_cards.py 396
 python3 ~/.claude/skills/kmb-metabase/scripts/generate_dashboard139_report.py
 ```
 
-### 3. 快捷命令 (可选)
+### 3. 快捷命令（推荐）
 
-添加 alias 到 ~/.zshrc 或 ~/.bashrc:
+`kmb.sh` 设计为被 `source` 调用：
 
 ```bash
-alias kmb="source ~/.claude/skills/kmb-metabase/scripts/kmb.sh"
-```
+# 一次性执行
+source ~/.claude/skills/kmb-metabase/scripts/kmb.sh query 3267
 
-然后可以使用:
-```bash
+# 可选：定义 alias
+alias kmb='source ~/.claude/skills/kmb-metabase/scripts/kmb.sh'
+
+# 然后直接使用
 kmb query 3267
 kmb search 转化
 kmb collection 396
 kmb report
+```
+
+### 4. 运行最小自动化测试
+
+```bash
+cd ~/.claude/skills/kmb-metabase
+python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
 ---
@@ -71,7 +80,7 @@ kmb-metabase/
 ### 添加新的 Dashboard 支持
 
 1. 在 `references/dashboard-configs.md` 中添加配置
-2. 复制 `generate_dashboard139_report.py` 创建新的报告脚本
+2. 复制 `generate_dashboard139_report.py` 创建新的报告脚本（复用 `scripts/core/*`）
 3. 更新 `SKILL.md` 的快速访问表格
 
 ### 添加新的 Card 查询

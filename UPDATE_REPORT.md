@@ -1,5 +1,8 @@
 # KMB Skill 更新报告
 
+> ⚠️ 历史记录（2026-03-19），不作为当前规范基线。
+> 当前执行规范以 `rules/*` 为准，实践参考以 `references/*` 为准。
+
 ## 更新时间
 2026-03-19
 
@@ -12,8 +15,8 @@ GitLab: `beiyan/claude-code-test` - Metabase Skill
 
 #### 新增内容
 - **Iron Law（铁律）**: 在开头添加了工具约束声明
-  - 只使用 curl 调用 API
-  - 禁止创建 SDK、库或复杂客户端
+  - （当时版本）强调 curl 优先调用 API
+  - （当时版本）强调避免创建 SDK、库或复杂客户端
   - 保持简洁、验证、交互三大原则
 
 #### 新增章节
@@ -21,7 +24,7 @@ GitLab: `beiyan/claude-code-test` - Metabase Skill
    - 认证方式（必须使用 X-API-Key）
    - Collection 层级结构（location vs parent_id）⭐
    - Dashboard 卡片管理（PUT 方法、负数 ID）⭐
-   - 创建查询的最佳实践（原生 SQL 优先）⭐
+   - 创建查询的最佳实践（当时版本：原生 SQL 优先；当前基线：默认 Model + MBQL）⭐
 
 2. **错误处理与诊断**
    - HTTP 401 - 认证失败
@@ -55,7 +58,7 @@ GitLab: `beiyan/claude-code-test` - Metabase Skill
 - **应用**: 添加了详细的 API 调用示例和关键要点
 
 #### 查询创建
-- **发现**: 统一使用原生 SQL (type: "native") 更灵活
+- **发现**: 原生 SQL 在复杂场景更灵活（当前基线：默认 Model + MBQL，复杂场景回退原生 SQL）
 - **应用**: 添加了决策树和最佳实践说明
 
 #### 错误处理
@@ -116,7 +119,7 @@ kmb-skill/
 - ✅ Iron Law（铁律）约束
 - ✅ Collection 层级结构的正确理解
 - ✅ Dashboard 卡片管理的正确方法
-- ✅ 原生 SQL 优先的查询创建策略
+- ✅ 当时版本以原生 SQL 优先推进复杂迁移，当前已对齐为默认 Model + MBQL、复杂场景回退原生 SQL
 - ✅ 详细的错误处理流程
 - ✅ 常见错误模式（反模式）
 

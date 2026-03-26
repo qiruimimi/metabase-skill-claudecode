@@ -16,7 +16,7 @@ description: |
 
 > **定位**: 面向开发/数据工程师，专注于**小站数据迁移**和**Metabase 资源重构**（Model/Question/Dashboard）。
 >
-> **Iron Law（铁律）**: 只使用 curl 调用 API，禁止创建 SDK、库或复杂客户端。保持简洁、验证、交互三大原则。
+> **Iron Law（铁律）**: 默认优先直接调用 Metabase API（curl）；允许复用仓库内 `scripts/` 与 `scripts/core/`；禁止新建重型 SDK/客户端框架。
 
 ## 与其他 Metabase Skill 的区别
 
@@ -40,12 +40,24 @@ description: |
 | **小站数据** | `space-data/` 目录 |
 | 常用脚本 | `scripts/` 目录 |
 
+## 规范优先级（SSOT）
+
+当多个文档描述存在差异时，按以下顺序判定：
+
+1. `rules/*`（强约束，必须遵守）
+2. `references/*`（实现参考与实践经验）
+3. `SKILL.md` 示例片段（快速上手示例）
+
+其中 API 细节以 `rules/api-standards.md` 为准，MBQL 设计细节以 `references/mbql-best-practices.md` 为准。
+
 ## 核心配置
 
 ### API 认证
+默认配置位于 `scripts/core/config.py`：
+
 ```bash
 API_HOST="https://kmb.qunhequnhe.com"
-API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+API_KEY="mb_xxx..."
 ```
 
 ### 常用 Dashboard
@@ -67,7 +79,7 @@ python3 ~/.claude/skills/kmb-metabase/scripts/query_card.py 3267
 
 # 或使用 curl
 curl -sL \
-  -H "x-api-key: mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8=" \
+  -H "x-api-key: ${API_KEY}" \
   -H "Content-Type: application/json" \
   -X POST "https://kmb.qunhequnhe.com/api/card/3267/query" \
   -d '{"parameters":[],"constraints":{"max-results":100}}'
@@ -235,8 +247,8 @@ python3 scripts/space_sql_mapper.py graph <graphId>
 ```bash
 # 搜索相关内容
 curl -sL \
-  -H "x-api-key: mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8=" \
-  "https://kmb.qunhequnhe.com/api/search?q=转化" | jq '.data'
+  -H "x-api-key: ${API_KEY}" \
+  "${API_HOST}/api/search?q=转化" | jq '.data'
 ```
 
 ---
@@ -298,194 +310,19 @@ curl -sL \
 
 ## API 调用规范
 
-### 认证方式
-**必须使用**: `X-API-Key` Header
-```bash
--H "X-API-Key: mb_xxx..."
-```
+为避免文档漂移，API/约束/错误处理细节统一维护在规则与参考文档中：
 
-**不要使用**:
-- ❌ `X-Metabase-Session` (session token)
-- ❌ Cookie 认证
-- ❌ Basic Auth
+- API 调用标准：`rules/api-standards.md`
+- 工具约束（Iron Law）：`rules/constraints.md`
+- 错误处理与诊断：`rules/error-handling.md`
+- 危险信号与止损：`rules/red-flags.md`
+- MBQL 设计实践：`references/mbql-best-practices.md`
+- 完整 API 端点：`references/api-reference.md`
 
-### Collection 层级结构 ⭐
-
-**重要发现**: Collection 使用 `location` 字段而非 `parent_id` 表示层级关系。
-
-| 字段 | 说明 |
-|------|------|
-| `parent_id` | 通常为 `null`，**不能用于查询父子关系** |
-| `location` | 表示完整路径，格式为 `/父ID1/父ID2/父ID3/` |
-
-**示例**:
-```json
-// 父 Collection
-{
-  "id": 168,
-  "name": "Coohom事件集合",
-  "location": "/70/23/"
-}
-
-// 子 Collection
-{
-  "id": 170,
-  "name": "a.主站",
-  "location": "/70/23/168/"
-}
-```
-
-**查询子 Collections 的正确方法**:
-```bash
-# 方法 1: 查询直接子 Collections
-parent_location="/70/23/168/"
-curl -sL "${HOST}/api/collection" \
-  -H "X-API-Key: ${API_KEY}" | \
-  jq -r '.[] | select(.location == "/70/23/168/") | "\(.id)|\(.name)"'
-
-# 方法 2: 查询所有子孙 Collections
-parent_id=168
-curl -sL "${HOST}/api/collection" \
-  -H "X-API-Key: ${API_KEY}" | \
-  jq -r ".[] | select(.location | test(\"/168/\")) | \"\(.id)|\(.name)|\(.location)\""
-```
-
-### Dashboard 卡片管理 ⭐
-
-**CRITICAL**: 必须使用 PUT 方法更新整个 Dashboard，不能用 POST。
-
-**正确做法**:
-```bash
-curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
-  -H "X-API-Key: ${API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "dashcards": [
-      {
-        "id": -1,
-        "card_id": 2095,
-        "row": 0,
-        "col": 0,
-        "size_x": 6,
-        "size_y": 4
-      },
-      {
-        "id": -2,
-        "card_id": 2093,
-        "row": 0,
-        "col": 6,
-        "size_x": 12,
-        "size_y": 6
-      }
-    ]
-  }'
-```
-
-**关键要点**:
-- ✅ 使用 `PUT /api/dashboard/:id`，不是 POST
-- ✅ 新卡片使用 **负数 ID**（-1, -2, -3...），Metabase 会自动分配正式 ID
-- ✅ 必须包含 `id`, `card_id`, `row`, `col`, `size_x`, `size_y`
-- ✅ `dashcards` 数组包含**所有**要显示的卡片（包括已有的和新增的）
-
-**布局建议**:
-- 全宽: `size_x: 18` (或 24)
-- 半宽: `size_x: 9` (或 12)
-- 三分之一: `size_x: 6` (或 8)
-- 常见高度：数字卡片 `size_y: 4`，图表 `size_y: 6-8`，表格 `size_y: 8-12`
-
-### 创建查询的最佳实践 ⭐
-
-**原则：统一使用原生 SQL (type: "native")**
-
-| 场景 | 推荐方式 |
-|------|---------|
-| 分区字段查询（如 ds） | 原生 SQL ✅ |
-| 动态时间表达式 | 原生 SQL ✅ |
-| 跨表 JOIN | 原生 SQL ✅ |
-| CTE / 窗口函数 | 原生 SQL ✅ |
-| 复杂逻辑 | 原生 SQL ✅ |
-
-**示例**:
-```json
-{
-  "name": "查询名称",
-  "dataset_query": {
-    "type": "native",
-    "database": 4,
-    "native": {
-      "query": "SELECT user_id, COUNT(*) as cnt FROM table_name WHERE ds = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y%m%d') GROUP BY user_id"
-    }
-  },
-  "display": "table",
-  "collection_id": 299
-}
-```
-
-**注意事项**:
-- ⚠️ 直接使用实际数据库表名
-- ⚠️ 不要引用 `metabase.question_XXX` 格式
-- ⚠️ 确保 SQL 语法与目标数据库兼容
-
----
-
-## API 参考
-
-详细 API 文档请参阅：`references/api-reference.md`
-
-### 常用端点速查
-
-#### Card API
-| 操作 | 端点 | 方法 |
-|------|------|------|
-| 获取 Card 详情 | `/api/card/{id}` | GET |
-| 查询 Card 数据 | `/api/card/{id}/query` | POST |
-| 创建 Card | `/api/card` | POST |
-| 更新 Card | `/api/card/{id}` | PUT |
-| 删除 Card | `/api/card/{id}` | DELETE |
-
-#### Dashboard API ⭐
-| 操作 | 端点 | 方法 |
-|------|------|------|
-| 列出所有 Dashboard | `/api/dashboard` | GET |
-| 获取 Dashboard 详情 | `/api/dashboard/{id}` | GET |
-| 创建 Dashboard | `/api/dashboard` | POST |
-| 更新 Dashboard | `/api/dashboard/{id}` | PUT |
-| 删除 Dashboard | `/api/dashboard/{id}` | DELETE |
-| 复制 Dashboard | `/api/dashboard/{id}/copy` | POST |
-| **添加/更新 Dashboard 卡片** | `PUT /api/dashboard/{id}`（通过 `dashcards` 字段） | PUT |
-| 从 Dashboard 删除卡片 | `/api/dashboard/{dashboardId}/cards/{dashcardId}` | DELETE |
-| 获取 Dashboard 修订历史 | `/api/dashboard/{id}/revisions` | GET |
-| 恢复 Dashboard 版本 | `/api/dashboard/{id}/revert` | POST |
-| 创建公共分享链接 | `/api/dashboard/{id}/public_link` | POST |
-| 删除公共分享链接 | `/api/dashboard/{id}/public_link` | DELETE |
-
-#### Collection API
-| 操作 | 端点 | 方法 |
-|------|------|------|
-| 列出所有 Collections | `/api/collection` | GET |
-| 获取 Collection 内容 | `/api/collection/{id}/items` | GET |
-| 获取 Collection 详情 | `/api/collection/{id}` | GET |
-| **创建子 Collection** | `/api/collection` | POST |
-
-**创建子 Collection 示例**:
-```bash
-curl -X POST "https://kmb.qunhequnhe.com/api/collection" \
-  -H "X-API-Key: mb_xxx..." \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "子集合名称",
-    "description": "描述",
-    "parent_id": 485
-  }'
-```
-
-#### 其他 API
-| 操作 | 端点 | 方法 |
-|------|------|------|
-| 搜索 | `/api/search?q={keyword}` | GET |
-| 获取当前用户 | `/api/user/current` | GET |
-| 列出数据库 | `/api/database` | GET |
-| 执行查询 | `/api/dataset` | POST |
+执行建议：
+1. 先按 `rules/api-standards.md` 确认端点、方法与请求体。
+2. 查询设计遵循“默认 Model + MBQL；复杂逻辑回退原生 SQL”。
+3. 创建/更新后立即验证可运行性（如 `/api/card/:id/query`）。
 
 ---
 
@@ -523,6 +360,12 @@ python3 scripts/space_sql_mapper.py tree
 - `search_kmb.py` - 搜索 KMB 内容
 - `get_collection_cards.py` - 获取 Collection 下所有 Cards
 
+### 运行测试
+```bash
+cd ~/.claude/skills/kmb-metabase
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
+
 ---
 
 ## 扩展指南
@@ -530,7 +373,7 @@ python3 scripts/space_sql_mapper.py tree
 ### 添加新的 Dashboard 支持
 
 1. 在 `references/dashboard-configs.md` 中添加 Dashboard 配置
-2. 创建对应的报告生成脚本 `scripts/generate_<name>_report.py`
+2. 创建对应的报告生成脚本 `scripts/generate_<name>_report.py`（复用 `scripts/core/*`）
 3. 更新本 SKILL.md 的快速访问表格
 
 ### 添加新的 Card 查询
@@ -611,11 +454,11 @@ Metabase 服务器错误
 
 | ❌ 错误 | 为什么错 | ✅ 正确做法 |
 |--------|---------|-----------|
-| 使用 Query Builder (type: "query") | 不支持分区字段（如 ds）、不支持动态时间表达式 | 始终使用原生 SQL (type: "native") |
+| 使用 Query Builder (type: "query") 处理复杂 SQL | 在 JOIN/CTE/窗口函数等场景不可维护 | 复杂场景用原生 SQL；简单聚合可用 MBQL |
 | 引用错误: `metabase.question_XXX` | 数据库名错误，导致查询失败 | 使用实际表名（原生 SQL）或 `card__ID` |
 | POST 到 `/api/dashboard/:id/cards` | 此端点不存在，API 会返回 404 | 使用 PUT `/api/dashboard/:id` 更新 dashcards 数组 |
 | 添加卡片时使用正数或省略 ID | 验证错误，Metabase 无法识别新卡片 | 新卡片必须使用负数 ID (-1, -2, -3...) |
-| 创建 Python/Node SDK | 违反工具约束（Iron Law） | 直接用 curl |
+| 创建 Python/Node SDK | 违反工具约束（Iron Law）并增加维护负担 | 优先 curl，或复用 `scripts/core` 能力 |
 | 不验证配置 | 无效配置会导致后续所有操作失败 | 必须调用 `/api/user/current` 验证 |
 | 不验证查询是否能运行 | 创建后才发现错误 | 创建后立即用 `/api/card/:id/query` 测试 |
 | 显示完整 JSON | 信息过载 | 简洁摘要关键字段 |

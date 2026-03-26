@@ -370,7 +370,7 @@ POST /api/card/{id}/query
 import requests
 
 METABASE_URL = "https://kmb.qunhequnhe.com"
-API_KEY = "mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+API_KEY = "mb_xxx..."
 headers = {"X-Api-Key": API_KEY}
 
 # 获取配置
@@ -524,7 +524,7 @@ browser screenshot
 # Collection 485 批量检查脚本
 
 COLLECTION_ID=485
-API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+API_KEY="mb_xxx..."
 
 echo "=== Collection $COLLECTION_ID 批量检查 ==="
 
@@ -746,3 +746,216 @@ curl -X POST /api/card/4961/query | jq '.data.rows | map(.[1]) | unique | length
 
 *实战记录来源: memory/2026-03-20.md*
 *最后更新: 2026-03-20*
+
+---
+
+## 📒 Memory 整合（2026-03-12 ~ 2026-03-25）
+
+> 本节整合 OpenClaw workspace 的阶段性工作记录，用于沉淀“做过什么、踩过什么坑、如何复用”。
+>
+> 口径说明：
+> - 本节是**经验记录**；强约束以 `rules/*` 为准。
+> - 当前执行基线：**默认 Model + MBQL，复杂逻辑回退原生 SQL**（详见 `rules/api-standards.md`）。
+
+### 目录
+1. 2026-03-12 - Metabase 项目完成
+2. 2026-03-13 - Snapit 分析与漏斗实现
+3. 2026-03-17 - AARRR 日报与 DataSpace 迁移
+4. 2026-03-18 - Dashboard 配置与 MixLineBar
+5. 2026-03-19 - KMB Skill 自动更新机制
+6. 2026-03-24 - 全访客明细迁移
+7. 2026-03-25 - 核心原则与最佳实践
+
+---
+
+### 1) 2026-03-12 - Metabase 项目完成
+
+#### 今日核心工作
+- 深度分析 Dashboard 312（coohom-new）结构。
+- 理解 Model 3953（意向用户付费 model）的“SQL 明细层宽表”设计。
+- 解析 17 个 Questions 的 MBQL 配置。
+- 抽取核心业务指标：支付成功率、客单价、新签/升级/召回。
+
+#### 文档与实战产出
+- 编写 MBQL 构建指南（Field/Filter/Aggregation/Expressions/Joins/Source-query）。
+- 创建并验证：
+  - Question 4371（初版，单位混用）
+  - Question 4374（修正版，转化率百分比）
+  - Dashboard 337（引用新 Questions）
+- 结果校验：新签 7.83%，召回 55.31%，升级 19.76%。
+
+#### 关键认知
+- Model 层负责“数据准备与预处理”；Question 层负责“聚合与展示”。
+- MBQL 主链路：
+  `source-table → joins → filter → breakout → aggregation → expressions → order-by`
+
+---
+
+### 2) 2026-03-13 - Snapit 分析与漏斗实现
+
+#### 业务背景
+Snapit 是 Coohom 的 AI 图片生成工具，核心覆盖任务系统、赠金/积分、消耗与收入。
+
+#### 创建资源
+| 类型 | ID | 名称 |
+|------|----|------|
+| Collection | 456 | test |
+| Metric | 4468 | 日活用户数 DAU |
+| Question | 4469 | 任务成功率分析 |
+| Question | 4470 | 风格偏好排行 |
+| Dashboard | 347 | Snapit Test Analysis |
+
+#### MBQL 新知识点
+- 复合 Join 条件（`and` 组合多字段匹配）。
+- `count-where` 用于条件计数。
+- alias 简化长字段路径。
+- 聚合字段中文 display-name。
+
+#### 踩坑与纠偏
+1. Question 硬编码 `time-interval` 与 Dashboard 参数冲突。
+2. 删除旧 Question 后未同步更新 Dashboard 引用。
+3. 参数映射缺少完整 `join-alias`。
+
+**纠偏结论**：
+- MBQL Question 通常不需要 `parameters`。
+- `template-tags` 是 Native SQL Question 的参数机制。
+
+---
+
+### 3) 2026-03-17 - AARRR 日报与 DataSpace 迁移
+
+#### 自动化进展
+- 建立 AARRR 每日 17:00 推送。
+- 修复 Activation/Retention 对比周期（考虑 1 周转化延迟）。
+- WAU 改为表格；Revenue 改为 1/2/3 层级格式。
+
+#### DataSpace → KMB 迁移策略（阶段版）
+- 当时采用：先 Native SQL 快速迁移，再逐步重构 Model + MBQL。
+- 当前已对齐为：默认 Model + MBQL；复杂场景回退原生 SQL。
+
+#### i表 / s表 规则
+| 表类型 | Model 层筛选 | 原因 |
+|--------|-------------|------|
+| i表（增量） | ❌ 一般不加 ds | 保留历史增量，全量可追溯 |
+| s表（快照） | ✅ 选快照 ds（通常昨日） | 避免多日快照叠加导致膨胀 |
+
+---
+
+### 4) 2026-03-18 - Dashboard 配置与 MixLineBar
+
+#### 高发问题与修复
+| 问题 | 原因 | 修复 |
+|------|------|------|
+| UI 显示过多指标 | `series_settings` 配置了全部指标 | 仅配置需要展示的指标 |
+| 转化率未显示百分比 | 缺少 `column_settings` | 添加 `number_style: percent` |
+| MixLineBar 展示异常 | 未区分 line/bar 与左右轴 | 明确 `display` + `axis` |
+| `graph.dimensions` 格式错误 | 使用完整 field 数组 | 简化为字段名数组（如 `["created_date"]`） |
+| aggregation 不完整 | 只建了部分指标 | 按口径补齐完整指标集 |
+
+#### MixLineBar 标准模板
+```json
+{
+  "graph.metrics": ["转化率", "数量1", "数量2"],
+  "series_settings": {
+    "转化率": {"display": "line", "axis": "right"},
+    "数量1": {"display": "bar", "axis": "left"},
+    "数量2": {"display": "bar", "axis": "left"}
+  },
+  "column_settings": {
+    "[\"name\",\"转化率\"]": {"number_style": "percent"}
+  }
+}
+```
+
+---
+
+### 5) 2026-03-19 - KMB Skill 自动更新机制
+
+#### 机制建设
+- 新增 `scripts/update_skill.sh` 更新检查脚本。
+- 更新 `TOOLS.md` 记录 KMB Skill 更新流程。
+- 更新 `SKILL.md` 链接（迁移指南增强）。
+
+#### TOP N 查询建模沉淀
+采用“两步建模 + MBQL JOIN”：
+1. Question A：先产出 30 天 TOP20 集合。
+2. Question B：基于 MBQL JOIN 做趋势分析。
+
+关键 JOIN 结构：
+```json
+{
+  "source-table": "card__4952",
+  "joins": [
+    {
+      "source-table": "card__5240",
+      "alias": "TOP20 Countries List",
+      "strategy": "inner-join",
+      "condition": [
+        "=",
+        ["field", "fst_visit_country_sc"],
+        ["field", "fst_visit_country_sc", {"join-alias": "TOP20 Countries List"}]
+      ]
+    }
+  ]
+}
+```
+
+---
+
+### 6) 2026-03-24 - 全访客【日】landing page 明细迁移
+
+#### 交付资源
+- Model：`landing_page_visit_register_daily`（ID: 5943）
+- Collection：512
+- Question：5944（分渠道）
+- Question：5945（不分渠道）
+
+#### 关键链接
+- Dashboard: `https://kmb.qunhequnhe.com/dashboard/480`
+- Model: `https://kmb.qunhequnhe.com/question/5943`
+- Question（分渠道）: `https://kmb.qunhequnhe.com/question/5950`
+
+---
+
+### 7) 2026-03-25 - 核心原则与最佳实践
+
+#### 总原则
+> 能在 Model 层（SQL）完成的，不在 Question 层用复杂 MBQL 重复实现。
+
+#### 表类型处理（复核版）
+| 表类型 | 后缀 | 处理方式 |
+|--------|------|----------|
+| i表 | `_i_d` | 增量表，一般不限制 ds，由 Dashboard/查询条件控制 |
+| s表 | `_s_d` | 快照表，必须选择快照 ds（通常昨日） |
+
+#### 关键教训
+1. **Model 保留原始字段名**
+   - 原 SQL `GROUP BY` 字段（如 `ads_channel_classify`）不要随意改名。
+2. **breakout 对齐 GROUP BY 语义**
+   - breakout 字段来自原 SQL 的 group by，不在 MBQL 层补复杂 CASE。
+3. **排序字段对齐 ORDER BY**
+   - 在 Model 预计算排序字段，Question 直接引用。
+4. **强制对比验证**
+   - 字段名、breakout、aggregation 名称/数量、order_by 索引逐项核对。
+
+#### 时间字段类型
+- ❌ 错误：使用 Text 时间字段做聚合维度
+- ✅ 正确：在 Model 中转 date 类型（如 `STR_TO_DATE(created_day, '%Y%m%d') AS ds_time`）
+
+---
+
+### 附：迁移执行检查清单（可复用）
+
+每次创建/重构后，按顺序执行：
+
+- [ ] Model 字段名与原 SQL 语义一致
+- [ ] breakout 与原 SQL GROUP BY 一一对应
+- [ ] aggregation 数量、名称、口径一致
+- [ ] order_by 指向正确 aggregation
+- [ ] 时间字段为可聚合 date 类型（用于筛选器/时间粒度）
+- [ ] Dashboard 图例仅暴露必要指标
+- [ ] 比率字段配置百分比显示
+- [ ] 通过 `/api/card/:id/query` 做可运行性验证
+- [ ] 与对照版本做结果抽样比对
+
+*Memory 整合补充: 2026-03-26*

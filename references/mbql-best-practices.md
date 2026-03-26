@@ -189,6 +189,8 @@ aggregation = [
 
 ## 4. 何时用 MBQL vs 原生 SQL
 
+> 本文是 MBQL 设计与实现参考；API 端点与调用规范以 `rules/api-standards.md` 为准。
+
 ### 决策树
 
 ```

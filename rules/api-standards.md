@@ -127,17 +127,18 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 
 ## 创建查询的最佳实践 ⭐
 
-**原则：统一使用原生 SQL (type: "native")**
+**原则：默认优先 Model + MBQL；复杂逻辑或能力缺口时使用原生 SQL（type: "native"）**
 
 | 场景 | 推荐方式 |
 |------|---------|
-| 分区字段查询（如 ds） | 原生 SQL ✅ |
+| 常规分析查询（Model 已具备字段） | Model + MBQL ✅ |
+| 简单聚合（count/distinct/sum/case） | Model + MBQL ✅ |
+| 分区字段查询（如 ds）且 MBQL 表达受限 | 原生 SQL ✅ |
 | 动态时间表达式 | 原生 SQL ✅ |
-| 跨表 JOIN | 原生 SQL ✅ |
-| CTE / 窗口函数 | 原生 SQL ✅ |
-| 复杂逻辑 | 原生 SQL ✅ |
+| 跨表 JOIN / CTE / 窗口函数 | 原生 SQL ✅ |
+| Model 缺字段或复杂逻辑 | 原生 SQL ✅ |
 
-### 示例
+### 原生 SQL 示例
 ```json
 {
   "name": "查询名称",
@@ -153,9 +154,28 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 }
 ```
 
+### MBQL 示例（简单聚合）
+```json
+{
+  "name": "按天统计用户数",
+  "dataset_query": {
+    "type": "query",
+    "database": 4,
+    "query": {
+      "source-table": 6080,
+      "aggregation": [["distinct", ["field", "user_id", {"base-type": "type/BigInteger"}]]],
+      "breakout": [["field", "ds_time", {"base-type": "type/Date"}]]
+    }
+  },
+  "display": "line",
+  "collection_id": 299
+}
+```
+
 ### 注意事项
-- ⚠️ 直接使用实际数据库表名
+- ⚠️ 原生 SQL 直接使用实际数据库表名
 - ⚠️ 不要引用 `metabase.question_XXX` 格式
+- ⚠️ MBQL 仅用于简单、可解释的聚合；复杂逻辑回退到原生 SQL
 - ⚠️ 确保 SQL 语法与目标数据库兼容
 
 ### 验证查询是否正确

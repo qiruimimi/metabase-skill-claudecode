@@ -15,7 +15,7 @@
 ## 认证
 
 ```bash
-x-api-key: mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8=
+x-api-key: mb_xxx...
 ```
 
 ---
@@ -319,7 +319,7 @@ GET /api/permissions/group
 ### 获取 Card 配置
 ```bash
 #!/bin/bash
-API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+API_KEY="mb_xxx..."
 CARD_ID=3267
 
 curl -sL \
@@ -330,7 +330,7 @@ curl -sL \
 ### 查询 Card 数据
 ```bash
 #!/bin/bash
-API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+API_KEY="mb_xxx..."
 CARD_ID=3267
 
 curl -sL \
@@ -343,7 +343,7 @@ curl -sL \
 ### 获取 Collection 所有 Cards
 ```bash
 #!/bin/bash
-API_KEY="mb_h5ddq58TgNTAZsV7e81myvAxMlMcqXWrx1y9TdqArl8="
+API_KEY="mb_xxx..."
 COLLECTION_ID=396
 
 curl -sL \
