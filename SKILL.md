@@ -26,7 +26,7 @@ description: |
 | **核心任务** | 数据迁移、资源重构、自动化 | 即席查询、数据探查 |
 | **工作方式** | 脚本化、批量化、自动化 | 交互式、单点查询 |
 | **SQL 策略** | 重构 SQL，创建可复用 Model | 直接查询，关注结果 |
-| **输出成果** | Dashboard、Model、Question | 查询结果、数据报告 |
+| **输出成果** | Dashboard、Model、Question、迁移记录卡 | 查询结果、数据报告 |
 
 ## 快速访问
 
@@ -216,24 +216,41 @@ cat ~/.claude/skills/kmb-metabase/reports/dashboard139_$(date +%Y%m%d).md
 
 **详细迁移指南**: `references/migration-guide.md`
 
-**迁移流程**:
-```bash
-# 阶段 1: 提取并分析源 SQL
-python3 scripts/space_sql_mapper.py graph <graphId>
-# → LLM 分析 SQL 结构，确定迁移策略
+**固定迁移 SOP（快速执行卡）**:
 
-# 阶段 2: 创建 Model（如需要）
-# → 基于分析结果设计 Model SQL
-# → POST /api/dataset
+1. **边界确认**
+   - 锁定 source pageId/source dashboard/target collection
+   - 明确“所有新资产必须落在目标 collection”
 
-# 阶段 3: 创建 Metrics（如需要）
-# → 识别可复用指标
-# → POST /api/metric
+2. **源结构抽取**
+   - 用 `space_sql_mapper.py` + `space-data/page_map.json` 抽取 SQL 与前端配置（graphType、legend、轴）
 
-# 阶段 4: 创建 MBQL Question
-# → SQL → MBQL 转换
-# → POST /api/card
-```
+3. **依赖先迁**
+   - 先迁 Model/Helper，再迁主 Question
+   - 创建后立即重写 `card__<src_id>` 引用
+
+4. **主卡迁移与可视化回填**
+   - dataset_query 与 visualization_settings 分别对齐源端逻辑
+
+5. **Dashboard 全量回填**
+   - 仅使用 `PUT /api/dashboard/:id`
+   - 新 dashcard 使用负数 ID
+
+6. **SOP 硬闸门（任一失败禁止交付）**
+   - 引用残留为 0
+   - `/api/card/:id/query` 全量通过
+   - 关键卡抽样一致（列/前 N 行/行数）
+   - dashboard 参数与卡片数量对齐
+
+7. **清理与交付**
+   - 归档中间态资产
+   - 输出映射表 + 校验表 + markdown 迁移记录卡
+   - **迁移记录卡要求**：在目标 collection 新建独立 Dashboard（命名 `【P<pageId>】迁移记录卡`），并用 text dashcard 写入 markdown 记录内容（至少包含：资产映射、硬闸门结果、回滚信息）
+
+**详细说明**:
+- 完整流程：`references/migration-guide.md`
+- 交付闸门：`rules/api-standards.md`（迁移校验最小清单）
+- 阻断信号：`rules/red-flags.md`
 
 **关键决策点**（LLM 需自主判断）:
 1. 这个查询应该直接建 Question，还是新建 Model？
@@ -321,7 +338,7 @@ curl -sL \
 
 执行建议：
 1. 先按 `rules/api-standards.md` 确认端点、方法与请求体。
-2. 查询设计遵循“默认 Model + MBQL；复杂逻辑回退原生 SQL”。
+2. 查询设计遵循“默认必须 Model + MBQL；`UNION ALL` 拆分为多个 Question、动态时间使用增量数据 + Dashboard 筛选、缺字段先在 Model 预加工；仅在完全无法解决且明确记录原因时才允许原生 SQL 例外”。
 3. 创建/更新后立即验证可运行性（如 `/api/card/:id/query`）。
 
 ---
@@ -454,7 +471,7 @@ Metabase 服务器错误
 
 | ❌ 错误 | 为什么错 | ✅ 正确做法 |
 |--------|---------|-----------|
-| 使用 Query Builder (type: "query") 处理复杂 SQL | 在 JOIN/CTE/窗口函数等场景不可维护 | 复杂场景用原生 SQL；简单聚合可用 MBQL |
+| 使用 Query Builder (type: "query") 处理复杂 SQL | 在 JOIN/CTE/窗口函数等场景若直接硬写易失控 | 先在 Model 预加工并将 `UNION ALL` 拆分成多个 MBQL Question；仅在完全无法解决且有记录时用原生 SQL 例外 |
 | 引用错误: `metabase.question_XXX` | 数据库名错误，导致查询失败 | 使用实际表名（原生 SQL）或 `card__ID` |
 | POST 到 `/api/dashboard/:id/cards` | 此端点不存在，API 会返回 404 | 使用 PUT `/api/dashboard/:id` 更新 dashcards 数组 |
 | 添加卡片时使用正数或省略 ID | 验证错误，Metabase 无法识别新卡片 | 新卡片必须使用负数 ID (-1, -2, -3...) |

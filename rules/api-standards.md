@@ -127,32 +127,23 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 
 ## 创建查询的最佳实践 ⭐
 
-**原则：默认优先 Model + MBQL；复杂逻辑或能力缺口时使用原生 SQL（type: "native"）**
+**原则：默认必须 Model + MBQL；禁止把原生 SQL 作为常规回退。`UNION ALL` 先拆分为多个 MBQL Question，动态时间优先增量数据 + Dashboard 筛选，缺字段先在 Model 预加工。仅在完全无法解决且已记录原因时，才允许原生 SQL 例外。**
 
 | 场景 | 推荐方式 |
 |------|---------|
 | 常规分析查询（Model 已具备字段） | Model + MBQL ✅ |
 | 简单聚合（count/distinct/sum/case） | Model + MBQL ✅ |
-| 分区字段查询（如 ds）且 MBQL 表达受限 | 原生 SQL ✅ |
-| 动态时间表达式 | 原生 SQL ✅ |
-| 跨表 JOIN / CTE / 窗口函数 | 原生 SQL ✅ |
-| Model 缺字段或复杂逻辑 | 原生 SQL ✅ |
+| `UNION ALL` / 多段逻辑 | 拆分为多个 MBQL Question，并在 Dashboard 组合 ✅ |
+| 动态时间需求 | 增量数据 + Dashboard 页面筛选（date 类型字段）✅ |
+| Model 缺字段 | 先在 Model 预加工补齐字段，再做 MBQL ✅ |
+| 复杂 JOIN / CTE / 窗口函数 | 先做 Model 分层拆解 + MBQL；仅在无法落地时进入例外评审 ⚠️ |
 
-### 原生 SQL 示例
-```json
-{
-  "name": "查询名称",
-  "dataset_query": {
-    "type": "native",
-    "database": 4,
-    "native": {
-      "query": "SELECT user_id, COUNT(*) as cnt FROM table_name WHERE ds = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y%m%d') GROUP BY user_id"
-    }
-  },
-  "display": "table",
-  "collection_id": 299
-}
-```
+### 原生 SQL 例外（最后手段）
+仅当满足以下条件，才允许 `type: "native"`：
+1. 已尝试 Model 预加工与 MBQL 拆分方案；
+2. `UNION ALL` 已评估过“拆分多 Question + Dashboard 组合”不可行；
+3. 动态时间已评估过“增量模型 + Dashboard 筛选”不可行；
+4. 例外原因写入迁移记录（不可只写“复杂”）。
 
 ### MBQL 示例（简单聚合）
 ```json
@@ -173,10 +164,11 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 ```
 
 ### 注意事项
-- ⚠️ 原生 SQL 直接使用实际数据库表名
+- ⚠️ 优先把复杂计算下沉到 Model，Question 负责聚合与展示
+- ⚠️ `UNION ALL` 先拆成多张 MBQL Question，不直接回退原生 SQL
+- ⚠️ 动态时间优先使用 Dashboard 筛选器，不依赖 native `template-tags`
 - ⚠️ 不要引用 `metabase.question_XXX` 格式
-- ⚠️ MBQL 仅用于简单、可解释的聚合；复杂逻辑回退到原生 SQL
-- ⚠️ 确保 SQL 语法与目标数据库兼容
+- ⚠️ 仅在例外评审通过后使用原生 SQL
 
 ### 验证查询是否正确
 创建查询后，**必须**验证：
@@ -208,21 +200,26 @@ curl -X POST "${HOST}/api/card/${card_id}/query" \
 
 ### 在 Question 中引用 Model
 
-当在原生 SQL Question 中引用 Model 时，**必须使用子查询方式**:
+在 MBQL Question 中，统一通过 `source-table: "card__{model_id}"` 引用 Model：
 
-```sql
--- ✅ 正确：使用子查询引用 Model
-SELECT 
-    pay_success_day,
-    COUNT(DISTINCT user_id)
-FROM (SELECT * FROM {{#model_id}}) AS model_data
-GROUP BY pay_success_day
+```json
+{
+  "dataset_query": {
+    "type": "query",
+    "database": 4,
+    "query": {
+      "source-table": "card__6122",
+      "breakout": [["field", "pay_success_time", {"base-type": "type/Date"}]],
+      "aggregation": [["count"]]
+    }
+  }
+}
 ```
 
 **注意事项**:
-- `{{#model_id}}` 语法在原生 SQL 中无法直接解析
-- 必须通过子查询包装 `(SELECT * FROM {{#model_id}}) AS alias`
-- Model ID 是创建后返回的整数 ID
+- 默认不在 Question 层写原生 SQL；
+- 复杂逻辑优先在 Model 预加工后再由 MBQL 消费；
+- 仅在“原生 SQL 例外（最后手段）”条件满足时，才允许创建 native Question。
 
 ### 创建 Model 的完整参数
 

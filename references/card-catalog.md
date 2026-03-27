@@ -101,8 +101,10 @@ python3 ~/.claude/skills/kmb-metabase/scripts/query_card.py 4953 --output table
 
 **迁移策略**:
 - **MBQL 适用**: 6092, 6105 - 字段都在 Model 6080 中，直接用 `case` 聚合
-- **原生 SQL 适用**: 6112, 6113, 6114, 6116 - 包含 Model 没有的字段（order_type_user、UNION子查询）
-- **筛选器版 MBQL**: 6123 - 使用 Model 6122 的 date 类型字段
+- **UNION ALL 拆解策略**: 72849 这类逻辑优先拆分为多个 MBQL Question，在 Dashboard 组合呈现
+- **缺字段补齐策略**: 6113, 6114, 6116 这类依赖 `order_type_user` 的口径，先在 Model 扩展字段再做 MBQL
+- **筛选器版 MBQL**: 6123 - 使用 Model 6122 的 date 类型字段，配合 Dashboard 页面筛选
+- **原生 SQL**: 仅在“拆分 + 预加工 + 筛选器”都无法落地且有明确记录时作为例外
 
 **Model 6122 提供的时间字段**:
 ```sql

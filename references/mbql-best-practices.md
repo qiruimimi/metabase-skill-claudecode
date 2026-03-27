@@ -197,23 +197,24 @@ aggregation = [
 查询类型
 ├── 简单条件聚合（count/distinct/sum + case）→ MBQL ✅
 ├── Model 已有的字段组合 → MBQL ✅
-├── 复杂 SQL（UNION、窗口函数、CTE）→ 原生 SQL ✅
-├── Model 没有的字段（如 order_type_user）→ 原生 SQL ✅
-└── 动态时间表达式 → 原生 SQL ✅
+├── `UNION ALL` / 多段逻辑 → 拆成多个 MBQL Question + Dashboard 组合 ✅
+├── Model 没有的字段（如 order_type_user）→ 先在 Model 预加工补齐字段，再 MBQL ✅
+├── 动态时间表达式 → 增量数据 + Dashboard 日期筛选 ✅
+└── 复杂 JOIN / CTE / 窗口函数 → 先做 Model 分层拆解；仍无法落地再走原生 SQL 例外 ⚠️
 ```
 
-### 迁移实战案例：page/55074 Revenue 用户分层
+### 迁移实战案例：page/55074 Revenue 用户分层（MBQL-first）
 
-| 原 Graph ID | 迁移后 Card | 策略 | 原因 |
-|------------|-------------|------|------|
-| 6086 | 6092 | MBQL | 简单聚合，字段都在 Model 6080 |
-| 6105 | 6105 | MBQL | 简单聚合，字段都在 Model 6080 |
-| 72849 | 6112 | 原生 SQL | UNION 子查询，在约用户数不在 Model |
-| 72156 | 6113 | 原生 SQL | 使用 order_type_user 字段，不在 Model |
-| 72164 | 6114 | 原生 SQL | 使用 order_type_user 字段，不在 Model |
-| 73163 | 6116 | 原生 SQL | 使用 order_type_user + CTE，不在 Model |
+| 原 Graph ID | 推荐落地策略 | 说明 |
+|------------|-------------|------|
+| 6086 | MBQL | 简单聚合，字段在 Model 中可直接消费 |
+| 6105 | MBQL | 简单聚合，字段在 Model 中可直接消费 |
+| 72849 | 多 Question MBQL | 将 `UNION ALL` 逻辑拆成多张 Question，在 Dashboard 组合展示 |
+| 72156 | Model 扩展 + MBQL | 先把 `order_type_user` 等字段在 Model 补齐，再做 MBQL |
+| 72164 | Model 扩展 + MBQL | 同上 |
+| 73163 | Model 分层 + MBQL | 先将 CTE 逻辑分层下沉到 Model，再做 MBQL |
 
-**经验**: 当源 SQL 包含 Model 没有的字段时，直接用原生 SQL 重建，而非强行用 MBQL 模拟。
+**经验**: 当源 SQL 包含 Model 没有的字段时，先升级 Model；当出现 `UNION ALL` 时，优先拆成多个 MBQL Question。原生 SQL 仅作为最后手段，且必须记录“为什么拆不动、为什么补不全”。
 
 ---
 

@@ -64,37 +64,41 @@ curl -X PUT "${HOST}/api/dashboard/${id}" \
 
 ---
 
-### 4. 在不适用场景强行使用 MBQL
+### 4. 过早回退原生 SQL（未完成 MBQL 拆解）
 
 **❌ 危险信号**:
 ```json
 {
   "dataset_query": {
-    "type": "query",
-    "query": {
-      "source-table": "card__2059",
-      "aggregation": [["count"]]
+    "type": "native",
+    "native": {
+      "query": "SELECT ..."
     }
   }
 }
 ```
-但实际需求是跨表 JOIN、CTE、窗口函数或动态时间表达式。
+在尚未完成以下动作前就直接回退：
+- `UNION ALL` 未拆分为多个 MBQL Question；
+- 动态时间未改为“增量数据 + Dashboard 日期筛选”；
+- Model 缺字段未先补齐预加工。
 
 **✅ 正确做法**:
 ```json
 {
   "dataset_query": {
-    "type": "native",
-    "native": {
-      "query": "SELECT ... FROM actual_table"
+    "type": "query",
+    "query": {
+      "source-table": "card__model_id",
+      "aggregation": [["count"]]
     }
   }
 }
 ```
 
 **边界说明**:
-- 简单聚合、Model 已具备字段：MBQL 可用
-- 复杂 SQL 场景：必须回到原生 SQL
+- 默认必须 Model + MBQL；
+- 复杂逻辑先做 Model 分层与 Question 拆分；
+- 原生 SQL 仅在完全无法解决且已记录原因时允许例外。
 
 ---
 

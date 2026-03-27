@@ -755,7 +755,7 @@ curl -X POST /api/card/4961/query | jq '.data.rows | map(.[1]) | unique | length
 >
 > 口径说明：
 > - 本节是**经验记录**；强约束以 `rules/*` 为准。
-> - 当前执行基线：**默认 Model + MBQL，复杂逻辑回退原生 SQL**（详见 `rules/api-standards.md`）。
+> - 当前执行基线：**默认必须 Model + MBQL，不把原生 SQL 作为常规回退**（详见 `rules/api-standards.md`）。
 
 ### 目录
 1. 2026-03-12 - Metabase 项目完成
@@ -831,7 +831,7 @@ Snapit 是 Coohom 的 AI 图片生成工具，核心覆盖任务系统、赠金/
 
 #### DataSpace → KMB 迁移策略（阶段版）
 - 当时采用：先 Native SQL 快速迁移，再逐步重构 Model + MBQL。
-- 当前已对齐为：默认 Model + MBQL；复杂场景回退原生 SQL。
+- 当前已对齐为：默认必须 Model + MBQL；`UNION ALL` 拆分多 Question、动态时间走 Dashboard 筛选、缺字段先在 Model 预加工；仅在完全无法解决且记录原因时允许原生 SQL 例外。
 
 #### i表 / s表 规则
 | 表类型 | Model 层筛选 | 原因 |
