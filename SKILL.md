@@ -223,7 +223,9 @@ cat ~/.claude/skills/kmb-metabase/reports/dashboard139_$(date +%Y%m%d).md
    - 明确“所有新资产必须落在目标 collection”
 
 2. **源结构抽取**
-   - 用 `space_sql_mapper.py` + `space-data/page_map.json` 抽取 SQL 与前端配置（graphType、legend、轴）
+   - 参数与默认值来源优先级：**先用 Tesseract MCP live 配置（权威）**，再做离线兜底
+   - MCP 可用时：优先读取 page/graph 的 live 参数配置（默认值、筛选器、前端配置）
+   - 仅当 MCP 不可用或数据缺失时：再用 `space_sql_mapper.py` + `space-data/page_map.json` 兜底抽取
 
 3. **依赖先迁**
    - 先迁 Model/Helper，再迁主 Question
@@ -246,6 +248,7 @@ cat ~/.claude/skills/kmb-metabase/reports/dashboard139_$(date +%Y%m%d).md
    - 归档中间态资产
    - 输出映射表 + 校验表 + markdown 迁移记录卡
    - **迁移记录卡要求**：在目标 collection 新建独立 Dashboard（命名 `【P<pageId>】迁移记录卡`），并用 text dashcard 写入 markdown 记录内容（至少包含：资产映射、硬闸门结果、回滚信息）
+   - **参数来源记录要求**：迁移记录卡必须明确标注参数来源（`Tesseract MCP live` 或 `space-data 离线兜底`），并记录兜底原因（如 MCP 不可用/字段缺失）
 
 **详细说明**:
 - 完整流程：`references/migration-guide.md`
@@ -338,8 +341,9 @@ curl -sL \
 
 执行建议：
 1. 先按 `rules/api-standards.md` 确认端点、方法与请求体。
-2. 查询设计遵循“默认必须 Model + MBQL；`UNION ALL` 拆分为多个 Question、动态时间使用增量数据 + Dashboard 筛选、缺字段先在 Model 预加工；仅在完全无法解决且明确记录原因时才允许原生 SQL 例外”。
-3. 创建/更新后立即验证可运行性（如 `/api/card/:id/query`）。
+2. 查询设计遵循“默认必须 Model + MBQL；`UNION ALL` 拆分为多个 Question、动态时间使用增量数据 + Dashboard 筛选、缺字段先在 Model 预加工；S表（`_s_d`）固定 T+1 快照（`ds = DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY), '%Y%m%d')`）；仅在完全无法解决且明确记录原因时才允许原生 SQL 例外”。
+3. 聚合指标必须在 `aggregation-options` 同时设置 `name` 与 `display-name`，且二者一致（避免出现 `Sum of Case` / `Distinct values of Case`）。
+4. 创建/更新后立即验证可运行性（如 `/api/card/:id/query`）。
 
 ---
 

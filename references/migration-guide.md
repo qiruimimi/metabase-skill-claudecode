@@ -28,7 +28,12 @@ python3 scripts/space_sql_mapper.py graph <graphId>
 
 ### 1.2 获取前端配置
 
-从 `page_map.json` 的 `displayGraphList` 中获取:
+**参数来源优先级（必须遵守）**：
+1. **先用 Tesseract MCP live 配置**（权威来源）获取 page/graph 参数、默认值、筛选器配置；
+2. 仅当 MCP 不可用或 live 数据缺失时，才使用 `page_map.json` 离线数据兜底；
+3. 使用离线兜底时，迁移记录中必须写明原因与所用文件。
+
+从 `page_map.json` 的 `displayGraphList` 中获取（仅离线兜底时使用）:
 
 | 配置项 | 含义 | 对应 KMB |
 |--------|------|----------|
@@ -58,7 +63,9 @@ python3 scripts/space_sql_mapper.py graph <graphId>
 1. **从原SQL提取基础字段** (移除聚合，保留原始粒度)
 2. **预处理字段** (如 `str_to_date`, `date_format`)
 3. **添加计算字段** (如 `coalesce` 处理 NULL)
-4. **注意**: Model 不做 ds 筛选，保留全量数据
+4. **按表类型处理 ds**:
+   - I表（`_i_d`）通常不强制固定快照，可按业务时间范围处理
+   - S表（`_s_d`）必须固定快照，默认 `ds = DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY), '%Y%m%d')`
 
 ### API
 
@@ -73,7 +80,7 @@ POST /api/card
   "dataset_query": {
     "type": "native",
     "native": {
-      "query": "SELECT 基础字段 FROM 表 WHERE 条件(不做ds筛选)",
+      "query": "SELECT 基础字段 FROM 表 WHERE 条件(按表类型处理ds：S表固定T+1，I表按业务范围)",
       "template-tags": {}
     },
     "database": {database_id}
@@ -101,7 +108,7 @@ SELECT
   -- 预处理字段
   date_format(event_time, '%Y%m%d') as event_day
 FROM table
--- 注意: 不做 ds 筛选，保留全量
+-- 注意: S表固定T+1快照；I表按业务范围处理
 ```
 
 ---
@@ -136,7 +143,7 @@ FROM table
 ]
 ```
 
-4. **保持原SQL名称**: aggregation-options 的 name 与原SQL列名一致
+4. **保持原SQL名称**: aggregation-options 的 `name` 与 `display-name` 都必须与原SQL列名一致（避免出现 `Sum of Case` / `Distinct values of Case`）
 
 ### API
 
@@ -156,7 +163,7 @@ POST /api/card
         ["field", "dimension_field"]
       ],
       "aggregation": [
-        ["aggregation-options", ["distinct", ["field", "user_id"]], {"name": "用户数"}]
+        ["aggregation-options", ["distinct", ["field", "user_id"]], {"name": "用户数", "display-name": "用户数"}]
       ]
     }
   }
@@ -955,6 +962,8 @@ Snapit 是 Coohom 的 AI 图片生成工具，核心覆盖任务系统、赠金/
 - [ ] 时间字段为可聚合 date 类型（用于筛选器/时间粒度）
 - [ ] Dashboard 图例仅暴露必要指标
 - [ ] 比率字段配置百分比显示
+- [ ] 参数来源已记录（Tesseract MCP live / 离线兜底+原因）
+- [ ] Dashboard 参数默认值与源端口径一致（relative/fixed）
 - [ ] 通过 `/api/card/:id/query` 做可运行性验证
 - [ ] 与对照版本做结果抽样比对
 

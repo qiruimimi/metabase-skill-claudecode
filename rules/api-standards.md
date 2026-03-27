@@ -137,6 +137,7 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 | 动态时间需求 | 增量数据 + Dashboard 页面筛选（date 类型字段）✅ |
 | Model 缺字段 | 先在 Model 预加工补齐字段，再做 MBQL ✅ |
 | 复杂 JOIN / CTE / 窗口函数 | 先做 Model 分层拆解 + MBQL；仅在无法落地时进入例外评审 ⚠️ |
+| 聚合指标命名 | `aggregation-options` 必须同时设置 `name` 与 `display-name` 且保持一致 ✅ |
 
 ### 原生 SQL 例外（最后手段）
 仅当满足以下条件，才允许 `type: "native"`：
@@ -168,7 +169,16 @@ curl -X PUT "${HOST}/api/dashboard/${dashboard_id}" \
 - ⚠️ `UNION ALL` 先拆成多张 MBQL Question，不直接回退原生 SQL
 - ⚠️ 动态时间优先使用 Dashboard 筛选器，不依赖 native `template-tags`
 - ⚠️ 不要引用 `metabase.question_XXX` 格式
+- ⚠️ `aggregation-options` 必须同时写 `name` 与 `display-name`（值保持一致）
 - ⚠️ 仅在例外评审通过后使用原生 SQL
+
+### 参数来源优先级（强约束）
+- Dashboard 参数、默认值、筛选器映射的权威来源：**Tesseract MCP live 配置**。
+- 仅当 MCP 不可用或 live 返回缺失时，才允许使用 `space-data` 离线 JSON 兜底。
+- 使用离线兜底时，必须在迁移记录中写明：
+  1) MCP 不可用/缺失的具体原因；
+  2) 使用的离线文件与 pageId/graphId；
+  3) 最终映射到 KMB 的默认值。
 
 ### 验证查询是否正确
 创建查询后，**必须**验证：

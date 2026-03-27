@@ -226,16 +226,19 @@ Tesseract Page/55074 的参数映射到 KMB Dashboard:
 | `"past12months~"` | 近12月包含本月 |
 | `"2024-01-01~2024-03-25"` | 固定日期范围 |
 
+
+> 参数来源优先级（强约束）：优先使用 **Tesseract MCP live 配置**；仅当 MCP 不可用或 live 缺失时，才使用离线 `space-data` 数据兜底，并在迁移记录中注明原因与来源。
+
 ### Tesseract → KMB 迁移流程
 
-1. **获取 Tesseract Page 参数**: `tesseract_mcp_beta::get_page` 获取 pageId
+1. **获取 Tesseract Page 参数（权威）**: 通过 Tesseract MCP 读取 live 的 page/graph 参数配置
 2. **分析参数**: 识别 page 级别参数（对应 Dashboard 筛选器）
 3. **转换日期参数**: Tesseract relativeTime → KMB 相对时间格式
 4. **创建 Dashboard 参数**: PUT `/api/dashboard/{id}` 设置 parameters
 5. **配置参数映射**: 在 dashcards 的 parameter_mappings 中关联
+6. **仅在兜底时使用离线数据**: 若 MCP 不可用/缺失，再使用 `space-data`，并记录兜底原因
 
 ### parameter_mappings 正确格式
-
 ```json
 {
   "parameter_mappings": [

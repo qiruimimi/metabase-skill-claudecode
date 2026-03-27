@@ -102,6 +102,24 @@ curl -X PUT "${HOST}/api/dashboard/${id}" \
 
 ---
 
+### 4.1 只写 `name` 不写 `display-name`
+
+**❌ 危险信号**:
+```json
+["aggregation-options", ["sum", ["case", [...]]], {"name": "新签收入"}]
+```
+
+结果常见表现：前端显示为 `Sum of Case` / `Distinct values of Case`，而不是业务别名。
+
+**✅ 正确做法**:
+```json
+["aggregation-options", ["sum", ["case", [...]]], {"name": "新签收入", "display-name": "新签收入"}]
+```
+
+**为什么**: `name` 控制字段标识，`display-name` 控制展示别名；二者都要设置且保持一致。
+
+---
+
 ### 5. 添加 Dashboard 卡片时使用正数 ID
 
 **❌ 危险信号**:
