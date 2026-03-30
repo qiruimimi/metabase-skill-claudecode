@@ -5,13 +5,119 @@
 ## 🔄 总体流程
 
 ```
-阶段1: 分析原配置 → 阶段2: 创建Model → 阶段3: 创建Question(MBQL) 
-→ 阶段4: 配置可视化 → 阶段5: 创建Dashboard → 阶段6: 数据验证
+## 阶段1：分析原配置 → 阶段2：创建Model → 阶段3：创建Question + 即时验证 → 阶段4：配置可视化 → 阶段5：创建Dashboard
+                         ↑______________________│
+                           (不一致则修复重试)
 ```
 
 ---
 
 ## 阶段1：分析原配置
+
+### 1.0 自动创建目录结构 (Collection 层级)
+
+**目的**: 在 KMB 中复现小站的目录层级，每个 page 迁移时自动创建规范的工作目录。
+
+**根目录**: `collection/545` (Space Migration)
+
+**目录命名规范**:
+```
+【{pageId}】{pageName} - {日期} - 模型
+
+示例: 【34433】Weekly Data - 20260327 - User Growth模型
+```
+
+**目录结构示例**:
+```
+collection/545 (Space Migration 根目录)
+├── User Growth (collection)
+│   ├── 2023 OKR (collection)
+│   │   └── 【34433】Weekly Data - 20260327 - User Growth模型 (最终工作目录)
+│   │       ├── Model: user_growth_base
+│   │       ├── Question: weekly_active_users
+│   │       ├── Question: new_user_trend
+│   │       └── Dashboard: 【P34433】Weekly Data 迁移记录卡
+```
+
+#### 自动化创建脚本
+
+**使用方式** - 只需提供 pageId:
+
+```bash
+# 一键创建完整目录结构
+python3 scripts/create_migration_workspace.py --page-id 34433 --root-collection 545
+
+# 输出示例:
+# ==========================================
+# 迁移工作目录创建: pageId=34433
+# ==========================================
+# 小站路径: spaceId为1140的root页面/User Growth/2023 OKR/Weekly Data
+#
+# 创建层级:
+#   1. collection/545/User Growth (已存在, id=546)
+#   2. collection/545/User Growth/2023 OKR (新创建, id=601)
+#   3. collection/545/User Growth/2023 OKR/【34433】Weekly Data - 20260327 - User Growth模型 (新创建, id=602)
+#
+# ✅ 工作目录已准备就绪: collection_id=602
+# ==========================================
+```
+
+**脚本逻辑**:
+
+```python
+# scripts/create_migration_workspace.py 核心逻辑
+
+1. 读取 page_map.json 获取 page 信息
+   - pageName, path, parentId
+
+2. 解析 path 获取层级链
+   - path: "root/User Growth/2023 OKR/Weekly Data"
+   - 层级: ["User Growth", "2023 OKR"]
+
+3. 逐级创建/获取 Collection
+   - 从 root collection (545) 开始
+   - 对每个层级文件夹调用 POST /api/collection
+   - 记录每个层级的 collection_id
+
+4. 创建最终工作目录
+   - 命名: 【{pageId}】{pageName} - {日期} - 模型
+   - 位置: page 所在层级的父目录下
+   - 返回最终的 collection_id
+
+5. 在迁移记录中登记
+   - 记录小站 pageId → KMB collection_id 映射
+```
+
+**API 调用**:
+
+```bash
+# 创建 Collection
+POST /api/collection
+{
+  "name": "【34433】Weekly Data - 20260327 - User Growth模型",
+  "description": "小站 page/34433 迁移工作目录\n原始路径: User Growth/2023 OKR/Weekly Data",
+  "parent_id": 601,  # 父层级 collection id
+  "authority_level": null
+}
+```
+
+**创建后的使用**:
+
+```bash
+# 后续所有资源都创建在此 collection 下
+export TARGET_COLLECTION=602
+
+# 创建 Model
+POST /api/card {"collection_id": 602, ...}
+
+# 创建 Question
+POST /api/card {"collection_id": 602, ...}
+
+# 创建 Dashboard
+POST /api/dashboard {"collection_id": 602, ...}
+```
+
+---
 
 ### 1.1 获取并分析原SQL
 
@@ -113,11 +219,12 @@ FROM table
 
 ---
 
-## 阶段3：创建 Question (MBQL)
+## 阶段3：创建 Question (MBQL) + 即时验证
 
 **核心原则**:
 - `aggregation`: **建全**所有需要的指标 (如9个)
 - `breakout`: **严格按**原SQL的 GROUP BY 配置
+- **创建后立即验证数据一致性**
 
 ### 步骤
 
@@ -130,15 +237,15 @@ FROM table
 ["distinct", ["field", "user_id"]]
 
 // 条件聚合 (case 不是 if)
-["distinct", 
+["distinct",
   ["case", [
     [["=", ["field", "order_type"], "New"], ["field", "user_id"]]
   ]]
 ]
 
 // 转化率 (直接计算)
-["/", 
-  ["distinct", ["field", "registered_users"]], 
+["/",
+  ["distinct", ["field", "registered_users"]],
   ["distinct", ["field", "visited_users"]]
 ]
 ```
@@ -169,6 +276,117 @@ POST /api/card
   }
 }
 ```
+
+---
+
+### 3.x 即时验证流程 (每个Question创建后必做)
+
+> **原则**: Question 创建后，必须通过与原小站 SQL 的量化对比验证，才能继续下一个。
+
+```
+创建Question → 对齐筛选条件 → 双方跑LIMIT 10 → 逐行对比 → 不一致则修复 → 验证通过 → 继续下一个
+       ↑                                                               │
+       └───────────────────────────────────────────────────────────────┘
+```
+
+#### 3.x.1 筛选条件对齐 (最关键)
+
+| 对齐项 | 小站来源 | KMB 对应 | 说明 |
+|--------|----------|----------|------|
+| **日期范围** | `defaultValue.dateRange` | Question `filter` / Dashboard参数 | 必须一致 |
+| **维度筛选** | `legendFilterList` | MBQL `filter` | 如渠道、国家 |
+| **排除条件** | `graph.config.filters` | `filter` 中的排除逻辑 | 如排除测试数据 |
+
+**查看小站筛选配置**:
+```bash
+python3 scripts/space_sql_mapper.py graph <graphId>
+# 查看 sql 中的 WHERE 条件，以及前端配置中的筛选器
+```
+
+**应用到 KMB Question**:
+```bash
+# 更新 Question 添加 filter (与小站一致)
+curl -X PUT "https://kmb.qunhequnhe.com/api/card/<question_id>" \
+  -H "X-API-Key: $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dataset_query": {
+      "query": {
+        "filter": [
+          "and",
+          ["time-interval", ["field", "created_date"], -7, "day"],
+          ["in", ["field", "ads_channel_classify"], "google", "facebook"]
+        ]
+      }
+    }
+  }'
+```
+
+#### 3.x.2 执行对比
+
+```bash
+# 1. 小站 SQL 跑 LIMIT 10 (手动添加相同筛选条件)
+mysql -h<host> -u<user> -p<pass> -e "
+SELECT created_date, ads_channel_classify, COUNT(DISTINCT user_id) as uv
+FROM dwb_table
+WHERE ds BETWEEN '20260320' AND '20260327'
+  AND ads_channel_classify IN ('google', 'facebook')
+GROUP BY created_date, ads_channel_classify
+ORDER BY uv DESC
+LIMIT 10
+"
+
+# 2. KMB Question 跑 LIMIT 10
+curl -X POST "https://kmb.qunhequnhe.com/api/card/<question_id>/query" \
+  -H "X-API-Key: $API_KEY" \
+  -d '{"constraints": {"max-results": 10}}' | jq '.data.rows'
+```
+
+#### 3.x.3 对比结果
+
+| 检查项 | 通过标准 | 失败处理 |
+|--------|----------|----------|
+| 行数 | 双方行数一致 | 检查筛选条件是否遗漏 |
+| 列数/列名 | 一致 | 检查 aggregation name |
+| 数值 (前10行) | 逐行一致 | 检查 SQL 逻辑/MBQL 转换 |
+| 排序 | 一致 | 检查 order-by 配置 |
+
+**对比表格**:
+```markdown
+| 行 | 小站 date | 小站 channel | 小站 uv | KMB date | KMB channel | KMB uv | 一致? |
+|----|-----------|--------------|---------|----------|-------------|--------|-------|
+| 1 | 2026-03-27 | google | 1500 | 2026-03-27 | google | 1500 | ✅ |
+| 2 | 2026-03-27 | facebook | 1200 | 2026-03-27 | facebook | 1200 | ✅ |
+```
+
+#### 3.x.4 不一致时的修复流程
+
+```
+发现不一致
+    │
+    ├─→ 行数不对? → 检查 WHERE/filter 条件是否一致
+    │
+    ├─→ 数值不对? → 检查:
+    │              - aggregation 逻辑 (COUNT DISTINCT vs COUNT)
+    │              - 条件聚合的 CASE 逻辑
+    │              - NULL 处理 (coalesce)
+    │              - 时间字段格式
+    │
+    ├─→ 顺序不对? → 检查 order-by 字段和方向
+    │
+    └─→ 列名不对? → 检查 aggregation-options 的 name/display-name
+         │
+         ▼
+    修复配置 → 重新对比 → 验证通过
+```
+
+**关键排查点**:
+- S表是否固定了 ds (T+1) 而小站是动态日期?
+- 小站 SQL 有 `COALESCE(field, 0)` 而 MBQL 没有?
+- 小站有 `OR` 条件而 MBQL 用 `and`?
+- 时间字段: 小站是 `%Y%m%d` 字符串，Model 是否转成了 date?
+
+---
 
 ---
 
@@ -319,43 +537,30 @@ PUT /api/dashboard/{dashboard_id}
 
 ---
 
-## 阶段6：数据验证 (关键！)
+## 阶段6：最终 Dashboard 验证 (交付前)
 
-### 方法
+> **注意**: 阶段3的即时验证已确保每个 Question 数据正确，本阶段进行 Dashboard 级别的最终检查。
+
+### 6.1 Dashboard 完整性检查
+
+| 检查项 | 方法 | 通过标准 |
+|--------|------|----------|
+| 卡片数量 | 对比小站图表数 vs Dashboard dashcards | 数量一致 |
+| 参数绑定 | 检查 parameter_mappings | 所有筛选器正确绑定 |
+| 布局 | 浏览器截图 | 图表正常渲染 |
+
+### 6.2 端到端抽样验证
+
+从 Dashboard 随机抽取 2-3 个卡片：
+1. 在 Dashboard 应用筛选条件
+2. 对比小站同等条件下的数据
+3. 确认数值一致
 
 ```bash
-# 1. 用原SQL查询
-POST /api/dataset
-{
-  "type": "native",
-  "native": {"query": "原SQL"},
-  "database": {database_id}
-}
-
-# 2. 用KMB查询
-POST /api/card/{id}/query
-
-# 3. 对比关键指标值
+# Dashboard 截图验证
+browser open "https://kmb.qunhequnhe.com/dashboard/<id>"
+browser screenshot
 ```
-
-### 对比指标
-
-| 指标 | 原SQL结果 | KMB结果 | 差异 |
-|------|-----------|---------|------|
-| 访客数 | 10000 | 10000 | ✅ |
-| 有效访客数 | 8000 | 8000 | ✅ |
-| 新访客数 | 3000 | 3000 | ✅ |
-| 注册数 | 500 | 500 | ✅ |
-
-**原则**: 差异应该在 0 或极小范围内
-
-### 常见问题
-
-| 问题 | 原因 | 解决 |
-|------|------|------|
-| 数值不一致 | 时间字段格式不一致 | Model 中加 `date_format` 预处理 |
-| NULL 导致差异 | coalesce 处理缺失 | SQL 中加 `coalesce(field, 0)` |
-| 条件逻辑差异 | case vs if | MBQL 用 `case`，SQL 用 `if` |
 
 ---
 
