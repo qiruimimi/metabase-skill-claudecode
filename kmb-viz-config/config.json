@@ -1,0 +1,13 @@
+{
+  "name": "kmb-viz-config",
+  "version": "1.1.0",
+  "description": "Metabase visualization configuration tool",
+  "role": "atomic",
+  "inputs": ["card_id", "config_file", "display", "dimensions", "metrics"],
+  "outputs": ["card_id", "viz_update_result"],
+  "depends_on": ["kmb-question-builder"],
+  "reads": ["../kmb-metabase/references/dashboard-configs.md", "../scripts/lib/kmb"],
+  "scripts": ["scripts/update_viz.py"],
+  "requires_env": ["KMB_API_KEY"],
+  "supported_displays": ["line", "bar", "pie", "table", "combo", "mixlinebar"]
+}

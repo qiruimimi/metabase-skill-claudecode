@@ -1,0 +1,13 @@
+{
+  "name": "kmb-dashboard-builder",
+  "version": "1.1.0",
+  "description": "Metabase Dashboard creation and configuration tool",
+  "role": "atomic",
+  "inputs": ["name", "collection_id", "cards_config", "parameters"],
+  "outputs": ["dashboard_id", "dashcards_result"],
+  "depends_on": ["kmb-question-builder", "kmb-viz-config"],
+  "reads": ["../kmb-metabase/references/dashboard-configs.md", "../scripts/lib/kmb"],
+  "scripts": ["scripts/create_dashboard.py", "scripts/add_cards.py", "scripts/generate_dashboard139_report.py"],
+  "requires_env": ["KMB_API_KEY"],
+  "grid_width": 24
+}

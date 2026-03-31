@@ -1,0 +1,13 @@
+{
+  "name": "kmb-collection-builder",
+  "version": "1.1.0",
+  "description": "Metabase Collection atomic operations",
+  "role": "atomic",
+  "inputs": ["name", "parent_id", "description", "collection_id", "operation"],
+  "outputs": ["collection_id", "collection_detail", "collection_items"],
+  "depends_on": [],
+  "reads": ["../agents/rules", "../scripts/lib/kmb"],
+  "scripts": ["scripts/create_collection.py", "scripts/get_collection_cards.py"],
+  "requires_env": ["KMB_API_KEY"],
+  "entry": "SKILL.md"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "【56088】每日打开弹窗UV",
+  "collection_id": 564,
+  "breakout": [
+    ["field", "event_date", {"temporal-unit": "day"}]
+  ],
+  "aggregation": [
+    ["aggregation-options",
+      ["distinct", ["field", "userid"]],
+      {"name": "打开弹窗UV", "display-name": "打开弹窗UV"}
+    ]
+  ],
+  "filter": [],
+  "visualization": {
+    "display": "line",
+    "graph.dimensions": ["event_date"],
+    "graph.metrics": ["打开弹窗UV"],
+    "series_settings": {
+      "打开弹窗UV": {"display": "line", "axis": "left"}
+    }
+  }
+}

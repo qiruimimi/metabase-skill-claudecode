@@ -1,0 +1,4541 @@
+[
+  {
+    "path": "spaceId为1140的root页面",
+    "pageId": 28086,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG",
+    "pageId": 53776,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition",
+    "pageId": 53777,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic",
+    "pageId": 53823,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      69683,
+      69684,
+      69685,
+      69686,
+      69687,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/channel distribution",
+    "pageId": 53825,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      69702,
+      69703,
+      69704,
+      69705,
+      69706,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/country distribution",
+    "pageId": 53824,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      69693,
+      69695,
+      69698,
+      69700,
+      69701
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/first landingpage转化明细",
+    "pageId": 54514,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      71055,
+      71056,
+      71973,
+      71980
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/全访客【周】landing page明细",
+    "pageId": 55679,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73094,
+      73095,
+      73099
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/全访客【日】landing page明细",
+    "pageId": 55678,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73092,
+      73097
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/网站模型库页面",
+    "pageId": 54488,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      71044,
+      71045,
+      71046,
+      71047
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/设计社区",
+    "pageId": 54513,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71051
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/Traffic/访客访问记录",
+    "pageId": 56869,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/sem",
+    "pageId": 54789,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      71827,
+      71828,
+      71829,
+      71911
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/sem/Key words",
+    "pageId": 56379,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      74224,
+      74228
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/sem/SEM新注册用户投放&留存",
+    "pageId": 56059,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      73680,
+      73681,
+      73684,
+      73685,
+      73686
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/sem/映射ROI",
+    "pageId": 56047,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73641,
+      73642,
+      73664
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo",
+    "pageId": 54318,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      70830,
+      76012
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/SEO全访客",
+    "pageId": 54487,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      71034,
+      71035,
+      71036,
+      71038,
+      71039,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/SEO全访客first visit【日】",
+    "pageId": 55901,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      73416
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/SEO全访客【周】landing page明细",
+    "pageId": 55677,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      73089
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/SEO全访客【日】landing page明细",
+    "pageId": 55221,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      72362
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/SEO新访客",
+    "pageId": 54482,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      71012,
+      71020,
+      71023,
+      71025,
+      71026,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/SEO新访客留存",
+    "pageId": 56058,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73676,
+      73678,
+      73679,
+      73694,
+      73695,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/first landingpage转化明细",
+    "pageId": 55660,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73069,
+      73070
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Acquisition/seo/流量总览 - kmb",
+    "pageId": 56802,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation",
+    "pageId": 53778,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort",
+    "pageId": 53950,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      70023,
+      70024,
+      70027,
+      70039,
+      72863,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/Conversion",
+    "pageId": 53832,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      69738,
+      69740,
+      69741,
+      69742,
+      69743,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/Conversion (upload floor plan)",
+    "pageId": 55098,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      72136,
+      72139,
+      72245
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/Conversion (upload floor plan)/工作台导入户型转化",
+    "pageId": 55141,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72252,
+      72253,
+      72255,
+      72256,
+      72257,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/Conversion (upload floor plan)/左侧栏导入户型转化",
+    "pageId": 55142,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72260,
+      72261,
+      72262,
+      72263,
+      72264,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/Conversion Model",
+    "pageId": 57068,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/Conversion户型转化明细",
+    "pageId": 54886,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      71959,
+      71990,
+      71991,
+      72210,
+      72211,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/C端总体Conversion",
+    "pageId": 56186,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      73869,
+      73873,
+      73875,
+      73877,
+      73884,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/C端总体Conversion/工具行为细化",
+    "pageId": 56195,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73890,
+      73891,
+      73893,
+      73894,
+      73895,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Conversion_with_cohort/体验专项Metrics",
+    "pageId": 56595,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      74398,
+      74399,
+      74402
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Drawing",
+    "pageId": 57574,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Drawing/COOHOM新图纸模板",
+    "pageId": 57604,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Drawing/COOHOM自动标注前台化",
+    "pageId": 57605,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Drawing/从视窗",
+    "pageId": 57603,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      75953,
+      75954,
+      75955,
+      75956,
+      75957,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design",
+    "pageId": 53785,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/09 识别结果量化指标",
+    "pageId": 55805,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73240,
+      73241
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅PTE",
+    "pageId": 53791,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      69577
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅户型操作活跃留存",
+    "pageId": 53786,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      69972,
+      69973,
+      69981,
+      69983,
+      69984,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅户型绘制转换时长-有效方案",
+    "pageId": 53789,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      69572,
+      69573,
+      69574,
+      69575,
+      70594,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅有效方案占比（重点国家）",
+    "pageId": 53787,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      69561,
+      69562,
+      69563,
+      69564,
+      69565,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅有效方案细查",
+    "pageId": 53793,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      69582,
+      69583,
+      70236
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅有效方案（方案来源）",
+    "pageId": 53788,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      69567,
+      69568,
+      69569,
+      69570,
+      69571
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/✅用户细分",
+    "pageId": 53790,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/户型识别效果评分",
+    "pageId": 55759,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73211,
+      73218
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/新开始设计弹窗转化",
+    "pageId": 54175,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Floor Plan & Design/激活路径转化",
+    "pageId": 53792,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      69578,
+      69579,
+      69580,
+      69581,
+      69736,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model",
+    "pageId": 53836,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model",
+    "pageId": 53856,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      69906,
+      69907,
+      69908,
+      69909,
+      69910,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model/Category Distribution",
+    "pageId": 53996,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      70166,
+      70167,
+      70168,
+      70169,
+      70170,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model/Category Distribution/Country Distribution",
+    "pageId": 54329,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      70849,
+      70850,
+      70851,
+      70852,
+      70853,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model/Category Distribution/KR Category Distribution",
+    "pageId": 54328,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      70843,
+      70844,
+      70845,
+      70846,
+      70847,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model/Find → Drag Model",
+    "pageId": 53984,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      70113,
+      70129,
+      70130,
+      70131,
+      74497
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model/Language Distribution",
+    "pageId": 53983,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      70108,
+      70109,
+      70110,
+      70111,
+      70112
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Find → Click Model/两种获取模型途径数据",
+    "pageId": 55802,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      73225,
+      73226,
+      73227,
+      73228,
+      73229,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Key Metrics",
+    "pageId": 56133,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Key Metrics/模型打开/使用率",
+    "pageId": 56135,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      73808,
+      73809,
+      73810,
+      73811
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Key Metrics/模型激活率 - Model Activation",
+    "pageId": 56099,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73754,
+      73755
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Key Metrics/模型点击位次",
+    "pageId": 56137,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73815,
+      73816,
+      74393,
+      74394,
+      74477,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Key Metrics/模型网页端指标",
+    "pageId": 56136,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Category Click",
+    "pageId": 54142,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      70558,
+      70561
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Click",
+    "pageId": 54131,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      70518,
+      70544
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Click/Finishes",
+    "pageId": 54132,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      70505,
+      70508,
+      70563,
+      70564
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Click/模型总点击率   进入-点击模型",
+    "pageId": 56455,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      74301,
+      74302,
+      74303,
+      74304,
+      74305,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Click/模型点击pv&uv",
+    "pageId": 56456,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      74310,
+      74316,
+      74317,
+      74318,
+      74319,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Click/点击模型次日/次周活跃",
+    "pageId": 56524,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      74361,
+      74362
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Collect",
+    "pageId": 54147,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      70570,
+      70571,
+      71116,
+      71117
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Drag",
+    "pageId": 54141,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      70550,
+      70553,
+      70959,
+      70962,
+      71114,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Drag/拖拽模型次日/次周活跃",
+    "pageId": 56607,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      74429,
+      74430
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Drag/模型总拖拽率   进入-拖拽模型",
+    "pageId": 56600,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      74403,
+      74408,
+      74409,
+      74410,
+      74411,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Drag/模型拖拽pv&uv",
+    "pageId": 56602,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      74413,
+      74418,
+      74422,
+      74423,
+      74424,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Search",
+    "pageId": 54146,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      70566,
+      74656,
+      74657,
+      74658
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Tag",
+    "pageId": 54079,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Tag/Style Tag",
+    "pageId": 54074,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      70387,
+      70388
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/Model Tag/模型点击pv&uv",
+    "pageId": 56563,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      74374,
+      74375,
+      74376,
+      74377,
+      74378,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Model/品牌库数据",
+    "pageId": 57118,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Render",
+    "pageId": 53837,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73698,
+      73699
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Render/Render Entry (register)",
+    "pageId": 53839,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      69774,
+      69775,
+      69776,
+      69777
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Render/Weekly data",
+    "pageId": 55311,
+    "pageType": "DEFAULT",
+    "graphCount": 18,
+    "graphIds": [
+      72505,
+      72506,
+      72507,
+      72508,
+      72509,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Render/渲染激活率 - Render Activation",
+    "pageId": 56134,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      73792,
+      73793
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Signup",
+    "pageId": 54723,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Signup/Daily data",
+    "pageId": 54724,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      71751,
+      71752,
+      71753,
+      71754,
+      71755,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Signup/Weekly data",
+    "pageId": 54804,
+    "pageType": "DEFAULT",
+    "graphCount": 13,
+    "graphIds": [
+      71844,
+      71845,
+      71846,
+      71847,
+      71848,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Tool Activation",
+    "pageId": 54206,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      70644
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Tool Activation/DAU",
+    "pageId": 54227,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      70678,
+      70679,
+      70681,
+      70683,
+      70684,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Tool Activation/WAU",
+    "pageId": 54226,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      70669,
+      70671,
+      70673,
+      70674,
+      70675,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Activation/Tool Activation/活跃总览",
+    "pageId": 56813,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      74669,
+      74670,
+      74673,
+      74674,
+      74675,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Coohom Performance",
+    "pageId": 54160,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Coohom Performance/性能时长",
+    "pageId": 54161,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Coohom Performance/性能时长/进入硬装编辑场景",
+    "pageId": 54162,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      70597,
+      70598
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking",
+    "pageId": 54229,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Advanced user (深度用户)",
+    "pageId": 54298,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      70810,
+      70903,
+      70954,
+      71832,
+      71833,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Advanced user (深度用户)/公库深度用户   【深度用户中拖拽次数>=30 的用户】",
+    "pageId": 54564,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71119
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Conversion_with_cohort",
+    "pageId": 54422,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      70931,
+      70932,
+      70933,
+      70934,
+      70935
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Conversion_with_cohort/工具左侧栏实验0209",
+    "pageId": 54423,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      70936,
+      70937,
+      70938,
+      70939,
+      70940,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Conversion_with_cohort/工具左侧栏实验0216",
+    "pageId": 54426,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      70945,
+      70946,
+      70947,
+      70948,
+      70949,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Conversion_with_cohort/工具左侧栏实验0223",
+    "pageId": 54518,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      71053,
+      71054,
+      71057,
+      71059,
+      71060,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Regular Data Push",
+    "pageId": 54188,
+    "pageType": "DEFAULT",
+    "graphCount": 17,
+    "graphIds": [
+      72161,
+      72163,
+      70617,
+      70618,
+      70619,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/Weekly Data Push",
+    "pageId": 54276,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      70738,
+      70739,
+      70740,
+      70741,
+      71772,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/核心数据汇总面板",
+    "pageId": 54558,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      71090,
+      71091,
+      71092
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/核心数据汇总面板/Daily Activation&Retention",
+    "pageId": 54714,
+    "pageType": "DEFAULT",
+    "graphCount": 13,
+    "graphIds": [
+      71666,
+      71667,
+      71669,
+      71670,
+      71671,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/核心数据汇总面板/Daily Conversion",
+    "pageId": 54561,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      71094,
+      71097,
+      71100,
+      71104,
+      71105,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/核心数据汇总面板/Weekly Activation&Retention",
+    "pageId": 54713,
+    "pageType": "DEFAULT",
+    "graphCount": 15,
+    "graphIds": [
+      71645,
+      71646,
+      71652,
+      71653,
+      71657,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Growth Hacking/核心数据汇总面板/Weekly Conversion",
+    "pageId": 54565,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      71120,
+      71121,
+      71123,
+      71124,
+      71125,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/KC Tool",
+    "pageId": 54872,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/KC Tool/KC存量看板（待迭代）",
+    "pageId": 54874,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      71940,
+      71941,
+      71942,
+      71943,
+      71944,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/KC Tool/商家&个人 汇总数据",
+    "pageId": 54873,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      71936,
+      71937,
+      71938,
+      71939
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Referral",
+    "pageId": 53781,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Referral/拉新邀请",
+    "pageId": 57049,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention",
+    "pageId": 53779,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Architect",
+    "pageId": 54922,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      71982,
+      71983,
+      71984
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Model Retention",
+    "pageId": 54519,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      71063,
+      71064,
+      71065,
+      71066,
+      71067
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Monthly Retention",
+    "pageId": 55483,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      72841,
+      72851
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis",
+    "pageId": 54277,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/户型操作时间",
+    "pageId": 54283,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      70775
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/有效方案数",
+    "pageId": 54279,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      70751,
+      70752,
+      70753,
+      70754,
+      70761,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/模型拖拽次数",
+    "pageId": 54281,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      70765,
+      70766,
+      70767,
+      70768,
+      73853,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/渲染次数",
+    "pageId": 54278,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      70744,
+      70745,
+      70746,
+      70747
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/访问Pricing页面的累计次数",
+    "pageId": 54286,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      70788,
+      70789,
+      70790,
+      70791
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/访问过支付页面的累计次数",
+    "pageId": 54288,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      70792,
+      70793,
+      70794,
+      70795
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Retetion Analysis/进工具次数&天数",
+    "pageId": 54273,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      70727,
+      70729,
+      70730,
+      70742,
+      70786,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Weekly Retention",
+    "pageId": 54275,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      70731,
+      70733,
+      70735,
+      70736,
+      70763,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Weekly Retention/定制硬装留存",
+    "pageId": 57345,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      75325,
+      75326
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Weekly Retention/注册TopN国家周留存",
+    "pageId": 54918,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      71976,
+      74218
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Retention/Weekly Retention/重点国家周留存",
+    "pageId": 56365,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      74215,
+      74216,
+      74217
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue",
+    "pageId": 53780,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      72072
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics",
+    "pageId": 54571,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/到期应续续约率",
+    "pageId": 55909,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      73423,
+      73431,
+      73432,
+      73433,
+      73434,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付成功率",
+    "pageId": 55015,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      72057,
+      72058,
+      72067,
+      72068,
+      72069
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗",
+    "pageId": 55836,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/pricing页面转化",
+    "pageId": 55877,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73396,
+      73397,
+      73398,
+      73399,
+      73400,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/pricing页面转化-旧口径",
+    "pageId": 55873,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      73385,
+      73386,
+      73387,
+      73391
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/支付弹窗转化",
+    "pageId": 55865,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      73371,
+      73372,
+      73373,
+      73374,
+      73377,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/支付弹窗转化",
+    "pageId": 57302,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      75252,
+      75253,
+      75254,
+      75255,
+      75256,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/支付弹窗转化/CTA转化监控",
+    "pageId": 56698,
+    "pageType": "DEFAULT",
+    "graphCount": 22,
+    "graphIds": [
+      74500,
+      74501,
+      74558,
+      74559,
+      74560,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/新版实验 - 支付弹窗转化",
+    "pageId": 56088,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      73731,
+      73732,
+      73733,
+      73735,
+      73737,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/支付漏斗/新版实验 - 支付弹窗转化/新版实验 - 支付弹窗转化",
+    "pageId": 57355,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      75345,
+      75346,
+      75347,
+      75348,
+      75349,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/注册新签转化率",
+    "pageId": 55839,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      73336,
+      73337,
+      73338,
+      73339,
+      73340,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Key Metrics/订阅下周期续约率",
+    "pageId": 55905,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73420,
+      73421,
+      73422
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/LTV",
+    "pageId": 55058,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72073,
+      72074,
+      72076,
+      72077,
+      72078,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/LTV/付费LTV数据",
+    "pageId": 57090,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/LTV/付费用户LTV",
+    "pageId": 55072,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      72095,
+      72096,
+      72097,
+      72099,
+      72105,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/LTV/准工具用户LTV",
+    "pageId": 55060,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72080,
+      72081,
+      72082,
+      72083,
+      72084,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Monthly Total Revenue",
+    "pageId": 55722,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73146,
+      73147,
+      73148
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/ROI",
+    "pageId": 54572,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71131
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue断约",
+    "pageId": 53866,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      69806,
+      69825,
+      69826,
+      69827,
+      69844
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）",
+    "pageId": 55074,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      72156,
+      72164,
+      72849,
+      73163
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/Renewal Revenue Analysis",
+    "pageId": 48229,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      68995,
+      68996,
+      68997,
+      68998,
+      69008,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/Revenue用户分层（旧）",
+    "pageId": 53582,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      69112,
+      69117,
+      69118,
+      69121,
+      69126,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/Revenue账单明细",
+    "pageId": 55964,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      73453
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/代理",
+    "pageId": 55684,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      73115,
+      73116,
+      73117,
+      73158,
+      73160
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/升级",
+    "pageId": 55122,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72189,
+      72190,
+      72191,
+      72192,
+      72193,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/召回",
+    "pageId": 55124,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72201,
+      72202,
+      72203,
+      72204,
+      72205,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/新签",
+    "pageId": 55116,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72168,
+      72175,
+      72176,
+      72177,
+      72178,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/连续续约",
+    "pageId": 55117,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72180,
+      72181,
+      72182,
+      72183,
+      72184,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Revenue用户分层（新）/降级",
+    "pageId": 55123,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72195,
+      72196,
+      72197,
+      72198,
+      72199,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Total Revenue",
+    "pageId": 56174,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73837,
+      73838,
+      73839
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Total Revenue/Total Revenue By Region ",
+    "pageId": 56852,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      74705,
+      74708,
+      74709,
+      74710
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Weekly Total Revenue",
+    "pageId": 54573,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73131,
+      73144,
+      73145
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Weekly Total Revenue/单品购买",
+    "pageId": 55726,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73155,
+      73156,
+      73157
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Weekly Total Revenue/当周",
+    "pageId": 54574,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71133
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/Weekly Total Revenue/订阅模式",
+    "pageId": 55725,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73152,
+      73153,
+      73154
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/每日实时收入",
+    "pageId": 57117,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/营销广告位链路",
+    "pageId": 57122,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Revenue/营销活动",
+    "pageId": 56967,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/Snapit",
+    "pageId": 58081,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      76347,
+      76350
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站",
+    "pageId": 54668,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition",
+    "pageId": 54669,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/Traffic",
+    "pageId": 54670,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      71473,
+      71474,
+      71475,
+      71476,
+      71477,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/Traffic/channel distribution",
+    "pageId": 54672,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      71488,
+      71489,
+      71490,
+      71491,
+      71492,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/Traffic/landingpage转化明细",
+    "pageId": 54675,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      71499,
+      71500
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/Traffic/网站模型库页面",
+    "pageId": 54673,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      71494,
+      71495
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/Traffic/设计社区",
+    "pageId": 54674,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71498
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/seo",
+    "pageId": 54676,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      71501,
+      71502
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/seo/SEO全访客",
+    "pageId": 54678,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      71518,
+      71519,
+      71520,
+      71521,
+      71522,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/seo/SEO新访客",
+    "pageId": 54677,
+    "pageType": "DEFAULT",
+    "graphCount": 15,
+    "graphIds": [
+      71503,
+      71504,
+      71505,
+      71506,
+      71507,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Acquisition/分站访问",
+    "pageId": 55091,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      72123
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation",
+    "pageId": 54701,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/Advanced user (深度用户)",
+    "pageId": 54801,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      71836,
+      71837,
+      71838,
+      71839,
+      71840,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/Advanced user (深度用户)/公库深度用户   【深度用户中拖拽次数>=30 的用户】",
+    "pageId": 54802,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71843
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/Tool Activation",
+    "pageId": 54702,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71612
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/Tool Activation/DAU",
+    "pageId": 54703,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      71613,
+      71614,
+      71615,
+      71616,
+      71617,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/Tool Activation/WAU",
+    "pageId": 54704,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      71620,
+      71621,
+      71622,
+      71623,
+      71624
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/核心数据汇总面板",
+    "pageId": 54790,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      71781,
+      71782,
+      71783
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/核心数据汇总面板/Daily Activation&Retention",
+    "pageId": 54793,
+    "pageType": "DEFAULT",
+    "graphCount": 13,
+    "graphIds": [
+      71800,
+      71801,
+      71802,
+      71803,
+      71804,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/核心数据汇总面板/Daily Conversion",
+    "pageId": 54791,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      71784,
+      71785,
+      71786,
+      71787,
+      71788,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/核心数据汇总面板/Weekly Activation&Retention",
+    "pageId": 54794,
+    "pageType": "DEFAULT",
+    "graphCount": 13,
+    "graphIds": [
+      71813,
+      71814,
+      71815,
+      71816,
+      71817,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Activation/核心数据汇总面板/Weekly Conversion",
+    "pageId": 54792,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      71792,
+      71793,
+      71794,
+      71795,
+      71796,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Retention",
+    "pageId": 54679,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Retention/Model",
+    "pageId": 54689,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      71564,
+      71565,
+      71566,
+      71567,
+      71568
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Retention/Weekly Retention",
+    "pageId": 54680,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      71529,
+      71530,
+      71531,
+      71532,
+      71533,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue",
+    "pageId": 54690,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Key Metrics",
+    "pageId": 54695,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Key Metrics/ROI",
+    "pageId": 54696,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      71600,
+      71611
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Key Metrics/Weekly Total Revenue",
+    "pageId": 54697,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      71601,
+      71602,
+      71603
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Key Metrics/Weekly Total Revenue/single purchase mode",
+    "pageId": 54700,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      71608,
+      71609,
+      71610
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Key Metrics/Weekly Total Revenue/subscription mode",
+    "pageId": 54699,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      71605,
+      71606,
+      71607
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Key Metrics/Weekly Total Revenue/当周",
+    "pageId": 54698,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      71604
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Renewal Revenue Analysis",
+    "pageId": 54693,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      71584,
+      71585,
+      71586,
+      71587,
+      71588,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Revenue断约",
+    "pageId": 54694,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      71595,
+      71596,
+      71597,
+      71598,
+      71599
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Revenue用户分层",
+    "pageId": 54691,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      71569,
+      71570,
+      71571,
+      71572,
+      71573,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/Coohom PLG/印度分站/Revenue/Revenue用户分层/Revenue用户分层明细用户",
+    "pageId": 54692,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      71580,
+      71581,
+      71582,
+      71583
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth",
+    "pageId": 34467,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/2023 OKR",
+    "pageId": 34432,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/2023 OKR/Daily Data",
+    "pageId": 41902,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      52796,
+      59391,
+      59392
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/2023 OKR/Monthly Data",
+    "pageId": 34796,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      41693,
+      41694,
+      41695,
+      60875
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/2023 OKR/Weekly Data",
+    "pageId": 34433,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      41236,
+      41237,
+      41238,
+      59371,
+      59372,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/AB test",
+    "pageId": 37469,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/AB test/pricing页面AB测试",
+    "pageId": 47739,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/AB test/signups and enter tool ",
+    "pageId": 41324,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      52273,
+      52274,
+      52276,
+      52277,
+      52278,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/AB test/新版支付弹窗ab test",
+    "pageId": 49260,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      62402,
+      62425
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/AB test/新版支付弹窗ab test-实时-临时",
+    "pageId": 49289,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      62426
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement",
+    "pageId": 47262,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Facebook Ads",
+    "pageId": 52317,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      67540
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads",
+    "pageId": 37693,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Campaigns",
+    "pageId": 37831,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      46765,
+      63552
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Monthly report",
+    "pageId": 38856,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      48546
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Overview",
+    "pageId": 37836,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      46773,
+      46774,
+      46782,
+      46783
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Report",
+    "pageId": 42003,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Report/Daily Data",
+    "pageId": 42004,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      52886
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Report/Daily Data/Country Daily Report",
+    "pageId": 42063,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      52925,
+      52926,
+      52927,
+      52928,
+      52931,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Report/Weekly Data",
+    "pageId": 42005,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      52887
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Report/Weekly Data/Country Weekly Report",
+    "pageId": 42130,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      52946,
+      52947,
+      52948,
+      52949,
+      52950,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Report/report-expand",
+    "pageId": 49867,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      63612
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Search Keywords",
+    "pageId": 37817,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      46748,
+      63554,
+      63827
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Search Keywords/Keywords Ranking",
+    "pageId": 37860,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      46791
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/Google Ads/Weekly report",
+    "pageId": 37694,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      46510,
+      46519,
+      46593,
+      46594,
+      46595,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/SEO",
+    "pageId": 47726,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/SEO/SEO全访客",
+    "pageId": 47701,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      60092,
+      60100,
+      60104,
+      60105,
+      60108,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Advertisement/SEO/SEO新访客",
+    "pageId": 37079,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      50106,
+      50107,
+      50120,
+      52676,
+      62201,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic",
+    "pageId": 34680,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      44701,
+      44896,
+      45428,
+      45429,
+      45430,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/APP",
+    "pageId": 40537,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      50685,
+      50721,
+      53138,
+      53228,
+      53229,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/APP/App push",
+    "pageId": 45738,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      57716
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/APP/Daily Data",
+    "pageId": 42738,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      53623,
+      53624,
+      53625,
+      53626
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/APP/Weekly Data",
+    "pageId": 42739,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/APP/ipad app",
+    "pageId": 39553,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      49532,
+      49533,
+      49534
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Active User and Retention",
+    "pageId": 47383,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Active User and Retention/Deep Users",
+    "pageId": 41701,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      52690,
+      52691,
+      52726,
+      52976,
+      52977,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Active User and Retention/Weekly data",
+    "pageId": 42339,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      53222,
+      53223,
+      53246,
+      53276,
+      53414,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website",
+    "pageId": 34437,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/Daily data",
+    "pageId": 34438,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      41252,
+      41253,
+      42318,
+      42319,
+      42501,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/Weekly data",
+    "pageId": 34439,
+    "pageType": "DEFAULT",
+    "graphCount": 15,
+    "graphIds": [
+      41254,
+      41255,
+      42320,
+      42321,
+      42354,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/新网站功能使用跟踪",
+    "pageId": 36143,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      44040,
+      44044,
+      44045,
+      44046,
+      44047,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/权益中心",
+    "pageId": 40271,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      56213,
+      56427,
+      56488
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/网站模型库页面",
+    "pageId": 46831,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      58950,
+      58951,
+      58952,
+      58953
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/设计社区",
+    "pageId": 40622,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      51171,
+      51172,
+      51173,
+      51174,
+      51215
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Coohom Website/设计社区/设计社区-免费流量转化",
+    "pageId": 46816,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      58926,
+      58927,
+      58928,
+      58932
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Landing Pages（weekly）",
+    "pageId": 39345,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      49285,
+      49286,
+      49287,
+      49955
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Landing Pages（weekly）/Landing Pages（daily）",
+    "pageId": 39850,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      49833,
+      49834,
+      49835
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/One-Level Channel Traffic",
+    "pageId": 42321,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      53162,
+      53163,
+      53164,
+      53165,
+      53166,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps",
+    "pageId": 36878,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      44992,
+      44993,
+      53226,
+      53227,
+      53249
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps/PC apps new version",
+    "pageId": 52689,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      68037,
+      68038,
+      68138,
+      68179,
+      69192,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps/客户端稳定性",
+    "pageId": 54045,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps/客户端稳定性/客户端主体稳定性",
+    "pageId": 54046,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps/客户端稳定性/客户端内嵌Webview稳定性",
+    "pageId": 54047,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps/客户端稳定性/客户端启动稳定性",
+    "pageId": 54048,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      70283
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/PC apps/客户端稳定性/客户端设置",
+    "pageId": 54049,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Paid Channels Traffic",
+    "pageId": 37078,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Paid Channels Traffic/Daily data",
+    "pageId": 36678,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      44753,
+      44754,
+      44755,
+      44756,
+      44757,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Paid Channels Traffic/Daily data/Traffic details",
+    "pageId": 36739,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      45541,
+      45542,
+      45543,
+      45544,
+      45545
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Paid Channels Traffic/Weekly data",
+    "pageId": 36817,
+    "pageType": "DEFAULT",
+    "graphCount": 15,
+    "graphIds": [
+      44898,
+      44899,
+      44900,
+      44901,
+      44902,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Coohom Traffic/Paid Channels Traffic/Weekly data/Traffic details",
+    "pageId": 36818,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      45757,
+      45758,
+      45759,
+      45760,
+      45761,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool",
+    "pageId": 34440,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/Daily data",
+    "pageId": 34441,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      41256,
+      42021,
+      42204,
+      46133,
+      58797
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/K&B Tool",
+    "pageId": 51378,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      64204,
+      64205,
+      64206,
+      64207,
+      66666,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/Monthly Data",
+    "pageId": 50204,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      64005
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/Tutorial",
+    "pageId": 39386,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      56221
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/Weekly data",
+    "pageId": 34442,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      41257,
+      42022,
+      42205,
+      46134,
+      51004,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/搜索效果（云图左侧栏）",
+    "pageId": 38841,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      48505,
+      48647,
+      48648,
+      48649,
+      48650,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Design Tool/施工图",
+    "pageId": 35478,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      42583,
+      42584,
+      42585,
+      42586
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects",
+    "pageId": 36668,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/3D工具",
+    "pageId": 53756,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Affiliate",
+    "pageId": 47855,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      60300,
+      60301,
+      60302,
+      61736
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/B2B pages",
+    "pageId": 37584,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/PC客户端数据",
+    "pageId": 51311,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      66655
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Roaming video",
+    "pageId": 38195,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      47145,
+      47146,
+      47147,
+      47148,
+      47149,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Sharing",
+    "pageId": 38851,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Sharing/Collaboration",
+    "pageId": 38993,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Sharing/Panorama share",
+    "pageId": 39994,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Sharing/Project share",
+    "pageId": 38852,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Sharing/Signups from project share",
+    "pageId": 38983,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      48717,
+      48718,
+      48719
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Top countries",
+    "pageId": 37320,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      45896,
+      45897
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Top countries/Daily data",
+    "pageId": 37381,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      46073,
+      46074,
+      46075,
+      46076,
+      46077,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/Top countries/Weekly data",
+    "pageId": 37331,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      45904,
+      45906,
+      45908,
+      45910,
+      45943,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/kol/koc渠道质量分析",
+    "pageId": 40274,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      50181
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/本地化国家分析",
+    "pageId": 42915,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/本地化国家分析/流量数据",
+    "pageId": 42916,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      53938,
+      53939,
+      53940,
+      53941,
+      59040,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/本地化国家分析/留存数据",
+    "pageId": 42917,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      53942,
+      53943,
+      53944,
+      53945,
+      53946,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/本地化国家分析/转化数据",
+    "pageId": 42918,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      53949,
+      58999,
+      59066
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/用户增长周报",
+    "pageId": 50726,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      64590,
+      64591,
+      64592,
+      64593,
+      64620,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Key Projects/用户增长周报/周会其他看板",
+    "pageId": 50727,
+    "pageType": "DEFAULT",
+    "graphCount": 10,
+    "graphIds": [
+      64594,
+      64595,
+      64596,
+      64597,
+      64602,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model",
+    "pageId": 47265,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/搜索失败",
+    "pageId": 35070,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/搜索失败/daily search failure",
+    "pageId": 35600,
+    "pageType": "DEFAULT",
+    "graphCount": 11,
+    "graphIds": [
+      42703,
+      42704,
+      42707,
+      45413,
+      45414,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/搜索失败/weekly search failure",
+    "pageId": 45671,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      57690,
+      57691
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/搜索失败用户",
+    "pageId": 35582,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/搜索失败用户/搜索失败用户",
+    "pageId": 35583,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      42694,
+      42701
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/模型库优化项目",
+    "pageId": 38569,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      67835
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/模型点击",
+    "pageId": 35110,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/模型点击/周数据",
+    "pageId": 35125,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      42373,
+      58127,
+      58128,
+      63016
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/模型点击/周数据/素材使用和收藏周数据",
+    "pageId": 49116,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      62209,
+      63635,
+      66752,
+      67609,
+      67611
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/模型点击/日数据",
+    "pageId": 35124,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      42032,
+      68903,
+      68904
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Model/模型点击/素材与类目关系",
+    "pageId": 48866,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      61885,
+      61933,
+      61937,
+      62099
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Project",
+    "pageId": 38256,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Project/CAD识别失败情况",
+    "pageId": 38630,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      48155,
+      48156
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Project/Pro用户方案使用情况",
+    "pageId": 52316,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      67546,
+      67548
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Project/创建方案",
+    "pageId": 36919,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      45238,
+      45240,
+      45262,
+      45263,
+      45264
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Project/新用户方案转化",
+    "pageId": 38257,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      47234,
+      47633,
+      47634,
+      47722
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Project/方案升级",
+    "pageId": 45561,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      57610,
+      57611
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Real Time Data",
+    "pageId": 48047,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Real Time Data/coohom实时收入看板",
+    "pageId": 57120,
+    "pageType": "EXTERNAL",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Render",
+    "pageId": 34443,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Render/CBD Rendering Coupon Use",
+    "pageId": 38513,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      48477,
+      48478
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Render/Daily data",
+    "pageId": 34444,
+    "pageType": "DEFAULT",
+    "graphCount": 15,
+    "graphIds": [
+      41258,
+      41259,
+      41260,
+      41261,
+      41262,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Render/Monthly data",
+    "pageId": 35967,
+    "pageType": "DEFAULT",
+    "graphCount": 14,
+    "graphIds": [
+      43453,
+      43454,
+      43455,
+      43456,
+      43457,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Render/Render conversion",
+    "pageId": 35126,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      42031,
+      43463,
+      56220,
+      57923,
+      58172,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Render/Weekly data",
+    "pageId": 34492,
+    "pageType": "DEFAULT",
+    "graphCount": 16,
+    "graphIds": [
+      41357,
+      41358,
+      41359,
+      41360,
+      41361,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue",
+    "pageId": 34446,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Daily data",
+    "pageId": 34803,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      41270,
+      44022,
+      62984,
+      66773
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Freetrial User List",
+    "pageId": 46404,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      58508,
+      71952,
+      71953
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/NewSubscribe Revenue Analysis",
+    "pageId": 47324,
+    "pageType": "DEFAULT",
+    "graphCount": 22,
+    "graphIds": [
+      46590,
+      59344,
+      59624,
+      59983,
+      59984,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Promotions",
+    "pageId": 50055,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Promotions/coupons",
+    "pageId": 50056,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      63875,
+      64075,
+      64076,
+      64077
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Subscription",
+    "pageId": 40029,
+    "pageType": "DEFAULT",
+    "graphCount": 22,
+    "graphIds": [
+      49970,
+      49971,
+      50021,
+      50059,
+      61326,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Weekly data",
+    "pageId": 34804,
+    "pageType": "DEFAULT",
+    "graphCount": 14,
+    "graphIds": [
+      41271,
+      59178,
+      59179,
+      59180,
+      59181,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/Weekly data/Last Week Revenue ",
+    "pageId": 47296,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      59189,
+      59190,
+      59191,
+      59192
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Revenue/付费升级",
+    "pageId": 35539,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      54014,
+      54015,
+      57779
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup",
+    "pageId": 34434,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Conversions",
+    "pageId": 39090,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Conversions/By client type",
+    "pageId": 40652,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      51044,
+      51045,
+      51046,
+      51047
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Conversions/By country",
+    "pageId": 39732,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      49748,
+      49749,
+      49750,
+      49751
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Conversions/By occupation",
+    "pageId": 39739,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      49768,
+      49769,
+      49770,
+      49771
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Conversions/By registration method ",
+    "pageId": 39735,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      49756,
+      49757,
+      49758,
+      49759
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Conversions/By utm source",
+    "pageId": 39734,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      49752,
+      49753,
+      49754,
+      49755
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Daily data",
+    "pageId": 34435,
+    "pageType": "DEFAULT",
+    "graphCount": 9,
+    "graphIds": [
+      41240,
+      41241,
+      41242,
+      41244,
+      41245,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/User retention trends",
+    "pageId": 36491,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      44501,
+      44511
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/User Growth/Signup/Weekly data",
+    "pageId": 34436,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      41246,
+      41248,
+      41249,
+      41250,
+      41251,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他",
+    "pageId": 31837,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/Coohom Timesheet数据",
+    "pageId": 53930,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      69970
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/Coohom 流量变化 & 7日内新签 作用效应",
+    "pageId": 57291,
+    "pageType": "DEFAULT",
+    "graphCount": 12,
+    "graphIds": [
+      75224,
+      75225,
+      75226,
+      75227,
+      75228,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/Coohom 流量变化 与 次周留存率/模型激活率 作用效应",
+    "pageId": 57248,
+    "pageType": "DEFAULT",
+    "graphCount": 15,
+    "graphIds": [
+      75071,
+      75072,
+      75073,
+      75074,
+      75075,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/Coohom收入预警",
+    "pageId": 56105,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      73786,
+      73787,
+      73788
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/Coohom研发团队看板",
+    "pageId": 55185,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      72322,
+      72323
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/Coohom研发团队看板/支付取数",
+    "pageId": 55999,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      73586
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/apic用户详细数据",
+    "pageId": 34111,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      40977
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/coohom定制数据",
+    "pageId": 36913,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/coohom定制数据/coohom定制工具商家数据",
+    "pageId": 36916,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      45243
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/工作台广告位未显示对收入影响",
+    "pageId": 56017,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/工作台广告位未显示对收入影响/bak_工作台广告位未显示对收入影响分析",
+    "pageId": 56018,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73616,
+      73617,
+      73618,
+      73619,
+      73620,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/工作台广告位未显示对收入影响/工作台广告位未显示对收入影响分析",
+    "pageId": 56042,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73630,
+      73631,
+      73632,
+      73633,
+      73634,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/水印卡点故障期间收入减少预测",
+    "pageId": 55900,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/水印卡点故障期间收入减少预测/水印卡点收入减少分析",
+    "pageId": 55896,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      73407,
+      73409,
+      73410,
+      73412,
+      73413,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收",
+    "pageId": 50476,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      50014,
+      58562,
+      59097,
+      62261,
+      63634
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website",
+    "pageId": 51660,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/Daily data",
+    "pageId": 51661,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      41713,
+      41714,
+      42353,
+      43605,
+      43606
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/Notification center",
+    "pageId": 40265,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/Weekly data",
+    "pageId": 51662,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      41715,
+      41716,
+      45822,
+      45823
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/专题收藏",
+    "pageId": 36216,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/任务中心",
+    "pageId": 40362,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      50301
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/分销明细(看板下线提醒!!!)",
+    "pageId": 47045,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      59334,
+      59335
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Coohom Website/首页视频",
+    "pageId": 36217,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Key Projects",
+    "pageId": 51663,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Key Projects/AIGC页面用户访问及使用数据",
+    "pageId": 44117,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      56222,
+      56223,
+      56225,
+      56226,
+      56227,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Key Projects/AIGC页面访问用户转化漏斗",
+    "pageId": 44235,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      56444,
+      56445
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Key Projects/Coohom设计大赛",
+    "pageId": 43034,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      54024,
+      54025,
+      54026,
+      54027
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/ Key Projects/Pro页面付费及流量分析",
+    "pageId": 50685,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      64569,
+      64570
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/付费用户群分析",
+    "pageId": 36349,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      48215,
+      48216,
+      63534
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/客户成功商家数据",
+    "pageId": 38086,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      47017,
+      61153
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/工具/模型",
+    "pageId": 51666,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      57840,
+      57841,
+      60001,
+      60003
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/工具/模型/Tutorial",
+    "pageId": 51667,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      66888
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/看板回收/邀请好友",
+    "pageId": 35479,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      42587
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/研发需求看板",
+    "pageId": 50660,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      64516,
+      66564
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/其他/素材上传",
+    "pageId": 31838,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      35974,
+      35976,
+      35977,
+      35978,
+      35979,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据",
+    "pageId": 28087,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/2B website",
+    "pageId": 39464,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      49355,
+      49356,
+      49358,
+      49359,
+      49811,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/Coohom ToB 生产对接月数据",
+    "pageId": 57525,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      75789
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/Leads",
+    "pageId": 57044,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      74951,
+      75947,
+      75961,
+      76129,
+      76130
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/VIP活跃数据",
+    "pageId": 55086,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      72118,
+      72119,
+      72312,
+      72650,
+      73031,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom全屋定制数据",
+    "pageId": 47291,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom全屋定制数据/coohom商家数据及定制核心数据",
+    "pageId": 49305,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      62444,
+      62445,
+      62446,
+      62447,
+      62448,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom全屋定制数据/coohom商家数据及定制核心数据/coohom整体定制数据明细",
+    "pageId": 49503,
+    "pageType": "DEFAULT",
+    "graphCount": 8,
+    "graphIds": [
+      62990,
+      62996,
+      62997,
+      62998,
+      70981,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom全屋定制数据/功能使用数据",
+    "pageId": 47292,
+    "pageType": "DEFAULT",
+    "graphCount": 5,
+    "graphIds": [
+      59604,
+      59605,
+      59606,
+      59610,
+      59611
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom棚拍数据",
+    "pageId": 36776,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom棚拍数据/在约整体商家",
+    "pageId": 36777,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      44833,
+      44834,
+      44835,
+      44836
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom棚拍数据/拍摄消耗",
+    "pageId": 36778,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      44838,
+      44839,
+      44840,
+      44843,
+      44844,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom棚拍数据/拍摄消耗/付费商家消耗",
+    "pageId": 36781,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      44846
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom棚拍数据/棚拍收入",
+    "pageId": 36779,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      44862,
+      44881,
+      44883
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom棚拍数据/棚拍收入/回款数据",
+    "pageId": 36798,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      44884,
+      44885,
+      44886
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据",
+    "pageId": 36759,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      44797,
+      44798,
+      44799
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/产品罗盘",
+    "pageId": 37552,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      46278,
+      46289,
+      46457
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/商品量消耗",
+    "pageId": 36774,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      44824
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/商家信息",
+    "pageId": 36771,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      44817
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/商家信息/单商家详细数据",
+    "pageId": 36772,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      44820,
+      44821,
+      44822,
+      58241
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/商家信息/收入看板",
+    "pageId": 36775,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      44889,
+      44890,
+      44891
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/模型曝光",
+    "pageId": 36770,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      44814,
+      44815,
+      44816
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/模型生成",
+    "pageId": 36762,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      44800,
+      44801,
+      44802,
+      44811,
+      44812,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/酷品秀打开失败率",
+    "pageId": 46276,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      58297
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/coohom酷品秀数据/酷品秀模型等级监控",
+    "pageId": 46275,
+    "pageType": "DEFAULT",
+    "graphCount": 2,
+    "graphIds": [
+      58295,
+      58296
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/单商家详细数据",
+    "pageId": 33232,
+    "pageType": "DEFAULT",
+    "graphCount": 18,
+    "graphIds": [
+      37947,
+      37948,
+      37949,
+      37950,
+      37951,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/商家健康度",
+    "pageId": 57462,
+    "pageType": "DEFAULT",
+    "graphCount": 4,
+    "graphIds": [
+      75564,
+      75570,
+      75638,
+      75639
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/商家活跃明细",
+    "pageId": 33231,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      37946
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/商家活跃明细（新）",
+    "pageId": 50859,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      64795
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/整体数据",
+    "pageId": 33462,
+    "pageType": "DEFAULT",
+    "graphCount": 7,
+    "graphIds": [
+      38335,
+      38344,
+      38345,
+      38351,
+      38352,
+      "..."
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/留资页数据",
+    "pageId": 41523,
+    "pageType": "DEFAULT",
+    "graphCount": 3,
+    "graphIds": [
+      52587,
+      52588,
+      52589
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/商家类数据/试用商家活跃明细",
+    "pageId": 37522,
+    "pageType": "DEFAULT",
+    "graphCount": 1,
+    "graphIds": [
+      46242
+    ]
+  },
+  {
+    "path": "spaceId为1140的root页面/国际化业务空间首页",
+    "pageId": 31839,
+    "pageType": "DEFAULT",
+    "graphCount": 0,
+    "graphIds": []
+  },
+  {
+    "path": "spaceId为1140的root页面/看板使用勤奋榜",
+    "pageId": 31468,
+    "pageType": "DEFAULT",
+    "graphCount": 6,
+    "graphIds": [
+      35526,
+      35528,
+      35529,
+      35530,
+      35531,
+      "..."
+    ]
+  }
+]

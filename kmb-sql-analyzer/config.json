@@ -1,0 +1,12 @@
+{
+  "name": "kmb-sql-analyzer",
+  "version": "1.1.0",
+  "description": "SQL analysis and data modeling for Metabase migration",
+  "role": "atomic",
+  "inputs": ["sql_file", "sql", "database", "output"],
+  "outputs": ["migration_plan.json", "model_sql", "analysis_summary"],
+  "depends_on": [],
+  "reads": ["../kmb-metabase/references/mbql-best-practices.md", "../agents/rules"],
+  "scripts": ["scripts/analyze_sql.py"],
+  "requires_env": []
+}

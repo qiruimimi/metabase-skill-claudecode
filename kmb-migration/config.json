@@ -1,0 +1,29 @@
+{
+  "name": "kmb-migration",
+  "version": "1.1.0",
+  "description": "Space to KMB migration workflow",
+  "role": "workflow",
+  "inputs": ["page_id", "target_collection_id", "create_collection_strategy", "preserve_layout"],
+  "outputs": ["raw_sql", "migration_plan.json", "asset_mapping.json", "dashboard_id", "acceptance_result"],
+  "depends_on": [
+    "kmb-space-query",
+    "kmb-collection-builder",
+    "kmb-sql-analyzer",
+    "kmb-model-builder",
+    "kmb-question-builder",
+    "kmb-viz-config",
+    "kmb-dashboard-builder"
+  ],
+  "reads": ["../agents/rules", "../kmb-metabase/references", "../kmb-metabase/space-data"],
+  "scripts": [],
+  "requires_env": ["KMB_API_KEY"],
+  "pipeline": [
+    "kmb-space-query",
+    "kmb-sql-analyzer",
+    "kmb-collection-builder",
+    "kmb-model-builder",
+    "kmb-question-builder",
+    "kmb-viz-config",
+    "kmb-dashboard-builder"
+  ]
+}

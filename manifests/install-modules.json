@@ -1,0 +1,77 @@
+{
+  "modules": [
+    {
+      "id": "kmb-rules",
+      "kind": "rules",
+      "description": "KMB Metabase shared rules (Iron Law, API standards, error handling)",
+      "paths": ["agents/rules"],
+      "targets": ["claude"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "kmb-lib",
+      "kind": "lib",
+      "description": "KMB shared Python library (HTTP, config, errors)",
+      "paths": ["scripts/lib/kmb"],
+      "targets": ["claude"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "kmb-core",
+      "kind": "skills",
+      "description": "KMB atomic skills for query, analysis, model, question, visualization, dashboard, and collection operations",
+      "paths": [
+        "kmb-space-query",
+        "kmb-sql-analyzer",
+        "kmb-model-builder",
+        "kmb-question-builder",
+        "kmb-viz-config",
+        "kmb-dashboard-builder",
+        "kmb-collection-builder"
+      ],
+      "targets": ["claude"],
+      "defaultInstall": true,
+      "cost": "medium",
+      "stability": "stable"
+    },
+    {
+      "id": "kmb-root",
+      "kind": "skills",
+      "description": "KMB root navigation skill with shared references and progressive loading rules",
+      "paths": ["kmb-metabase"],
+      "targets": ["claude"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "kmb-migration",
+      "kind": "skills",
+      "description": "Space to KMB migration workflow (depends on kmb-core)",
+      "paths": ["kmb-migration"],
+      "targets": ["claude"],
+      "defaultInstall": false,
+      "cost": "medium",
+      "stability": "stable",
+      "dependencies": ["kmb-core"]
+    }
+  ],
+  "profiles": {
+    "minimal": {
+      "description": "Minimal install - rules and lib only",
+      "modules": ["kmb-rules", "kmb-lib"]
+    },
+    "standard": {
+      "description": "Standard install - root navigation and atomic skills",
+      "modules": ["kmb-rules", "kmb-lib", "kmb-root", "kmb-core"]
+    },
+    "full": {
+      "description": "Full install - including migration workflow",
+      "modules": ["kmb-rules", "kmb-lib", "kmb-root", "kmb-core", "kmb-migration"]
+    }
+  }
+}

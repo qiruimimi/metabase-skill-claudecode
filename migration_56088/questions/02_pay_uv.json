@@ -1,0 +1,26 @@
+{
+  "name": "【56088】每日支付成功UV",
+  "collection_id": 564,
+  "breakout": [
+    ["field", "event_date", {"temporal-unit": "day"}]
+  ],
+  "aggregation": [
+    ["aggregation-options",
+      ["distinct",
+        ["case", [
+          [[">", ["field", "amount_usd"], 0], ["field", "userid"]]
+        ]]
+      ],
+      {"name": "支付成功UV", "display-name": "支付成功UV"}
+    ]
+  ],
+  "filter": [],
+  "visualization": {
+    "display": "line",
+    "graph.dimensions": ["event_date"],
+    "graph.metrics": ["支付成功UV"],
+    "series_settings": {
+      "支付成功UV": {"display": "line", "axis": "left"}
+    }
+  }
+}

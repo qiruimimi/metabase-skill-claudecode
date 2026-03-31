@@ -1,0 +1,21 @@
+{
+  "name": "【56088】弹窗版本对比",
+  "collection_id": 564,
+  "breakout": [
+    ["field", "event_date", {"temporal-unit": "day"}],
+    ["field", "popup_version"]
+  ],
+  "aggregation": [
+    ["aggregation-options",
+      ["distinct", ["field", "userid"]],
+      {"name": "UV", "display-name": "UV"}
+    ]
+  ],
+  "filter": [],
+  "visualization": {
+    "display": "line",
+    "graph.dimensions": ["event_date", "popup_version"],
+    "graph.metrics": ["UV"],
+    "series_settings": {}
+  }
+}

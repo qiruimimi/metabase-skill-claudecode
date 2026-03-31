@@ -1,0 +1,103 @@
+{
+  "name": "【P56088】支付弹窗转化",
+  "collection_id": 564,
+  "description": "小站 page/56088 迁移版本 - 支付弹窗漏斗分析",
+  "parameters": [
+    {
+      "name": "日期范围",
+      "slug": "date_range",
+      "id": "date_range",
+      "type": "date/all-options",
+      "default": "past30days"
+    },
+    {
+      "name": "弹窗版本",
+      "slug": "popup_version",
+      "id": "popup_version",
+      "type": "string/=",
+      "values_query_type": "list"
+    }
+  ],
+  "dashcards": [
+    {
+      "id": -1,
+      "card_id": "{question_01_id}",
+      "row": 0,
+      "col": 0,
+      "size_x": 12,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "parameter_id": "date_range",
+          "card_id": "{question_01_id}",
+          "target": ["dimension", ["field", "event_date", {"base-type": "type/Date"}], {"stage-number": 0}]
+        }
+      ]
+    },
+    {
+      "id": -2,
+      "card_id": "{question_02_id}",
+      "row": 0,
+      "col": 12,
+      "size_x": 12,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "parameter_id": "date_range",
+          "card_id": "{question_02_id}",
+          "target": ["dimension", ["field", "event_date", {"base-type": "type/Date"}], {"stage-number": 0}]
+        }
+      ]
+    },
+    {
+      "id": -3,
+      "card_id": "{question_03_id}",
+      "row": 8,
+      "col": 0,
+      "size_x": 24,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "parameter_id": "date_range",
+          "card_id": "{question_03_id}",
+          "target": ["dimension", ["field", "event_date", {"base-type": "type/Date"}], {"stage-number": 0}]
+        }
+      ]
+    },
+    {
+      "id": -4,
+      "card_id": "{question_04_id}",
+      "row": 16,
+      "col": 0,
+      "size_x": 12,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "parameter_id": "date_range",
+          "card_id": "{question_04_id}",
+          "target": ["dimension", ["field", "event_date", {"base-type": "type/Date"}], {"stage-number": 0}]
+        },
+        {
+          "parameter_id": "popup_version",
+          "card_id": "{question_04_id}",
+          "target": ["dimension", ["field", "popup_version", {"base-type": "type/Text"}], {"stage-number": 0}]
+        }
+      ]
+    },
+    {
+      "id": -5,
+      "card_id": "{question_05_id}",
+      "row": 16,
+      "col": 12,
+      "size_x": 12,
+      "size_y": 8,
+      "parameter_mappings": [
+        {
+          "parameter_id": "date_range",
+          "card_id": "{question_05_id}",
+          "target": ["dimension", ["field", "event_date", {"base-type": "type/Date"}], {"stage-number": 0}]
+        }
+      ]
+    }
+  ]
+}

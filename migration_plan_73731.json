@@ -1,0 +1,899 @@
+{
+  "analysis": {
+    "source_tables": [
+      "kdw_log"
+    ],
+    "table_types": [],
+    "select_fields": {
+      "dimensions": [
+        {
+          "name": "case '日'\n                when '日' then created_day\n                when '周' then date_format(date_trunc('week', created_day), '%Y%m%d')\n                when '月' then date_format(date_trunc('month', created_day), '%Y%m%d')\n                else null\n            end as \"时段日期\"",
+          "expression": "case '日'\n                when '日' then created_day\n                when '周' then date_format(date_trunc('week', created_day), '%Y%m%d')\n                when '月' then date_format(date_trunc('month', created_day), '%Y%m%d')\n                else null\n            end as \"时段日期\"",
+          "original": "case '日'\n                when '日' then created_day\n                when '周' then date_format(date_trunc('week', created_day), '%Y%m%d')\n                when '月' then date_format(date_trunc('month', created_day), '%Y%m%d')\n                else null\n            end as \"时段日期\""
+        },
+        {
+          "name": "version as \"弹窗版本\"",
+          "expression": "version as \"弹窗版本\"",
+          "original": "version as \"弹窗版本\""
+        },
+        {
+          "name": "round(sum(if(rnk_desc = 1, amount, 0)), 1) as \"支付金额\"",
+          "expression": "round(sum(if(rnk_desc = 1, amount, 0)), 1) as \"支付金额\"",
+          "original": "round(sum(if(rnk_desc = 1, amount, 0)), 1) as \"支付金额\""
+        },
+        {
+          "name": "if(count(distinct if(open_paymentmodal_time is not null, userid, null)) = 0, 0\n            , count(distinct if(click_paynow_time is not null, userid, null)) * 1.00 / count(distinct if(open_paymentmodal_time is not null, userid, null))) as \"打开支付弹窗->点击PayNow转化率\"",
+          "expression": "if(count(distinct if(open_paymentmodal_time is not null, userid, null)) = 0, 0\n            , count(distinct if(click_paynow_time is not null, userid, null)) * 1.00 / count(distinct if(open_paymentmodal_time is not null, userid, null))) as \"打开支付弹窗->点击PayNow转化率\"",
+          "original": "if(count(distinct if(open_paymentmodal_time is not null, userid, null)) = 0, 0\n            , count(distinct if(click_paynow_time is not null, userid, null)) * 1.00 / count(distinct if(open_paymentmodal_time is not null, userid, null))) as \"打开支付弹窗->点击PayNow转化率\""
+        },
+        {
+          "name": "if(count(distinct if(click_paynow_time is not null, userid, null)) = 0, 0\n            , count(distinct if(create_paylink_time is not null, userid, null)) * 1.00 / count(distinct if(click_paynow_time is not null, userid, null))) as \"点击PayNow->创建Paylink转化率\"",
+          "expression": "if(count(distinct if(click_paynow_time is not null, userid, null)) = 0, 0\n            , count(distinct if(create_paylink_time is not null, userid, null)) * 1.00 / count(distinct if(click_paynow_time is not null, userid, null))) as \"点击PayNow->创建Paylink转化率\"",
+          "original": "if(count(distinct if(click_paynow_time is not null, userid, null)) = 0, 0\n            , count(distinct if(create_paylink_time is not null, userid, null)) * 1.00 / count(distinct if(click_paynow_time is not null, userid, null))) as \"点击PayNow->创建Paylink转化率\""
+        },
+        {
+          "name": "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct if(create_paylink_time is not null, userid, null))) as \"创建Paylink->支付成功转化率\"",
+          "expression": "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct if(create_paylink_time is not null, userid, null))) as \"创建Paylink->支付成功转化率\"",
+          "original": "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct if(create_paylink_time is not null, userid, null))) as \"创建Paylink->支付成功转化率\""
+        },
+        {
+          "name": "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct userid)) as \"进入支付弹窗总支付成功转化率\"",
+          "expression": "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct userid)) as \"进入支付弹窗总支付成功转化率\"",
+          "original": "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct userid)) as \"进入支付弹窗总支付成功转化率\""
+        }
+      ],
+      "metrics": [
+        {
+          "name": "count_value",
+          "function": "COUNT",
+          "distinct": true,
+          "field": "if(open_paymentmodal_time is not null, created_time, null",
+          "original": "count(distinct if(open_paymentmodal_time is not null, created_time, null)) as \"打开支付弹窗PV\""
+        },
+        {
+          "name": "count_value",
+          "function": "COUNT",
+          "distinct": true,
+          "field": "if(open_paymentmodal_time is not null, userid, null",
+          "original": "count(distinct if(open_paymentmodal_time is not null, userid, null)) as \"打开支付弹窗UV\""
+        },
+        {
+          "name": "count_value",
+          "function": "COUNT",
+          "distinct": true,
+          "field": "if(click_paynow_time is not null, userid, null",
+          "original": "count(distinct if(click_paynow_time is not null, userid, null)) as \"点击PayNow UV\""
+        },
+        {
+          "name": "count_value",
+          "function": "COUNT",
+          "distinct": true,
+          "field": "if(create_paylink_time is not null, userid, null",
+          "original": "count(distinct if(create_paylink_time is not null, userid, null)) as \"创建Paylink UV\""
+        },
+        {
+          "name": "count_value",
+          "function": "COUNT",
+          "distinct": true,
+          "field": "if(pay_time is not null, userid, null",
+          "original": "count(distinct if(pay_time is not null, userid, null)) as \"支付成功UV\""
+        }
+      ],
+      "calculated": []
+    },
+    "group_by": [
+      "userid",
+      "trackerid",
+      "openposition",
+      "paysource",
+      "skuid",
+      "type",
+      "mode",
+      "`interval`\n          ) click\n      on open.userid = click.userid\n      and click.ds between open.ds and date_format(str_to_date(open.ds",
+      "'%Y%m%d') + interval 1 day",
+      "'%Y%m%d')\n      and open._time <= click.click_paynow_time\n      and open.next_time >= click.click_paynow_time\n      and open.openposition = click.openposition\n\n      left join\n          (-- **创建支付链接（沿用跨日窗口）**\n              select\n                      userid",
+      "trackerid",
+      "sessionid",
+      "max(_time) as create_paylink_time",
+      "max(ds) as ds\n              from kdw_log.dwd_log_coohom_payment_checkout_create\n              where ds between '20260216' and '20260301'\n              and trackerid is not null\n              group by userid",
+      "trackerid",
+      "sessionid\n          ) clk\n      on click.userid = clk.userid\n      and clk.ds between click.ds and date_format(str_to_date(click.ds",
+      "'%Y%m%d') + interval 1 day",
+      "'%Y%m%d')\n      and click.trackerid = clk.trackerid\n\n      left join\n          (-- **返回支付结果（取每 session 最早事件 + 跨日窗口）**\n              select\n                      userid",
+      "ds",
+      "_time",
+      "sessionid",
+      "subscriptionid",
+      "webhook_type",
+      "invoiceid\n              from (\n                      select\n                              userid",
+      "_time",
+      "ds",
+      "sessionid",
+      "subscriptionid",
+      "webhook_type",
+      "invoiceid",
+      "row_number() over(partition by sessionid"
+    ],
+    "filters": {
+      "time_range": {
+        "field": "ds",
+        "start": "20260216",
+        "end": "20260301"
+      },
+      "conditions": [
+        "userid is not null and userid <> ''\n          ) open\n\n      left join\n          (  -- **点击支付方式（细化维度 + 跨日窗口）**\n              select\n                      userid\n                  ,   trackerid, openposition, paysource, skuid, type, mode, `interval`\n                  ,   max(ds) as ds\n                  ,   max(_time) as click_paynow_time\n              from kdw_log.dwd_log_coohom_payment_intentToPay\n              where"
+      ]
+    },
+    "order_by": [
+      {
+        "field": "amount) as rnk_desc\n      from\n          (   -- **打开支付页面（建立单次弹窗打开的归因窗口）**\n              select\n                      _time",
+        "direction": "desc"
+      },
+      {
+        "field": "ds",
+        "direction": "asc"
+      },
+      {
+        "field": "_ip",
+        "direction": "asc"
+      },
+      {
+        "field": "qhdi",
+        "direction": "asc"
+      },
+      {
+        "field": "userid",
+        "direction": "asc"
+      },
+      {
+        "field": "openposition",
+        "direction": "asc"
+      },
+      {
+        "field": "_ua",
+        "direction": "asc"
+      },
+      {
+        "field": "if(version is null",
+        "direction": "asc"
+      },
+      {
+        "field": "'v1'",
+        "direction": "asc"
+      },
+      {
+        "field": "version) as version",
+        "direction": "asc"
+      },
+      {
+        "field": "coalesce(plantype",
+        "direction": "asc"
+      },
+      {
+        "field": "type) as type",
+        "direction": "asc"
+      },
+      {
+        "field": "case when coalesce(plantype",
+        "direction": "asc"
+      },
+      {
+        "field": "type) is not null then coalesce(`interval`",
+        "direction": "asc"
+      },
+      {
+        "field": "'MONTH') end as `interval`",
+        "direction": "asc"
+      },
+      {
+        "field": "case when coalesce(plantype",
+        "direction": "asc"
+      },
+      {
+        "field": "type) is not null then coalesce(mode",
+        "direction": "asc"
+      },
+      {
+        "field": "'CYCLICAL') end as mode",
+        "direction": "asc"
+      },
+      {
+        "field": "lead(_time",
+        "direction": "asc"
+      },
+      {
+        "field": "1",
+        "direction": "asc"
+      },
+      {
+        "field": "'9999-12-31 23:59:59') over(partition by userid",
+        "direction": "asc"
+      },
+      {
+        "field": "openposition order by _time) as next_time\n              from kdw_log.dwd_log_coohom_paymentModal_opened\n              where ds between '20260216' and '20260301'\n              and userid is not null and userid <> ''\n          ) open\n\n      left join\n          (  -- **点击支付方式（细化维度 + 跨日窗口）**\n              select\n                      userid",
+        "direction": "asc"
+      },
+      {
+        "field": "trackerid",
+        "direction": "asc"
+      },
+      {
+        "field": "openposition",
+        "direction": "asc"
+      },
+      {
+        "field": "paysource",
+        "direction": "asc"
+      },
+      {
+        "field": "skuid",
+        "direction": "asc"
+      },
+      {
+        "field": "type",
+        "direction": "asc"
+      },
+      {
+        "field": "mode",
+        "direction": "asc"
+      },
+      {
+        "field": "`interval`",
+        "direction": "asc"
+      },
+      {
+        "field": "max(ds) as ds",
+        "direction": "asc"
+      },
+      {
+        "field": "max(_time) as click_paynow_time\n              from kdw_log.dwd_log_coohom_payment_intentToPay\n              where ds between '20260216' and '20260301'\n              group by userid",
+        "direction": "asc"
+      },
+      {
+        "field": "trackerid",
+        "direction": "asc"
+      },
+      {
+        "field": "openposition",
+        "direction": "asc"
+      },
+      {
+        "field": "paysource",
+        "direction": "asc"
+      },
+      {
+        "field": "skuid",
+        "direction": "asc"
+      },
+      {
+        "field": "type",
+        "direction": "asc"
+      },
+      {
+        "field": "mode",
+        "direction": "asc"
+      },
+      {
+        "field": "`interval`\n          ) click\n      on open.userid = click.userid\n      and click.ds between open.ds and date_format(str_to_date(open.ds",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') + interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n      and open._time <= click.click_paynow_time\n      and open.next_time >= click.click_paynow_time\n      and open.openposition = click.openposition\n\n      left join\n          (-- **创建支付链接（沿用跨日窗口）**\n              select\n                      userid",
+        "direction": "asc"
+      },
+      {
+        "field": "trackerid",
+        "direction": "asc"
+      },
+      {
+        "field": "sessionid",
+        "direction": "asc"
+      },
+      {
+        "field": "max(_time) as create_paylink_time",
+        "direction": "asc"
+      },
+      {
+        "field": "max(ds) as ds\n              from kdw_log.dwd_log_coohom_payment_checkout_create\n              where ds between '20260216' and '20260301'\n              and trackerid is not null\n              group by userid",
+        "direction": "asc"
+      },
+      {
+        "field": "trackerid",
+        "direction": "asc"
+      },
+      {
+        "field": "sessionid\n          ) clk\n      on click.userid = clk.userid\n      and clk.ds between click.ds and date_format(str_to_date(click.ds",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') + interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n      and click.trackerid = clk.trackerid\n\n      left join\n          (-- **返回支付结果（取每 session 最早事件 + 跨日窗口）**\n              select\n                      userid",
+        "direction": "asc"
+      },
+      {
+        "field": "ds",
+        "direction": "asc"
+      },
+      {
+        "field": "_time",
+        "direction": "asc"
+      },
+      {
+        "field": "sessionid",
+        "direction": "asc"
+      },
+      {
+        "field": "subscriptionid",
+        "direction": "asc"
+      },
+      {
+        "field": "webhook_type",
+        "direction": "asc"
+      },
+      {
+        "field": "invoiceid\n              from (\n                      select\n                              userid",
+        "direction": "asc"
+      },
+      {
+        "field": "_time",
+        "direction": "asc"
+      },
+      {
+        "field": "ds",
+        "direction": "asc"
+      },
+      {
+        "field": "sessionid",
+        "direction": "asc"
+      },
+      {
+        "field": "subscriptionid",
+        "direction": "asc"
+      },
+      {
+        "field": "webhook_type",
+        "direction": "asc"
+      },
+      {
+        "field": "invoiceid",
+        "direction": "asc"
+      },
+      {
+        "field": "row_number() over(partition by sessionid order by _time) as rnk\n                      from kdw_log.dwd_log_coohom_payment_webhook\n                      where ds between '20260216' and date_format(str_to_date('20260301'",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') + interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n                      and sessionid is not null\n                      and invoiceid is not null\n                  ) tmp\n              where rnk = 1\n          ) pay\n      on clk.sessionid = pay.sessionid\n      and pay.ds between clk.ds and date_format(str_to_date(clk.ds",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') + interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n\n      left join\n          ( -- **获取成交收入（新收入口径与字段）**\n              select\n                      invoice_token",
+        "direction": "asc"
+      },
+      {
+        "field": "sku as invoice_stat_plan_name",
+        "direction": "asc"
+      },
+      {
+        "field": "coalesce(amt_usd",
+        "direction": "asc"
+      },
+      {
+        "field": "0) as amount\n              from hive_prod.kdw_dw.dws_coohom_trd_daily_toc_invoice_s_d\n              where ds = '20260301'\n              and pay_success_day between '20260216' and '20260301'\n              and coalesce(amt_usd",
+        "direction": "asc"
+      },
+      {
+        "field": "0) > 0\n          ) inc\n      on pay.invoiceid = inc.invoice_token\n\n    ) t\n  left join (\n      select\n          ds",
+        "direction": "asc"
+      },
+      {
+        "field": "kujiale_user_id",
+        "direction": "asc"
+      },
+      {
+        "field": "is_coohom_paid",
+        "direction": "asc"
+      },
+      {
+        "field": "coohom_user_level\n      from hive_prod.exabrain.dwb_usr_coohom_user_s_d\n      where ds between date_format(str_to_date('20260216'",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') - interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') and date_format(str_to_date('20260301'",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') - interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n  ) last_day_u\n  on t.userid = last_day_u.kujiale_user_id\n  and t.created_day = date_format(str_to_date(last_day_u.ds",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') + interval 1 day",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n  left join (\n      select\n          kujiale_user_id",
+        "direction": "asc"
+      },
+      {
+        "field": "created_day",
+        "direction": "asc"
+      },
+      {
+        "field": "created_week",
+        "direction": "asc"
+      },
+      {
+        "field": "coohom_register_country_en",
+        "direction": "asc"
+      },
+      {
+        "field": "coohom_register_country_sc\n      from hive_prod.exabrain.dwb_usr_coohom_user_s_d\n      where ds = '20260301'\n  ) u\n  on t.userid = u.kujiale_user_id\n  left join (\n      select\n          userid kujiale_user_id",
+        "direction": "asc"
+      },
+      {
+        "field": "trackerid",
+        "direction": "asc"
+      },
+      {
+        "field": "paysource",
+        "direction": "asc"
+      },
+      {
+        "field": "type",
+        "direction": "asc"
+      },
+      {
+        "field": "mode",
+        "direction": "asc"
+      },
+      {
+        "field": "`interval`\n      from hive_prod.kdw_log.dwd_log_coohom_payment_intentToPay\n      where ds between '20260216' and '20260301'\n  ) tracker\n  on t.userid = tracker.kujiale_user_id and t.trackerid = tracker.trackerid\n\n\n  where 1 = 1\n  and if(array_length([]) > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "array_contains([]",
+        "direction": "asc"
+      },
+      {
+        "field": "openposition)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\n  and if(length('')=0",
+        "direction": "asc"
+      },
+      {
+        "field": "true",
+        "direction": "asc"
+      },
+      {
+        "field": "openposition = '')\n  and if(length('')=0",
+        "direction": "asc"
+      },
+      {
+        "field": "true",
+        "direction": "asc"
+      },
+      {
+        "field": "userid = '')\n  and if(length('v1')=0",
+        "direction": "asc"
+      },
+      {
+        "field": "true",
+        "direction": "asc"
+      },
+      {
+        "field": "version = 'v1')\n  and if(array_length([]) > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "array_contains([]",
+        "direction": "asc"
+      },
+      {
+        "field": "u.coohom_register_country_sc)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\n  and if(array_length([]) > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "array_contains([]",
+        "direction": "asc"
+      },
+      {
+        "field": "u.coohom_register_country_en)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\n  and if(array_length([]) > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "array_contains([]",
+        "direction": "asc"
+      },
+      {
+        "field": "tracker.paysource)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\n  and if(length('') > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "if('' = '是'",
+        "direction": "asc"
+      },
+      {
+        "field": "t.created_day = u.created_day",
+        "direction": "asc"
+      },
+      {
+        "field": "true)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\n  and if(length('') > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "if('' = '是'",
+        "direction": "asc"
+      },
+      {
+        "field": "date_format(date_trunc('week'",
+        "direction": "asc"
+      },
+      {
+        "field": "t.created_day)",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d') = u.created_week",
+        "direction": "asc"
+      },
+      {
+        "field": "true)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\n\n) t\nwhere 1 = 1\n  and if(array_length([]) > 0",
+        "direction": "asc"
+      },
+      {
+        "field": "array_contains([]",
+        "direction": "asc"
+      },
+      {
+        "field": "user_paid_level)",
+        "direction": "asc"
+      },
+      {
+        "field": "true)\ngroup by case '日'\n                when '日' then created_day\n                when '周' then date_format(date_trunc('week'",
+        "direction": "asc"
+      },
+      {
+        "field": "created_day)",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n                when '月' then date_format(date_trunc('month'",
+        "direction": "asc"
+      },
+      {
+        "field": "created_day)",
+        "direction": "asc"
+      },
+      {
+        "field": "'%Y%m%d')\n                else null\n            end",
+        "direction": "asc"
+      },
+      {
+        "field": "version\norder by `时段日期`",
+        "direction": "asc"
+      }
+    ],
+    "limit": 10000
+  },
+  "model": {
+    "sql": "SELECT\n  case '日'\n                when '日' then created_day\n                when '周' then date_format(date_trunc('week', created_day), '%Y%m%d')\n                when '月' then date_format(date_trunc('month', created_day), '%Y%m%d')\n                else null\n            end as \"时段日期\",\n  version as \"弹窗版本\",\n  round(sum(if(rnk_desc = 1, amount, 0)), 1) as \"支付金额\",\n  if(count(distinct if(open_paymentmodal_time is not null, userid, null)) = 0, 0\n            , count(distinct if(click_paynow_time is not null, userid, null)) * 1.00 / count(distinct if(open_paymentmodal_time is not null, userid, null))) as \"打开支付弹窗->点击PayNow转化率\",\n  if(count(distinct if(click_paynow_time is not null, userid, null)) = 0, 0\n            , count(distinct if(create_paylink_time is not null, userid, null)) * 1.00 / count(distinct if(click_paynow_time is not null, userid, null))) as \"点击PayNow->创建Paylink转化率\",\n  if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct if(create_paylink_time is not null, userid, null))) as \"创建Paylink->支付成功转化率\",\n  if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct userid)) as \"进入支付弹窗总支付成功转化率\"\nFROM kdw_log\nWHERE userid is not null and userid <> ''\n          ) open\n\n      left join\n          (  -- **点击支付方式（细化维度 + 跨日窗口）**\n              select\n                      userid\n                  ,   trackerid, openposition, paysource, skuid, type, mode, `interval`\n                  ,   max(ds) as ds\n                  ,   max(_time) as click_paynow_time\n              from kdw_log.dwd_log_coohom_payment_intentToPay\n              where",
+    "fields": [
+      "case '日'\n                when '日' then created_day\n                when '周' then date_format(date_trunc('week', created_day), '%Y%m%d')\n                when '月' then date_format(date_trunc('month', created_day), '%Y%m%d')\n                else null\n            end as \"时段日期\"",
+      "version as \"弹窗版本\"",
+      "round(sum(if(rnk_desc = 1, amount, 0)), 1) as \"支付金额\"",
+      "if(count(distinct if(open_paymentmodal_time is not null, userid, null)) = 0, 0\n            , count(distinct if(click_paynow_time is not null, userid, null)) * 1.00 / count(distinct if(open_paymentmodal_time is not null, userid, null))) as \"打开支付弹窗->点击PayNow转化率\"",
+      "if(count(distinct if(click_paynow_time is not null, userid, null)) = 0, 0\n            , count(distinct if(create_paylink_time is not null, userid, null)) * 1.00 / count(distinct if(click_paynow_time is not null, userid, null))) as \"点击PayNow->创建Paylink转化率\"",
+      "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct if(create_paylink_time is not null, userid, null))) as \"创建Paylink->支付成功转化率\"",
+      "if(count(distinct if(create_paylink_time is not null, userid, null)) = 0, 0\n            , count(distinct if(pay_time is not null, userid, null)) * 1.00 / count(distinct userid)) as \"进入支付弹窗总支付成功转化率\""
+    ],
+    "table_type_handling": "未识别表类型"
+  },
+  "metrics": [],
+  "questions": [
+    {
+      "name": "迁移图表",
+      "breakout": [
+        [
+          "field",
+          "userid"
+        ],
+        [
+          "field",
+          "trackerid"
+        ],
+        [
+          "field",
+          "openposition"
+        ],
+        [
+          "field",
+          "paysource"
+        ],
+        [
+          "field",
+          "skuid"
+        ],
+        [
+          "field",
+          "type"
+        ],
+        [
+          "field",
+          "mode"
+        ],
+        [
+          "field",
+          "`interval`\n          ) click\n      on open.userid = click.userid\n      and click.ds between open.ds and date_format(str_to_date(open.ds",
+          {
+            "temporal-unit": "day"
+          }
+        ],
+        [
+          "field",
+          "'%Y%m%d') + interval 1 day",
+          {
+            "temporal-unit": "day"
+          }
+        ],
+        [
+          "field",
+          "'%Y%m%d')\n      and open._time <= click.click_paynow_time\n      and open.next_time >= click.click_paynow_time\n      and open.openposition = click.openposition\n\n      left join\n          (-- **创建支付链接（沿用跨日窗口）**\n              select\n                      userid"
+        ],
+        [
+          "field",
+          "trackerid"
+        ],
+        [
+          "field",
+          "sessionid"
+        ],
+        [
+          "field",
+          "max(_time) as create_paylink_time"
+        ],
+        [
+          "field",
+          "max(ds) as ds\n              from kdw_log.dwd_log_coohom_payment_checkout_create\n              where ds between '20260216' and '20260301'\n              and trackerid is not null\n              group by userid"
+        ],
+        [
+          "field",
+          "trackerid"
+        ],
+        [
+          "field",
+          "sessionid\n          ) clk\n      on click.userid = clk.userid\n      and clk.ds between click.ds and date_format(str_to_date(click.ds",
+          {
+            "temporal-unit": "day"
+          }
+        ],
+        [
+          "field",
+          "'%Y%m%d') + interval 1 day",
+          {
+            "temporal-unit": "day"
+          }
+        ],
+        [
+          "field",
+          "'%Y%m%d')\n      and click.trackerid = clk.trackerid\n\n      left join\n          (-- **返回支付结果（取每 session 最早事件 + 跨日窗口）**\n              select\n                      userid"
+        ],
+        [
+          "field",
+          "ds"
+        ],
+        [
+          "field",
+          "_time"
+        ],
+        [
+          "field",
+          "sessionid"
+        ],
+        [
+          "field",
+          "subscriptionid"
+        ],
+        [
+          "field",
+          "webhook_type"
+        ],
+        [
+          "field",
+          "invoiceid\n              from (\n                      select\n                              userid"
+        ],
+        [
+          "field",
+          "_time"
+        ],
+        [
+          "field",
+          "ds"
+        ],
+        [
+          "field",
+          "sessionid"
+        ],
+        [
+          "field",
+          "subscriptionid"
+        ],
+        [
+          "field",
+          "webhook_type"
+        ],
+        [
+          "field",
+          "invoiceid"
+        ],
+        [
+          "field",
+          "row_number() over(partition by sessionid"
+        ]
+      ],
+      "aggregation": [
+        [
+          "aggregation-options",
+          [
+            "distinct",
+            [
+              "field",
+              "if(open_paymentmodal_time is not null, created_time, null"
+            ]
+          ],
+          {
+            "name": "count_value",
+            "display-name": "count_value"
+          }
+        ],
+        [
+          "aggregation-options",
+          [
+            "distinct",
+            [
+              "field",
+              "if(open_paymentmodal_time is not null, userid, null"
+            ]
+          ],
+          {
+            "name": "count_value",
+            "display-name": "count_value"
+          }
+        ],
+        [
+          "aggregation-options",
+          [
+            "distinct",
+            [
+              "field",
+              "if(click_paynow_time is not null, userid, null"
+            ]
+          ],
+          {
+            "name": "count_value",
+            "display-name": "count_value"
+          }
+        ],
+        [
+          "aggregation-options",
+          [
+            "distinct",
+            [
+              "field",
+              "if(create_paylink_time is not null, userid, null"
+            ]
+          ],
+          {
+            "name": "count_value",
+            "display-name": "count_value"
+          }
+        ],
+        [
+          "aggregation-options",
+          [
+            "distinct",
+            [
+              "field",
+              "if(pay_time is not null, userid, null"
+            ]
+          ],
+          {
+            "name": "count_value",
+            "display-name": "count_value"
+          }
+        ]
+      ],
+      "filter": [],
+      "source_table": "card__{model_id}"
+    }
+  ],
+  "visualization": {
+    "display": "line",
+    "graph.dimensions": [
+      "userid",
+      "trackerid",
+      "openposition",
+      "paysource",
+      "skuid",
+      "type",
+      "mode",
+      "`interval`\n          ) click\n      on open.userid = click.userid\n      and click.ds between open.ds and date_format(str_to_date(open.ds",
+      "'%Y%m%d') + interval 1 day",
+      "'%Y%m%d')\n      and open._time <= click.click_paynow_time\n      and open.next_time >= click.click_paynow_time\n      and open.openposition = click.openposition\n\n      left join\n          (-- **创建支付链接（沿用跨日窗口）**\n              select\n                      userid",
+      "trackerid",
+      "sessionid",
+      "max(_time) as create_paylink_time",
+      "max(ds) as ds\n              from kdw_log.dwd_log_coohom_payment_checkout_create\n              where ds between '20260216' and '20260301'\n              and trackerid is not null\n              group by userid",
+      "trackerid",
+      "sessionid\n          ) clk\n      on click.userid = clk.userid\n      and clk.ds between click.ds and date_format(str_to_date(click.ds",
+      "'%Y%m%d') + interval 1 day",
+      "'%Y%m%d')\n      and click.trackerid = clk.trackerid\n\n      left join\n          (-- **返回支付结果（取每 session 最早事件 + 跨日窗口）**\n              select\n                      userid",
+      "ds",
+      "_time",
+      "sessionid",
+      "subscriptionid",
+      "webhook_type",
+      "invoiceid\n              from (\n                      select\n                              userid",
+      "_time",
+      "ds",
+      "sessionid",
+      "subscriptionid",
+      "webhook_type",
+      "invoiceid",
+      "row_number() over(partition by sessionid"
+    ],
+    "graph.metrics": [
+      "count_value",
+      "count_value",
+      "count_value",
+      "count_value",
+      "count_value"
+    ],
+    "series_settings": {},
+    "column_settings": {}
+  }
+}

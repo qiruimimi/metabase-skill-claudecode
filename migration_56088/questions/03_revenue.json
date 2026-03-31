@@ -1,0 +1,25 @@
+{
+  "name": "【56088】每日支付金额",
+  "collection_id": 564,
+  "breakout": [
+    ["field", "event_date", {"temporal-unit": "day"}]
+  ],
+  "aggregation": [
+    ["aggregation-options",
+      ["sum", ["field", "amount_usd"]],
+      {"name": "支付金额", "display-name": "支付金额(USD)"}
+    ]
+  ],
+  "filter": [],
+  "visualization": {
+    "display": "line",
+    "graph.dimensions": ["event_date"],
+    "graph.metrics": ["支付金额"],
+    "series_settings": {
+      "支付金额": {"display": "line", "axis": "left"}
+    },
+    "column_settings": {
+      "[\"name\",\"支付金额\"]": {"number_style": "currency", "currency": "USD"}
+    }
+  }
+}

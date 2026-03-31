@@ -1,0 +1,30 @@
+{
+  "display": "line",
+  "graph.dimensions": ["event_date"],
+  "graph.metrics": [
+    "打开弹窗UV",
+    "支付成功UV",
+    "转化率"
+  ],
+  "graph.show_values": true,
+  "series_settings": {
+    "打开弹窗UV": {
+      "axis": "left",
+      "display": "bar"
+    },
+    "支付成功UV": {
+      "axis": "left",
+      "display": "bar"
+    },
+    "转化率": {
+      "axis": "right",
+      "display": "line"
+    }
+  },
+  "column_settings": {
+    "[\"name\",\"转化率\"]": {
+      "number_style": "percent",
+      "decimals": 2
+    }
+  }
+}

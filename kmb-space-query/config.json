@@ -1,0 +1,12 @@
+{
+  "name": "kmb-space-query",
+  "version": "1.1.0",
+  "description": "Space data query tool for migration",
+  "role": "atomic",
+  "inputs": ["keyword", "page_id", "graph_id", "intent"],
+  "outputs": ["page_list", "page_detail", "graph_detail", "sql_text", "tree"],
+  "depends_on": [],
+  "reads": ["data/page_map.json", "data/graph_map.json", "data/page_to_graphs.json", "data/tree_index.json"],
+  "scripts": ["scripts/space_sql_mapper.py"],
+  "requires_env": []
+}

@@ -1,0 +1,21 @@
+{
+  "name": "kmb-metabase",
+  "version": "1.1.0",
+  "description": "KMB root navigation skill with progressive loading rules",
+  "role": "root",
+  "inputs": ["task_goal"],
+  "outputs": ["selected_skill", "next_read_targets"],
+  "depends_on": [
+    "kmb-space-query",
+    "kmb-sql-analyzer",
+    "kmb-collection-builder",
+    "kmb-model-builder",
+    "kmb-question-builder",
+    "kmb-viz-config",
+    "kmb-dashboard-builder",
+    "kmb-migration"
+  ],
+  "reads": ["references", "rules", "space-data", "scripts/core"],
+  "scripts": ["scripts/search_kmb.py", "scripts/query_card.py"],
+  "requires_env": ["KMB_API_KEY"]
+}
