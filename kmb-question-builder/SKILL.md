@@ -34,6 +34,7 @@ dependencies:
 3. 条件聚合使用 `CASE` 风格；复杂表达式仅在适合时放入 `expressions`。
 4. 调用 `scripts/create_question.py` 创建 Question。
 5. 记录返回的 `question_id/card_id`。
+6. 将 `card_id` 作为下游交接物交给 `kmb-viz-config` 或 `kmb-dashboard-builder`。
 
 ## Outputs
 

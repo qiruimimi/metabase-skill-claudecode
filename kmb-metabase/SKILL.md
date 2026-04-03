@@ -39,6 +39,7 @@ description: |
    - API 细节 -> `agents/rules/` 或 `references/api-reference.md`
    - MBQL 细节 -> `references/mbql-best-practices.md`
    - Dashboard 参数映射 -> `references/dashboard-configs.md`
+   - skill 交接契约 -> `references/skill-handoffs.md`
    - 小站离线映射 -> `space-data/`
 4. 不要一次性加载全部 `references/`、`rules/`、`space-data/`。
 
@@ -59,6 +60,7 @@ description: |
 - 不直接替代子 skill 执行完整流程。
 - 不要求子 skill 先“激活 kmb-metabase”才可工作。
 - 不在这里复制所有 API、MBQL、迁移细节。
+- 多步链路优先遵循 `references/skill-handoffs.md`，不要临场猜测切换顺序。
 
 ## Escalation / Hand-off
 

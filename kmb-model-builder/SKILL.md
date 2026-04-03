@@ -32,6 +32,10 @@ dependencies:
 
 1. 校验输入来自已分析的 Model SQL 或 `migration_plan.json`。
 2. 检查 Model SQL 是否符合要求：无多余 `GROUP BY`、I/S 表处理正确、日期与 CASE 字段已预处理。
+   - 命中 `_s_d` 表时，必须同时满足：
+     - `STR_TO_DATE(ds, '%Y%m%d') AS ds_time`
+     - `WHERE ds = DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY), '%Y%m%d')`
+   - `scripts/create_model.py` 会对这条规则做硬校验，不满足就拒绝创建。
 3. 调用 `scripts/create_model.py` 创建 Model。
 4. 记录返回的 `model_id`。
 5. 调用 `/api/card/{id}/query` 验证 Model 可运行。
@@ -41,6 +45,18 @@ dependencies:
 - `model_id`
 - 创建结果摘要
 - 验证结果
+
+## Recommended Check
+
+手写 SQL 时，先做预检查：
+
+```bash
+python3 scripts/create_model.py \
+  --name "Model: 示例" \
+  --sql-file model.sql \
+  --collection 485 \
+  --validate-only
+```
 
 ## Failure Handling
 

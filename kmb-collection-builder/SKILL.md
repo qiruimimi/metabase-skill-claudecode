@@ -32,6 +32,7 @@ dependencies: []
 2. 创建时优先使用脚本 `scripts/create_collection.py`；必要时直接调用 API。
 3. 迁移场景命名优先采用 `【P<pageId>】<页面名>`。
 4. 已存在场景使用 `--skip-if-exists` 或 `--update-if-exists` 实现幂等。
+5. 将 `collection_id` 作为下游交接物传给 `kmb-model-builder`、`kmb-dashboard-builder` 或 `kmb-migration`。
 
 ## Outputs
 

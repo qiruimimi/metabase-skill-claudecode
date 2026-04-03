@@ -59,6 +59,17 @@ dependencies:
    - `kmb-question-builder`: 按计划创建 Question，输出 `question_id/card_id`。
    - `kmb-viz-config`: 回写可视化配置，输出每张卡片的 viz 更新结果。
    - `kmb-dashboard-builder`: 创建 Dashboard、布局 dashcards、配置参数映射，输出 `dashboard_id`。
+
+### 统一交接契约
+
+按 `references/skill-handoffs.md` 执行交接，不要跳步：
+
+- `kmb-space-query` -> 原始 SQL
+- `kmb-sql-analyzer` -> `migration_plan.json`
+- `kmb-model-builder` -> `model_id`
+- `kmb-question-builder` -> `question_id/card_id`
+- `kmb-viz-config` -> 更新后的 `card_id`
+- `kmb-dashboard-builder` -> `dashboard_id`
 6. 交付映射
    - 汇总 `asset_mapping.json`，至少包含 `page_id`、`graph_id`、`model_id`、`question_id/card_id`、`dashboard_id`。
    - 生成迁移记录，记录硬闸门结果、异常点、回滚信息。

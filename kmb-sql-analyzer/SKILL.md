@@ -51,6 +51,13 @@ dependencies: []
    - `visualization`
 5. 对复杂 SQL 标记决策点，供下游或人工复核。
 
+### 下游交接要求
+
+- `model` 产物必须可直接交给 `kmb-model-builder`
+- `questions[*]` 产物必须可直接交给 `kmb-question-builder`
+- `visualization` 产物必须可直接交给 `kmb-viz-config`
+- 统一交接格式参考 `references/skill-handoffs.md`
+
 ## Outputs
 
 - `migration_plan.json`

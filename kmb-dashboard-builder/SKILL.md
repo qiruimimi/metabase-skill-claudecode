@@ -35,6 +35,7 @@ dependencies:
 3. 调用 `scripts/add_cards.py` 或等价 API 更新 dashcards。
 4. 如有筛选器，配置 Dashboard 参数与 `parameter_mappings`。
 5. 校验卡片数量、布局与必要筛选器是否完整。
+6. 输入的 `card_id` 应来自 `kmb-question-builder`，若做过样式更新则优先使用 `kmb-viz-config` 输出的版本。
 
 ## Outputs
 

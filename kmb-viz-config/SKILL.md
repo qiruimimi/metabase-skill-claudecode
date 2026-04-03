@@ -38,6 +38,7 @@ dependencies:
 
 - 已更新的 `card_id`
 - 生效的可视化配置摘要
+- 更新后的 `card_id` 作为下游交接物传给 `kmb-dashboard-builder`
 
 ## Failure Handling
 
